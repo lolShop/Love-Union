@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @date 2020/3/5
  */
 
-@SpringBootTest
+//@SpringBootTest
 public class ProductDetailTest {
     @Autowired
     private ProductDetailService productDetailService;

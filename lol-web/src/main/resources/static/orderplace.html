@@ -209,40 +209,9 @@
 				<strong>选择收货地址</strong>
 				<div id="blk_pay_address">
 					<div class="address-list">
-						<ul class="clearfix">
-							<li id="li-1" class="in">
-								<span>多少岁s</span>
-								<p class="sg">傻傻</p>
-								<p class="fl mr30">3333333</p>
-								<p class="fl mr30">13456789011</p>
-								<p class="fl">1345678</p>
-							</li>
-							<li id="li-2" class="in">
-								<span>多少岁s</span>
-								<p class="sg">傻傻</p>
-								<p class="fl mr30">3333333</p>
-								<p class="fl mr30">13456789011</p>
-							</li>
-							<li id="li-3" class="on in">
-								<span>多少岁s</span>
-								<p class="sg">傻傻</p>
-								<p class="fl mr30">3333333</p>
-								<p class="fl mr30">13456789011</p>
-								<a title="默认地址" class="m-r m-r-1" style="background: #ccc;color: #fff;display: block;">&nbsp;&nbsp;默认地址&nbsp;&nbsp;</a>
-							</li>
-							<li id="li-4" class="in">
-								<span>多少岁s</span>
-								<p class="sg">傻傻</p>
-								<p class="fl mr30">3333333</p>
-								<p class="fl mr30">13456789011</p>
-								<p class="fl">1345678</p>
-								<a class="m-r">设为默认</a>
-								<a href="javascript:;" class="tx js_pay_address_edit"></a>
-								<a href="javascript:;" class="gb js_pay_address_del"></a>
-							</li>
-							<li class="tj">
-			                    <a href="#"><em></em><b>新增收货地址</b></a>
-			                </li>
+						<input style="display: none" id="ckaddress" value=""/>
+						<ul class="clearfix" id="addressList">
+							<!-- 用户收货地址列表 -->
 						</ul>
 					</div>
 				</div>
@@ -267,41 +236,43 @@
 										<th>金额（元）</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<div class="img">
-												<div>
-													<a href="#">
-														<img src="image/orderplace/20200102110657_67912.jpg" width="113" height="108" />
-													</a>
-												</div>
-											</div>
-										</td>
-										<td class="td-1">
-											<span>
-												<a href="/lol/detail.shtml?id=12555" target="_blank">新春系列 提伯斯毛绒挂件盲盒</a>
-											</span>
-										</td>
-										<td class="td-2">
-			                                <span class="col">颜色: 彩色</span>
-			                                <span class="col">尺码: 均码</span>
-			                            </td>
-			                            <td>
-			                            	<span>59.00 元</span>
-			                            </td>
-			                            <td>
-			                                <span>
-			                                    1
-			                                </span>
-			                            </td>
-			                            <td>
-			                                <b>                                   
-			                                    59.00 元
-			                                   
-			                                </b>
-			                            </td>
-									</tr>
+								<tbody id="shop-list">
+								<!-- 商品项 -->
+<!--									<tr>-->
+<!--										<td>-->
+<!--											<div class="img">-->
+<!--												<div>-->
+<!--													<a href="#">-->
+<!--														<img src="image/orderplace/20200102110657_67912.jpg" width="113" height="108" />-->
+<!--													</a>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</td>-->
+<!--										<td class="td-1">-->
+<!--											<span>-->
+<!--												<a href="/lol/detail.shtml?id=12555" target="_blank">新春系列 提伯斯毛绒挂件盲盒</a>-->
+<!--											</span>-->
+<!--										</td>-->
+<!--										<td class="td-2">-->
+<!--			                                <span class="col">颜色: 彩色</span>-->
+<!--			                                <span class="col">尺码: 均码</span>-->
+<!--			                            </td>-->
+<!--			                            <td>-->
+<!--			                            	<span>59.00 元</span>-->
+<!--			                            </td>-->
+<!--			                            <td>-->
+<!--			                                <span>-->
+<!--			                                    1-->
+<!--			                                </span>-->
+<!--			                            </td>-->
+<!--			                            <td>-->
+<!--			                                <b>                                   -->
+<!--			                                    59.00 元-->
+<!--			                                   -->
+<!--			                                </b>-->
+<!--			                            </td>-->
+<!--									</tr>-->
+
 								</tbody>
 							</table>
 							<p>订单备注:<input /></p>
@@ -312,8 +283,8 @@
 			<div class="order-discount mid" style="padding-bottom: 80px;">
 				<div class="purchase">
 					<ul class="clearfix">
-	                    <li>1件商品，商品总价</li>
-	                    <li class="t1">59.00 元</li>
+	                    <li id="sp-sum">1件商品，商品总价</li>
+	                    <li id="sp-price" class="t1"></li>
 	                    <li>VIP抵扣</li>
 	                    <li class="t1">- 0.00 元</li>
 	                    <li>优惠券</li>
@@ -321,11 +292,11 @@
 	                    <li>聚豆抵扣</li>
 	                    <li class="t1">- 0.00 元</li>
 	                    <li>运费：</li>
-	                    <li class="t1">15.00 元</li>
+	                    <li class="t1">0.00 元</li>
 	                    <li>实付款（含运费）</li>
-	                    <li class="t1"><b>74.00 元</b></li>
-	                    <li class="t3">寄送至： 起来莫德里奇·还没开呢叫你 </li>
-	                    <li class="t2">收货人：吃饭 12345678901</li>
+	                    <li id="sp-sfk" class="t1"><b> </b></li>
+	                    <li class="t3"></li>
+	                    <li class="t2"></li>
 	                </ul>
 					<div class="purchase-btn">
 						<a href="#" title="提交订单" class="dd-btn">提交订单</a>
@@ -372,10 +343,10 @@
 				<div class="popup-error" style="margin: 10px auto 0;text-align: center;color:red;"></div>
 				<div class="popup-con">
 					<div class="popup-form"> 
-						<form >
+						<form id="addressform" >
 							<div class="form-group">
 								<label class="fl"><span style="color:red;">*</span>收件人</label>
-								<input class="fl wth400" placeholder="收件人" />
+								<input name="takeName" class="fl wth400" placeholder="收件人" />
 							</div>
 							<div class="form-group zd10">
 								<label class="fl"><span style="color:red;">*</span>所在地区</label>
@@ -396,17 +367,17 @@
 							</div>
 							<div class="form-group">
 								<label class="fl"><span style="color:red;">*</span>收件人地址</label>
-								<input class="fl wth400" placeholder="收件人地址" />
+								<input name="takeAddress" class="fl wth400" placeholder="收件人地址" />
 							</div>
 							<div class="form-group">
 								<label class="fl"><span style="color:red;">*</span>手机号码</label>
-								<input class="fl wth140" placeholder="手机号码" />
+								<input name="takePhone" class="fl wth140" placeholder="手机号码" />
 								<label class="fl ml20">固定电话</label>
 								<input class="fl wth140" placeholder="固定电话" />
 							</div>
 							<div class="form-group">
 		                        <label class="fl">邮政编码</label>
-		                        <input class="fl wth140" placeholder="邮政编码" />
+		                        <input name="postcode" class="fl wth140" placeholder="邮政编码" />
 		                    </div>
 						</form>
 					</div>
@@ -414,7 +385,7 @@
 			</div>
 			<div class="popup-con">
 				<div class="popup-btnbox ml0 mb30">
-		            <a href="#" class="popup-btn btn-sure">确认</a>
+		            <a id="tjbd" class="popup-btn btn-sure">确认</a>
 		        </div>
 			</div>
 		</div>
