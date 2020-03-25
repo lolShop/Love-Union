@@ -3,8 +3,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/lol?serverTimezone=GMT&useUnicode=ture&characterEncoding=utf8
-    username: Crazy
-    password: 980425Lch.
+    username: root
+    password: root
     #配置druid连接池属性
     druid:
       #最大连接池数量
@@ -39,6 +39,8 @@ spring:
 mybatis:
   type-aliases-package: edu.nf.lol..entity
   mapper-locations: classpath:/mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 # 分页插件配置
 pagehelper:
   # 数据库方言

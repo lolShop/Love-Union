@@ -58,105 +58,10 @@
 
             </div>
 
-            <div class="mycart-list">
+            <div class="mycart-list" id="listShopCart">
 
                 <!-- 列表项 -->
-                <div class="mycart-item">
-                    <div class="fli spi-1">
-                        <span class="goodscheck input-check"><i></i></span>
-                    </div>
-                    <div class="fli spi-2">
-                        <div class="mycart-item-img">
-                            <img src="image/shoppingCartImage/20190428104310_28156.jpg"></img>
-                        </div>
-                    </div>
-                    <div class="fli spi-3">
-                        <p class="mycart-item-name">
-                            <a>CF手办模型-刀锋+白狼套装</a>
-                        </p>
-                        <p class="mycart-item-em">赠品：主题收集-白狼手办*1、主题收集-刀锋手办*1 </p>
-                    </div>
-                    <div class="fli spi-4">
-                        <div class="mycart-item-sel disabled">
-                            <p>款式：刀锋+白狼套装</p>
-                            <!--<i>修改</i>-->
-                        </div>
-                    </div>
-                    <div class="fli spi-5">
-                        <p class="mycart-item-per">
-                            <s>109.00 元</s><br/>
-                            109.00 元
-                        </p>
-                    </div>
-                    <div class="fli spi-6">
-                        <div class="mycart-item-count">
-                            <span class="num-minus btn_cart_list_buy_min">-</span>
-                            <input type="text" class="inpt_cart_list_buy_num" value="1" oninput="value=value.replace(/[^\d]/g,'')">
-                            <span class="num-plus btn_cart_list_buy_plus">+</span>
-                        </div>
-                    </div>
-                    <div class="fli spi-7">
-                        <p class="mycart-item-price">
-                            199.00 元
-                        </p>
-                    </div>
-                    <div class="fli spi-8">
-                        <div class="mycart-item-tg">
-                            <a class="btn-del" href="javascript:;">删除</a>
-                            <a class="btn-fav" href="javascript:;">移入收藏夹</a>
-                        </div>
-                    </div>
 
-                </div>
-
-
-                <div class="mycart-item">
-                    <div class="fli spi-1">
-                        <span class="goodscheck input-check"><i></i></span>
-                    </div>
-                    <div class="fli spi-2">
-                        <div class="mycart-item-img">
-                            <img src="image/shoppingCartImage/20190428104310_28156.jpg"></img>
-                        </div>
-                    </div>
-                    <div class="fli spi-3">
-                        <p class="mycart-item-name">
-                            <a>CF手办模型-刀锋+白狼套装</a>
-                        </p>
-                        <p class="mycart-item-em">赠品：主题收集-白狼手办*1、主题收集-刀锋手办*1 </p>
-                    </div>
-                    <div class="fli spi-4">
-                        <div class="mycart-item-sel disabled">
-                            <p>款式：刀锋+白狼套装</p>
-                            <!--<i>修改</i>-->
-                        </div>
-                    </div>
-                    <div class="fli spi-5">
-                        <p class="mycart-item-per">
-                            <s>109.00 元</s><br/>
-                            109.00 元
-                        </p>
-                    </div>
-                    <div class="fli spi-6">
-                        <div class="mycart-item-count">
-                            <span class="num-minus btn_cart_list_buy_min">-</span>
-                            <input type="text" class="inpt_cart_list_buy_num" value="1" oninput="value=value.replace(/[^\d]/g,'')">
-                            <span class="num-plus btn_cart_list_buy_plus">+</span>
-                        </div>
-                    </div>
-                    <div class="fli spi-7">
-                        <p class="mycart-item-price">
-                            199.00 元
-                        </p>
-                    </div>
-                    <div class="fli spi-8">
-                        <div class="mycart-item-tg">
-                            <a class="btn-del" href="javascript:;">删除</a>
-                            <a class="btn-fav" href="javascript:;">移入收藏夹</a>
-                        </div>
-                    </div>
-
-                </div>
 
 
 
@@ -164,15 +69,14 @@
             <!-- 商品列表结束 -->
 
             <!-- 结算栏 -->
-            <div class="mycart-tb clearfix">
+            <div class="mycart-tb clearfix" >
                 <div class="mycart-tb-tg">
                     <!--<span class="input-check"><i></i></span>-->
                     <!--<span>全选</span>-->
                     <!--<a href="javascript:;">删除选中商品</a>-->
                     <!--<a href="javascript:;">清除失效商品</a>-->
                 </div>
-                <div class="mycart-tb-info" style="margin: 6px 180px 0 0;">
-                    <p>已选商品 <b class="total">2</b> 件&nbsp;&nbsp;总价：<b class="money">327.00 元</b></p>
+                <div class="mycart-tb-info" style="margin: 6px 180px 0 0;" id="jscart">
                     <p class="b">不含运费和其他优惠</p>
                 </div>
                 <a class="mycart-tb-btn" cnt="2">去结算</a>
@@ -249,7 +153,21 @@
             </li>
         </ul>
     </div>
-
+    <div id="confirm_panel" style="display: none; " data-milodialog="1" role="dialog" tabindex="-1">
+        <div class="dj_pop">
+            <div class="dj_pop_alert">
+                <div class="dj_hd">
+                    <h4>温馨提示</h4>
+                    <a href="javascript:;" title="关闭" class="dj_bt_close"><s></s></a>
+                </div>
+                <div class="dj_bd pb20 clearfix">
+                    <p id="alert_cont">收藏成功，要从购物车中删除该商品吗？</p>
+                    <a href="javascript:;" title="确定" class="dj_bt_ok ">确定</a>
+                    <a href="javascript:;" title="取消" class="dj_bt_cancel ">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--网页尾部分 -->
@@ -257,73 +175,8 @@
 
 <script src="js/common.js"></script>
 <script src="js/index.js" type="text/javascript"></script>
-<script>
-    //全选/取消
-    $("#ck-all").on("click", function () {
-        $(".input-check").each(function (index, obj) {
+<script src="js/shopCart.js" ></script>
+<script src="js/layui.js"></script>
 
-            if(index == 0){
-                $(this).toggleClass("checked")
-            }else{
-                if($("#ck-all").is(".checked")){
-                    $(this).addClass("checked")
-                }else{
-                    $(this).removeClass("checked")
-                }
-            }
-        })
-    })
-
-    //判断是否全选
-    const ifCheckAll = function () {
-        var ica = true;
-        $(".goodscheck").each(function (index, obj) {
-            if (!$(this).is(".checked")) {
-                $("#ck-all").removeClass("checked")
-                ica = false;
-            }
-        })
-        return ica;
-    };
-
-    //单选/取消
-    $(".goodscheck").on("click", function () {
-        $(this).toggleClass("checked")
-        if(ifCheckAll()){
-            $("#ck-all").addClass("checked")
-        }else{
-            $("#ck-all").removeClass("checked")
-        }
-    })
-
-
-    //数量加减
-    //减
-   $(".btn_cart_list_buy_min").on('click',function () {
-        var i =  parseInt($(this).parent().find(".inpt_cart_list_buy_num").prop('value'))-1
-       if(i>=1){
-           $(this).parent().find(".inpt_cart_list_buy_num").prop('value', i)
-       }
-
-    })
-    //加
-    $(".btn_cart_list_buy_plus").on('click',function () {
-        var i =  parseInt($(this).parent().find(".inpt_cart_list_buy_num").prop('value'))+1
-        $(this).parent().find(".inpt_cart_list_buy_num").prop('value', i)
-    })
-
-    //导入导航栏和底部样式
-    $(function () {
-
-        $.get("top.html", function (data) {
-            $(".top").html(data);
-        });
-        $.get("bottom.html", function (data) {
-            $(".bottom").html(data);
-        });
-    })
-
-
-</script>
 </body>
 </html>

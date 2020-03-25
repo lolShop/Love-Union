@@ -11,6 +11,6 @@ import lombok.Data;
 public class Collect {
 
     private Integer collectId;
-    private User user;
-    private Product product;
+    private Integer userId;
+    private Integer productId;
 }
