@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.order.dao.OrderDao">
+
+    <resultMap id="address" type="edu.nf.lol.user.entity.Address">
+        <id column="address_id" property="addressId"/>
+        <result column="take_name" property="takeName"/>
+        <result column="take_phone" property="takePhone"/>
+        <result column="take_address" property="takeAddress"/>
+        <result column="postcode" property="postcode"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    
+    <select id="getAddressByUserId" resultMap="address" parameterType="java.lang.Integer">
+        select address_id, take_name, take_phone, take_address, postcode, status from address_info
+        where user_id = #{userId};
+    </select>
+
+    <resultMap id="productMap" type="edu.nf.lol.product.entity.Product">
+        <id column="product_id" property="productId"/>
+        <result column="product_main_image" property="productMainImage"/>
+        <result column="product_name" property="productName"/>
+    </resultMap>
+
+    <resultMap id="specsMap" type="edu.nf.lol.product.entity.ProductSpecs">
+        <id column="specs_id" property="specsId"/>
+        <result column="specs_price" property="specsPrice"/>
+        <result column="promotion_price" property="promotionPrice"/>
+        <result column="product_specs" property="productSpecs"/>
+        <association property="product" resultMap="productMap"/>
+    </resultMap>
+
+    <resultMap id="shopCarMap" type="edu.nf.lol.shopCart.entity.ShopCart">
+        <id column="shop_id" property="shopId"/>
+        <result column="shop_count" property="shopCount"/>
+        <association property="productSpecs" resultMap="specsMap"/>
+    </resultMap>
+
+    <select id="getUserShopCar" resultMap="shopCarMap">
+       select p1.specs_id, p2.product_id, p2.product_name, p2.product_main_image, p1.product_specs, p1.specs_price, p1.promotion_price, s1.shop_id, s1.shop_count from product_specs p1 join product_info p2 on p1.product_id=p2.product_id join shop_cart s1 on s1.specs_product_id = p1.specs_id where s1.shop_state = 1 and s1.shop_u_id = #{userId} ;
+    </select>
+
+    <insert id="placeOrder" parameterType="edu.nf.lol.order.entity.OrderInfo">
+        insert into order_info(order_id, order_static_id, address_id, user_id,  payment_money, order_remarks)
+        values (#{orderId},1000,1001,#{user.userId},#{paymentMoney},#{orderRemarks})
+    </insert>
+
+</mapper>
