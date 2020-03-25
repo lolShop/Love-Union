@@ -14,11 +14,9 @@ public class ProductSpecs {
     private  Integer  specsId;
     private  String productSpecs;
     private     BigDecimal   specsPrice;
-    private BigDecimal promotionPrice;
     private    Integer specsStock;
     private Date  specsCreateTime;
     private  Date  specsUpdateTime;
     private  Integer   specsState;
     private  Product product;
-
 }

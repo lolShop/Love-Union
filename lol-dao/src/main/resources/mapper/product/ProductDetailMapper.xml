@@ -9,10 +9,11 @@
         <result property="productUpdateTime" column="product_update_time"/>
         <result property="productMainImage" column="product_main_image"/>
         <result property="productParticular" column="product_particular"/>
-        <result property="productWeight" column=" product_weight"/>
+        <result property="productWeight" column="product_weight"/>
         <result property="productAttribute" column="product_attribute"/>
         <result property="productState" column="product_state"/>
         <association  property="productType" resultMap="productTypeMap"/>
+        <collection property="productImageList" resultMap="productImageMap"/>
     </resultMap>
     <resultMap id="productTypeMap" type="edu.nf.lol.product.entity.ProductType">
        <id property="productTypeId" column="product_type_id"/>
@@ -22,7 +23,13 @@
         <result property="updateTime" column="update_time"/>
         <result property="productState" column="product_state"/>
     </resultMap>
+    <resultMap id="productImageMap" type="edu.nf.lol.product.entity.ProductImage">
+        <id property="imageId" column="image_id"/>
+        <result property="imageName" column="image_name"/>
+        <result property="attributeCreateTime" column="attribute_create_time"/>
+        <result property="attributeUpdateTime" column="attribute_update_time"/>
+    </resultMap>
     <select id="productDetail" resultMap="productMap" parameterType="edu.nf.lol.product.entity.Product">
-        SELECT product_id,product_type_id,product_name,product_create_time,product_update_time,product_main_image,product_particular,product_weight,product_attribute,product_state FROM product_info  WHERE product_id=#{productId}
+SELECT pf.product_id,pf.product_type_id,pf.product_name,pf.product_create_time,pf.product_update_time,pf.product_main_image,pf.product_particular,pf.product_weight,pf.product_attribute,pf.product_state,pm.image_name FROM  product_info pf LEFT JOIN product_image pm on pf.product_id=pm.product_id WHERE pf.product_id=#{productId}
       </select>
 </mapper>

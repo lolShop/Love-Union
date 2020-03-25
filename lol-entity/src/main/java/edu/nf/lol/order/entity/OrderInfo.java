@@ -26,4 +26,5 @@ public class OrderInfo {
      private  OrderStatic orderStatic;
      private User user;
      private Address address;
+     private String orderRemarks;
 }

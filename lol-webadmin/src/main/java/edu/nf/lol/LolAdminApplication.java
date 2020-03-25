@@ -14,5 +14,4 @@ public class LolAdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(LolAdminApplication.class,args);
     }
-
 }

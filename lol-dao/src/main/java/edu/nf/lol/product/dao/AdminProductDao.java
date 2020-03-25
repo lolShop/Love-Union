@@ -15,4 +15,5 @@ public interface AdminProductDao {
      * @return
      */
    List<Product>  adminProductAll();
+
 }
