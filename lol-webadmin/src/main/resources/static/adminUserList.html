@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>网站配置 - 光年(Light Year Admin)后台管理系统模板</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+    <meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/pagination.css">
+    <script src="js/jquery-1.12.4.min.js"></script>
+
+</head>
+
+<body>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-toolbar clearfix">
+                                <form class="pull-right search-bar" method="get" action="#!" role="form">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <input type="hidden" name="search_field" id="search-field" value="title">
+                                            <button class="btn btn-default dropdown-toggle" id="search-btn" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">
+                                                标题 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li> <a tabindex="-1" href="javascript:void(0)" data-field="title">标题</a> </li>
+                                                <li> <a tabindex="-1" href="javascript:void(0)" data-field="cat_name">栏目</a> </li>
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control" value="" name="keyword" placeholder="请输入名称">
+                                    </div>
+                                </form>
+                                <div class="toolbar-btn-action">
+                                    <a class="btn btn-primary m-r-5" href="#!"><i class="mdi mdi-plus"></i> 新增</a>
+                                    <a class="btn btn-success m-r-5" href="#!"><i class="mdi mdi-check"></i> 启用</a>
+                                    <a class="btn btn-warning m-r-5" href="#!"><i class="mdi mdi-block-helper"></i> 禁用</a>
+                                    <a class="btn btn-danger" href="#!"><i class="mdi mdi-window-close"></i> 删除</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="table-responsive">
+                                    <table id="tab" class="table table-bordered">
+                                        <thead>
+                                        <tr id="head">
+                                            <th>
+                                                <label class="lyear-checkbox checkbox-primary">
+                                                    <input type="checkbox" id="check-all"><span></span>
+                                                </label>
+                                            </th>
+                                            <th>用户ID</th>
+                                            <th>账号</th>
+                                            <th>密码</th>
+                                            <th>姓名</th>
+                                            <th>头像</th>
+                                            <th>性别</th>
+                                            <th>出生年月</th>
+                                            <th>联系电话</th>
+                                            <th>邮箱</th>
+                                            <th>操作</th>
+<!--                                            <td>-->
+<!--                                             <div class="btn-group">-->
+<!--                                                 <a class="btn btn-xs btn-default" href="#!" title="编辑" data-toggle="tooltip"><i class="mdi mdi-pencil"></i></a>-->
+<!--                                                 <a class="btn btn-xs btn-default" href="#!" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>-->
+<!--                                             </div>-->
+<!--                                            </td>-->
+                                        </tr>
+                                        </thead>
+<!--                                        <tbody>-->
+<!--                                        <tr>-->
+<!--                                            <td>-->
+<!--                                                <label class="lyear-checkbox checkbox-primary">-->
+<!--                                                    <input type="checkbox" name="ids[]" value="1"><span></span>-->
+<!--                                                </label>-->
+<!--                                            </td>-->
+<!--                                            <td>1000</td>-->
+<!--                                            <td>学会感恩</td>-->
+<!--                                            <td>wen99</td>-->
+<!--                                            <td>小孙</td>-->
+<!--                                            <td>default.jpg</td>-->
+<!--                                            <td>男</td>-->
+<!--                                            <td>1998-10-21</td>-->
+<!--                                            <td>15297783227</td>-->
+<!--                                            <td>2669138167@qq.com</td>-->
+<!--                                            <td>-->
+<!--                                                <div class="btn-group">-->
+<!--                                                    <a class="btn btn-xs btn-default" href="#!" title="编辑" data-toggle="tooltip"><i class="mdi mdi-pencil"></i></a>-->
+<!--                                                    <a class="btn btn-xs btn-default" href="#!" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+
+<!--                                        </tbody>-->
+                                    </table>
+                                    <!-- 分页控件 -->
+                                    <div id="page" align="right"></div>
+                                </div>
+
+<!--                                <nav>-->
+<!--                                    <ul class="pagination">-->
+<!--                                            <li><a href="#">上一页</a></li>-->
+<!--                                            <li class="active"><a href="#">1</a></li>-->
+<!--                                            <li><a href="#!">2</a></li>-->
+<!--                                            <li><a href="#!">3</a></li>-->
+<!--                                            <li><a href="#!">4</a></li>-->
+<!--                                            <li><a href="#!">5</a></li>-->
+<!--                                            <li><a href="#">下一页</a></li>-->
+<!--                                    </ul>-->
+<!--                                </nav>-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+        <!--End 页面主要内容-->
+    </div>
+</div>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script src="js/jquery.pagination.js"></script>
+<script>
+     $(function(){
+        $.ajax({
+            url: 'admin/user/adminUser?pageNum=1&pageSize=10',
+            method: 'GET',
+            success: function(result){
+                //添加数据到表格
+                addTable(result.data.list);
+                //分页
+                page(result.data);
+            }
+        });
+     })
+
+    //添加表格数据
+    function addTable(list){
+        //先移除原有的表格数据
+        $("#tab tr:not(#head)").remove();
+        //循环追加数据
+        $.each(list, function(index,obj){
+            $('#tab').append(
+                '<tr>' +
+                '<td>' +
+                '<label class="lyear-checkbox checkbox-primary">'+
+                    '<input type="checkbox" value="'+obj.userId+'"><span></span>'+
+                '</label>'+
+                '</td>' +
+                '<td>'+obj.userId+'</td>' +
+                '<td>'+obj.userPhone+'</td>' +
+                '<td>'+obj.password+'</td>' +
+                '<td>'+obj.userName+'</td>' +
+                '<td>'+obj.photo+'</td>' +
+                '<td>'+obj.sex+'</td>' +
+                '<td>'+obj.birthday+'</td>' +
+                '<td>'+obj.phone+'</td>' +
+                '<td>'+obj.email+'</td>' +
+                '<td>'+
+                    '<div class="btn-group">'+
+                        '<a class="btn btn-xs btn-default" href="#!" title="编辑" data-toggle="tooltip"><i class="mdi mdi-pencil"></i></a>'+
+                        '<a class="btn btn-xs btn-default" href="#!" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>'+
+                    '</div>'+
+                '</td>'+
+                '</tr>'
+            );
+        });
+    }
+
+    //分页方法
+    function page(data){
+        //选择器选中分页的div容器，并调用pagination方法来设置分页控件
+        $("#page").pagination(data.total, { //第一个参数指定共多少条记录
+            items_per_page : 10, // 每页显示多少条记录
+            next_text : "下一页", //下一页按钮图标
+            prev_text : "上一页", //上一页按钮图标
+            num_display_entries : 5,//主体页数
+            num_edge_entries : 2, //边缘页数
+            callback : function(index){//定义一个回调函数，用于每次点击页码发起分页查询请求
+                var pageNum = ++index;
+                $.get("list_city?pageNum="+pageNum+"&pageSize=15", function(result){
+                    addTable(result.data.list);
+                });
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+</body>
+</html>
