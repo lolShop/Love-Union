@@ -25,7 +25,7 @@ public class AdminProductServiceImpl implements AdminProductService {
             List<Product> products=adminProductDao.adminProductAll();
             return  products;
         }catch (RuntimeException e){
-              throw  new LolException("查询失败,请稍后重试");
+            throw  new LolException("查询失败,请稍后重试");
         }
     }
 }

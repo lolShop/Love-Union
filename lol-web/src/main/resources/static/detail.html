@@ -8,7 +8,6 @@
 	</head>
 	<body>
 		<div class="top">
-			
 		</div>
 		<div class="wrap">
 			<div class="mainwrap">
@@ -27,18 +26,18 @@
 								    <span class="mark-txt">新品</span>
 								</div>
 								<div class="jqzoom" id="spec-n1" >
-									<IMG src="image/detail/20200102113518_85881.jpg" jqimg="image/detail/20200102113518_85881.jpg" width=460>
+									<IMG src="" jqimg="" width=460>
 								</div>
 							</div>
 							<div class="picdetails" id="js-more-views">
 								<div id="spec-n5">
 									<div id="spec-list">
 										<ul class="list-h">
-											<li><img src="image/detail/20200102113518_85881.jpg"> </li>
-											<li><img src="image/detail/20200102113521_76451.jpg"> </li>
-											<li><img src="image/detail/20200102113524_65765.jpg"> </li>
-											<li><img src="image/detail/20200102113531_76684.jpg"> </li>
-											<li><img src="image/detail/20200102113533_29738.jpg"> </li>				
+											<li><img> </li>
+											<li><img> </li>
+											<li><img> </li>
+											<li><img> </li>
+											<li><img> </li>
 										</ul>
 									</div>
 								</div>
@@ -46,11 +45,7 @@
 						</div>
 						<div class="fl product-info">
 							<div>
-								<span class="pord-name">悠米卫衣</span>
-								<div class="pord-price clearfix">
-									<span class="fl pord-dispri">￥<strong>270.00</strong></span>
-									<span class="fl pord-orpri">￥270.00</span>
-									<a href="javascript:;" style="display: none" data-id="619" mallid="12800" icatid="127" ivippromoteprice="0" class="fr coupon-link" title="领取优惠券">领取优惠券<i class="ico-detail ico-lqarr"></i></a>
+								<div id="product">
 								</div>
 								<div class="pord-detailbox clearfix">
 									<div class="fl pord-sold">已售：<span>536</span></div>
@@ -60,25 +55,8 @@
 										<span>0.0</span>
 									</div>
 								</div>
-								<div id="blk_detail_main_spec">   
-									<div class="mt10 pord-color pord-sellist clearfix">
-										<label class="fl">颜色</label>
-										<ul class="fl ml28">
-											<li attrid="87" class="hoverColor current" style="overflow:hidden;"><div class="pord-selbox">彩色</div></li>
-											<li attrid="87" class="hoverColor" style="overflow:hidden;"><div class="pord-selbox">白色</div></li>
-										</ul>
-									</div>
-									<div class="mt11 pord-color pord-sellist clearfix">
-										<label class="fl">尺码</label>
-										<ul class="fl ml28">
-											<li attrid="88" class="current hoverColor" style="overflow:hidden;"><div class="pord-selbox">XS</div></li>
-											<li attrid="88" class="hoverColor" style="overflow:hidden;"><div class="pord-selbox">S</div></li>
-											<li attrid="88" class="hoverColor" style="overflow:hidden;"><div class="pord-selbox">M</div></li>
-											<li attrid="88" class="hoverColor" style="overflow:hidden;"><div class="pord-selbox">L</div></li>
-											<li attrid="88" class="hoverColor" style="overflow:hidden;"><div class="pord-selbox">XL</div></li>
-											<li attrid="88" class="hoverColor" style="overflow:hidden;"><div class="pord-selbox">XXL</div></li>
-										</ul>
-									</div>
+								<div id="blk_detail_main_spec">
+									<input type="hidden" class="product">
 								</div>
 								<div id="blk_detail_main_btn">             
 									<div class="mt10 pord-num clearfix">
@@ -88,7 +66,7 @@
 											<input type="text" size="2" maxlength="3" stock_num="159" limit_num="0" class="fl nummidbtn num inpt_detail_main_buy_num" value="1">
 											<a href="javascript:;" class="fl numbtn num-minus btn_detail_main_buy_plus"><i class="ico-detail">+</i></a>
 										</div>
-										<span class="pord-stock">（库存充足）</span>
+										<span class="pord-stock">还剩(<span id="stock">10</span>)件</span>
 									</div>
 									<div class="pord-btn clearfix">
 										<a id="btn_detail_cart_add" href="javascript:;" class="fl joincart-btn">加入购物车</a>
@@ -122,20 +100,20 @@
 				                    <ul>
 				                        <li>
 				                            <label class="fl">商品名称：</label>
-				                            <span class="fl par-name">悠米卫衣</span>
+				                            <span class="fl par-name" id="par-name"></span>
 				                        </li>
 				         
 				                        <li>
 				                            <label class="fl">店铺：</label>
-				                            <span class="fl">合泰文化</span>
+				                            <span class="fl">爱联盟</span>
 				                        </li>
 				                        <li>
 				                            <label class="fl">上架时间：</label>
-				                            <span class="fl mr70">2020-01-09</span>
+				                            <span class="fl mr70" id="time"></span>
 				                        </li>
 				                        <li>
 				                            <label class="fl">商品毛重：</label>
-				                            <span class="fl">200g</span>
+				                            <span class="fl" id="weight"></span>
 				                        </li>
 				                        <li>
 				                            <label class="fl">商城：</label>
@@ -256,8 +234,27 @@
 		</div>
 		<div class="bottom">
 		</div>
+		<div class="popup" id="popup_detail_cart" data-milodialog="1" role="dialog" tabindex="-1" style="display: none; visibility: visible; position: fixed; z-index: 9999; left: 50%; top: 50%; margin-top: -150px; margin-left: -280px;">
+			<a class="popup-close" href="javascript:;" title="关闭"><i class="comicon i-close"></i></a>
+			<div class="popup-main">
+				<h4>购物车提醒</h4>
+				<div class="popup-con">
+					<div class="popup-info clearfix">
+						<i class="fl comicon i-tick"></i>
+						<div class="fl popup-tip" id="blk_popup_detail_cart_msg">                    <p class="tip-success">商品已成功添加到购物车!</p></div>
+						<script type="text/html" id="tmpl_popup_detail_cart_msg">
+							<p class="tip-success">商品已成功添加到购物车!</p>
+						</script>
+					</div>
+					<div class="popup-btnbox">
+						<a href="javascript:window.location='shoppingCart.html';" class="fl popup-btn btn-sure mr20" id="btn-sure">确认</a>
+						<a href="javascript:;" class="fl popup-btn" id="btn-continue">继续购物</a>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script src="js/jquery-min.js"></script>
 		<script src="js/img.js"></script> 
-		<script src="js/detail.js"></script> 
+		<script src="js/detail.js"></script>
 	</body>
 </html>

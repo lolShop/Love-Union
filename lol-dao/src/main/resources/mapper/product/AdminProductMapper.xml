@@ -9,7 +9,7 @@
         <result property="productUpdateTime" column="product_update_time"/>
         <result property="productMainImage" column="product_main_image"/>
         <result property="productParticular" column="product_particular"/>
-        <result property="productWeight" column=" product_weight"/>
+        <result property="productWeight" column="product_weight"/>
         <result property="productAttribute" column="product_attribute"/>
         <result property="productState" column="product_state"/>
         <association  property="productType" resultMap="productTypeMap"/>
