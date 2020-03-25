@@ -111,10 +111,6 @@ local.properties
 .checkstyle
 test-output
 lol-api/src/test/
-lol-dao/src/main/resources/mapper/comment/
-lol-dao/src/main/resources/mapper/order/
-lol-dao/src/main/resources/mapper/shopCart/
-lol-dao/src/main/resources/mapper/user/
 lol-dao/src/test/
 lol-entity/src/test/
 lol-util/src/test/

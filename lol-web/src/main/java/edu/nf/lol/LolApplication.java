@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/3/2
  */
 @SpringBootApplication
-@MapperScan({"edu.nf.lol.product.dao"})
+@MapperScan({"edu.nf.lol.product.dao", "edu.nf.lol.user.dao"})
 public class LolApplication {
     public static void main(String[] args) {
         SpringApplication.run(LolApplication.class,args);
