@@ -76,7 +76,7 @@ var initAddress = function(){
 		success:function (result) {
 			$.each(result.data,function (index,address) {
 				if(address.status==1){
-					$('#addressList').append('<li data-name="'+address.takeName+" "+address.takePhone+'" data-address="'+address.takeAddress+'" data-id="'+address.addressId+'" class="in">\n' +
+					$('#addressList').append('<li data-name="'+address.takeName+" "+address.takePhone+'" data-address="'+address.takeAddress+'" data-id="'+address.addressId+'" class="in">' +
 						'<span>'+address.takeName+'</span>' +
 						'<p class="sg">'+address.takeAddress+'</p>' +
 						'<p class="fl mr30">'+address.postcode+'</p>' +
@@ -86,7 +86,7 @@ var initAddress = function(){
 					$(".t3").text("配送至:"+address.takeAddress)
 					$(".t2").text("收货人:"+address.takeName+" "+address.takePhone)
 				}else {
-					$('#addressList').append('<li data-name="'+address.takeName+" "+address.takePhone+'" data-address="'+address.takeAddress+'" data-id="'+address.addressId+'" class="in">\n' +
+					$('#addressList').append('<li data-name="'+address.takeName+" "+address.takePhone+'" data-address="'+address.takeAddress+'" data-id="'+address.addressId+'" class="in">' +
 						'<span>'+address.takeName+'</span>' +
 						'<p class="sg">'+address.takeAddress+'</p>' +
 						'<p class="fl mr30">'+address.postcode+'</p>' +
@@ -113,61 +113,55 @@ var initShopCar = function(){
 			$.each(shopCar, function (index, data) {
 				count=count+data.shopCount;
 				priceall=priceall+data.shopCount*data.productSpecs.specsPrice;
-				$("#shop-list").append('<tr class="shopcar-item">\n' +
-					'\t\t\t\t\t\t\t\t\t\t<td>\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t<div class="img">\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t\t<div>\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="#">\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="image/orderplace/'+data.productSpecs.product.productMainImage+'" width="113" height="108" />\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t\t</div>\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t</div>\n' +
-					'\t\t\t\t\t\t\t\t\t\t</td>\n' +
-					'\t\t\t\t\t\t\t\t\t\t<td class="td-1">\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t<span>\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t\t<a href="" target="_blank">'+data.productSpecs.product.productName+'</a>\n' +
-					'\t\t\t\t\t\t\t\t\t\t\t</span>\n' +
-					'\t\t\t\t\t\t\t\t\t\t</td>\n' +
-					'\t\t\t\t\t\t\t\t\t\t<td class="td-2" id="sku'+data.shopId+'">\n' +
-					'\t\t\t                            </td>\n' +
-					'\t\t\t                            <td>\n' +
-					'\t\t\t                            \t<span>'+data.productSpecs.specsPrice.toFixed(2)+'元</span>\n' +
-					'\t\t\t                            </td>\n' +
-					'\t\t\t                            <td>\n' +
-					'\t\t\t                                <span>\n' +
-					'\t\t\t                                    '+data.shopCount+'\n' +
-					'\t\t\t                                </span>\n' +
-					'\t\t\t                            </td>\n' +
-					'\t\t\t                            <td>\n' +
-					'\t\t\t                                <b>                                   \n' +
-					'\t\t\t                                    '+(data.productSpecs.specsPrice*data.shopCount).toFixed(2)+'元\n' +
-					'\t\t\t                                   \n' +
-					'\t\t\t                                </b>\n' +
-					'\t\t\t                            </td>\n' +
-					'\t\t\t\t\t\t\t\t\t</tr>')
-				// var skuinfo =  data.productSpecs.productSpecs;
-				// var jsonObj = {
-				// 	"id": 102,
-				// 	"year": "2019-2020",
-				// 	"label": "2019-2020"
-				// };
-				// $.each(jsonObj,function(index,value){
-				// 	alert(value);
-				// });
-				// $.each,(skuinfo, function () {
-				// 	document.getElementById("sku"+data.shopId).append('<span class="col">'+skuinfo.name+': '+skuinfo.constructor+'</span>')
-				// })
+				$("#shop-list").append('<tr class="shopcar-item">' +
+					'<td>' +
+					'<div class="img">' +
+					'<div>' +
+					'<a href="#">' +
+					'<img src="image/orderplace/'+data.productSpecs.product.productMainImage+'" width="113" height="108" />' +
+					'</a>' +
+					'</div>' +
+					'</div>' +
+					'</td>' +
+					'<td class="td-1">' +
+					'<span>' +
+					'<a href="" target="_blank">'+data.productSpecs.product.productName+'</a>' +
+					'</span>' +
+					'</td>' +
+					'<td class="td-2" id="sku'+data.shopId+'">' +
+					'                            </td>' +
+					'                            <td>' +
+					'                            <span>'+data.productSpecs.specsPrice.toFixed(2)+'元</span>' +
+					'                            </td>' +
+					'                            <td>' +
+					'                                <span>' +
+					'                                    '+data.shopCount+'' +
+					'                                </span>' +
+					'                            </td>' +
+					'                            <td>' +
+					'                                <b>                                   ' +
+					'                                    '+(data.productSpecs.specsPrice*data.shopCount).toFixed(2)+'元' +
+					'                                   ' +
+					'                                </b>' +
+					'                            </td>' +
+					'</tr>')
+				var skuvalue=data.productSpecs.productSpecs
+				console.log(skuvalue)
+				var jsonObj = JSON.parse(skuvalue)
 
-				alert(result.data.productSpecs.productSpecs)
+
+				for (var key in jsonObj) {
+
+					$("#sku"+data.shopId).append(
+						'<span class="col">'+key+': '+jsonObj[key]+'</span>'
+					)
+				}
+
 
 			})
 
-			//var jsonObj = JSON.parse(result.data.productSpecs.productSpecs);
-			for (var key in jsonObj) {
-				$("#sku"+data.shopId).append(
-					'<span class="col">'+key+': '+jsonObj[key]+'</span>'
-				)
-			}
+
+
 			$("#sp-sum").text(count+"件商品，商品总价")
 			$("#sp-price").text(priceall.toFixed(2)+" 元")
 			$("#sp-sfk").text(priceall.toFixed(2)+" 元")
