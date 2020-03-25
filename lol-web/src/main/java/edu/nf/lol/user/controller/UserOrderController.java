@@ -34,7 +34,7 @@ public class UserOrderController extends BaseController {
     public ResponseVO queryMyOrder(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         User user = new User();
         user.setUserId(1000);
-        PageInfo<List<OrderDetails>> orderInfo = service.queryUsersOrder(user, pageNum, pageSize);
+        PageInfo<OrderInfo> orderInfo = service.queryUsersOrder(user, pageNum, pageSize);
         return success(orderInfo);
     }
 

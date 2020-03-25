@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public interface UserOrderService {
 
-    PageInfo<List<OrderDetails>> queryUsersOrder(User user, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+    PageInfo<OrderInfo> queryUsersOrder(User user, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
     void updateOrderStatus(OrderInfo orderInfo);
 

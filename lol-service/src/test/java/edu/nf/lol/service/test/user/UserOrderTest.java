@@ -30,10 +30,10 @@ public class UserOrderTest {
     void testQueryAllOrder(){
         User user = new User();
         user.setUserId(1000);
-        PageInfo<List<OrderDetails>> pageInfo = userOrderService.queryUsersOrder(user, 1, 2);
-        List<List<OrderDetails>> orders = pageInfo.getList();
-        System.out.println(orders);
-        System.out.println(orders.size());
+        PageInfo<OrderInfo> pageInfo = userOrderService.queryUsersOrder(user, 1, 2);
+        List<OrderInfo> orders = pageInfo.getList();
+        System.out.println(orders.get(0).getOrderId());
+        System.out.println(orders.get(0).getDetails().size());
     }
 
     @Test

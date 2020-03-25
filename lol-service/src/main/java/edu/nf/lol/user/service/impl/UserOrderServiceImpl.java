@@ -33,9 +33,8 @@ public class UserOrderServiceImpl implements UserOrderService {
      * @return 返回值是一个分页对象，包含每个订单的购物项集合
      */
     @Override
-    public PageInfo<List<OrderDetails>> queryUsersOrder(User user, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize) {
+    public PageInfo<OrderInfo> queryUsersOrder(User user, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize) {
         List<OrderInfo> orderInfos =  userOrderDao.queryUsersOrder(user, pageNum, pageSize);
-        List<List<OrderDetails>> allDetails = new ArrayList<>();
         if(orderInfos.size() == 0){
             return null;
         }
@@ -43,12 +42,9 @@ public class UserOrderServiceImpl implements UserOrderService {
             String orderId = orderInfo.getOrderId();
             // 根据订单id查询出该订单下的所有购物项
             List<OrderDetails> details = userOrderDao.queryOrderItem(orderId);
-            for (OrderDetails detail : details) {
-                detail.setOrderInfo(orderInfo);
-            }
-            allDetails.add(details);
+            orderInfo.setDetails(details);
         }
-        PageInfo<List<OrderDetails>> pageInfo = new PageInfo<>(allDetails);
+        PageInfo<OrderInfo> pageInfo = new PageInfo<>(orderInfos);
         return pageInfo;
     }
 
