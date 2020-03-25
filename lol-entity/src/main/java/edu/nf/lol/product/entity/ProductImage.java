@@ -12,7 +12,7 @@ import java.util.Date;
 public class ProductImage {
     private  Integer  imageId;
     private  String     imageName;
-    private Date AttributeCreateTime;
-    private  Date AttributeUpdateTime;
+    private Date attributeCreateTime;
+    private  Date attributeUpdateTime;
     private  Product product;
 }
