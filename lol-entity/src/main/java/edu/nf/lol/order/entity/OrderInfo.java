@@ -7,6 +7,7 @@ import lombok.Data;
 import java.lang.ref.PhantomReference;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -26,4 +27,5 @@ public class OrderInfo {
      private  OrderStatic orderStatic;
      private User user;
      private Address address;
+     private List<OrderDetails> details;
 }
