@@ -4,9 +4,9 @@ import edu.nf.lol.user.entity.Address;
 import edu.nf.lol.user.entity.User;
 import lombok.Data;
 
-import java.lang.ref.PhantomReference;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -27,4 +27,5 @@ public class OrderInfo {
      private User user;
      private Address address;
      private String orderRemarks;
+    private List<OrderDetails> details;
 }

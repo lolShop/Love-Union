@@ -9,8 +9,7 @@ import lombok.Data;
  */
 @Data
 public class Collect {
-
     private Integer collectId;
-    private Integer userId;
-    private Integer productId;
+    private User user;
+    private Product product;
 }

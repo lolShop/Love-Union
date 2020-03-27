@@ -5,7 +5,9 @@
 		<title>我的订单</title>
 		<link rel="stylesheet" href="css/allcss.css" />
 		<link rel="stylesheet" href="css/myorder.css"/>
+		<link rel="stylesheet" href="css/pagination.css" />
 		<script src="js/jquery-min.js"></script>
+		<script src="js/jquery.pagination.js"></script>
 	</head>
 	<body style="margin: 0; background-color:#f5f5f5;">
 		<div style="width: 100%; height: 156px; background-color: black;"></div>
@@ -126,132 +128,19 @@
 						</div> -->
 						<div id="con_order" class="order-tabl">
 							<div id="dj1">
-								<table width="100%">
-									<thead>
-										<tr>
-											<th width="335" class="tl">商品</th>
-											<th width="105">单价（元）</th>
-											<th width="105">数量</th>
-											<th width="150">总计（元）</th>
-											<th width="150">订单状态</th>
-											<th width="150">操作</th>
-										</tr>
-									</thead>
-									<!-- 一个订单 -->
-									<tbody class="tbbr">
-										<tr class="tbhead">
-											<td colspan="5" class="tl">
-												<span>供应商名称：合泰文化</span>
-												<span class="tb-padl">订单号：CF-20200120120111766-541</span>
-												<span class="tb-padl">2020-01-20 12:01:11</span>
-											</td>
-											<td>
-												<a href="#"class="ico-center btn-del">删除</a>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="3" class="brl">
-												<div>
-													<a href="#" style="display: block;" class="f1 relpic" target="_blank">
-														<img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/201911/20191112190040_40410.jpg" width="113" height="108" alt="商品图" />
-													</a>
-													<div class="f1 reinfo clearfix">
-														<div class="relname">审判者Q版手办-潜伏者【全款预售】</div>
-														<div class="reldesc">阵营：潜伏者</div>
-														<a class="reldesc" href="#">来源：聚诚品</a>
-													</div>
-													<div class="f1 reprice">
-														<p class="re-newpri">70.00</p>
-														<p class="re-oldpri">70.00</p>
-													</div>
-													<div class="f1 renum">1</div>
-												</div>
-											</td>
-											<td rowspan="1">
-												<div class="re-total">70.00</div>
-												<div class="re-freight">（含运费：0.00）</div>
-											</td>
-											<td rowspan="1">
-												<div class="re-status">
-													<font class="cff0 fb lh24">已过期</font>
-												</div>
-											</td>
-											<td rowspan="1">
-												<a href="orderdetail.html" class="mt20 re-link" title="订单详情" target="_blank">订单详情</a>
-											</td>
-										</tr>
-									</tbody>
-									<!-- 一个订单 -->
-									<tbody class="tbbr">
-										<tr class="tbhead">
-											<td colspan="5" class="tl">
-												<span>供应商名称：合泰文化</span>
-												<span class="tb-padl">订单号：CF-20200120120111766-541</span>
-												<span class="tb-padl">2020-01-20 12:01:11</span>
-											</td>
-											<td>
-												<a href="#"class="ico-center btn-del">删除</a>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="3" class="brl">
-												<div>
-													<a href="#" style="display: block;" class="f1 relpic" target="_blank">
-														<img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/201911/20191112190040_40410.jpg" width="113" height="108" alt="商品图" />
-													</a>
-													<div class="f1 reinfo clearfix">
-														<div class="relname">审判者Q版手办-潜伏者【全款预售】</div>
-														<div class="reldesc">阵营：潜伏者</div>
-														<a class="reldesc" href="#">来源：聚诚品</a>
-													</div>
-													<div class="f1 reprice">
-														<p class="re-newpri">70.00</p>
-														<p class="re-oldpri">70.00</p>
-													</div>
-													<div class="f1 renum">1</div>
-												</div>
-											</td>
-											<td rowspan="1">
-												<div class="re-total">70.00</div>
-												<div class="re-freight">（含运费：0.00）</div>
-											</td>
-											<td rowspan="1">
-												<div class="re-status">
-													<font class="cff0 fb lh24">已过期</font>
-												</div>
-											</td>
-											<td rowspan="1">
-												<a href="#" class="ce-btn btn-repay" title="去支付">去支付</a>
-												<a href="#" class="ce-btn btn-repay" title="取消支付">取消支付</a>
-												<a href="orderdetail.html" class="mt20 re-link" title="订单详情" target="_blank">订单详情</a>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								<div id="dj1Page"></div>
 							</div>
 							<div id="dj2" style="display: none;">
-								<div class="center-none">
-									<i class="ico-none"></i>
-									<p class="none-tip">您当前暂无 待付款 订单哦！</p>
-								</div>
+								<div id="dj2Page"></div>
 							</div>
 							<div id="dj3" style="display: none;">
-								<div class="center-none">
-									<i class="ico-none"></i>
-									<p class="none-tip">您当前暂无 待发货 订单哦！</p>
-								</div>
+								<div id="dj3Page"></div>
 							</div>
 							<div id="dj4" style="display: none;">
-								<div class="center-none">
-									<i class="ico-none"></i>
-									<p class="none-tip">您当前暂无 待收货 订单哦！</p>
-								</div>
+								<div id="dj4Page"></div>
 							</div>
 							<div id="dj5" style="display: none;">
-								<div class="center-none">
-									<i class="ico-none"></i>
-									<p class="none-tip">您当前暂无 待评价 订单哦！</p>
-								</div>
+								<div id="dj5Page"></div>
 							</div>
 						</div>
 					</div>
@@ -279,5 +168,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="js/myorder.js"></script>
 	</body>
 </html>
