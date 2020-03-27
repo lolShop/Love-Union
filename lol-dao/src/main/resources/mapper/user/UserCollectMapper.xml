@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.user.dao.UserCollectDao">
+
+    <resultMap id="collectMap" type="edu.nf.lol.user.entity.Collect">
+        <id property="collectId" column="collect_id" />
+        <association property="user" resultMap="userMap"/>
+        <association property="product" resultMap="productMap"/>
+    </resultMap>
+    <resultMap id="userMap" type="edu.nf.lol.user.entity.User">
+        <id property="userId" column="user_id"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="password" column="user_pwd"/>
+        <result property="userName" column="user_name"/>
+        <result property="photo" column="photo"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    <resultMap id="productMap" type="edu.nf.lol.product.entity.Product">
+        <id  property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productCreateTime" column="product_create_time"/>
+        <result property="productUpdateTime" column="product_update_time"/>
+        <result property="productMainImage" column="product_main_image"/>
+        <result property="productParticular" column="product_particular"/>
+        <result property="productWeight" column=" product_weight"/>
+        <result property="productAttribute" column="product_attribute"/>
+        <result property="productState" column="product_state"/>
+        <association  property="productType" resultMap="productTypeMap"/>
+        <collection property="productSpecsList" resultMap="specsMap"/>
+    </resultMap>
+    <resultMap id="productTypeMap" type="edu.nf.lol.product.entity.ProductType">
+        <id property="productTypeId" column="product_type_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="productTypeName" column="product_type_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="productState" column="product_state"/>
+    </resultMap>
+    <resultMap id="specsMap" type="edu.nf.lol.product.entity.ProductSpecs">
+        <id property="specsId" column="specs_id"/>
+        <result property="productSpecs" column="product_specs"/>
+        <result property="specsPrice" column="specs_price"/>
+        <result property="promotionPrice" column="promotion_price"/>
+        <result property="specsStock" column="specs_stock"/>
+        <result property="specsCreateTime" column="specs_create_time"/>
+        <result property="specsUpdateTime" column="specs_update_time"/>
+        <result property="specsState" column="specs_state"/>
+    </resultMap>
+
+    <insert id="addCollect" parameterType="edu.nf.lol.user.entity.Collect" >
+        insert into collect_info(user_id, product_id) values(${user.userId}, ${product.productId});
+    </insert>
+
+    <!-- 查询收藏的商品需要关联规格表查询价格，查询的字段有：商品id，商品图片，商品名称，规格价格，规格优惠价，-->
+    <select id="queryCollect" parameterType="edu.nf.lol.user.entity.User" resultMap="collectMap">
+        select product.product_id, product.product_main_image, product.product_name, specs.specs_price, specs.promotion_price
+        from collect_info collect
+        left join product_info product on collect.product_id = product.product_id
+        left join product_specs specs on product.product_id = specs.product_id
+        join user_info users on collect.user_id = users.user_id
+        where users.user_id = #{user.userId}
+    </select>
+
+    <!-- 取消收藏 -->
+    <delete id="deleteCollect" parameterType="edu.nf.lol.user.entity.Collect">
+        delete from collect_info where user_id = #{user.userId} and product_id = #{product.productId}
+    </delete>
+
+
+</mapper>

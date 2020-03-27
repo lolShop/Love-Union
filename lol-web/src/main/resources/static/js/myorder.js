@@ -43,6 +43,12 @@ function load(pageInfo, target){
 		})
 		//遍历购物项,打印数据
 		$.each(orderInfo.details, function(index, details){
+			var jsonObj = JSON.parse(details.productSpecs.productSpecs);
+			var specs = "";
+			for (var name in jsonObj) {
+				specs += name+"："+jsonObj[name]+"， "
+			}
+			specs = specs.substring(0,specs.length-2);
 			//如果当前遍历的是第一个购物项
 			if(index == 0){
 				//使用prepend()方法,让订单遍历在table的开头
@@ -64,7 +70,7 @@ function load(pageInfo, target){
 									"</a>"+
 									"<div class='f1 reinfo clearfix'>"+
 										"<div class='relname'>"+details.product.productName+"</div>"+
-										"<div class='reldesc'>"+details.productSpecs.productSpecs+"</div>"+
+										"<div class='reldesc'>"+specs+"</div>"+
 									"</div>"+
 									"<div class='f1 reprice'>"+
 										"<p class='re-newpri'>"+(details.productSpecs.specsPrice-details.productSpecs.promotionPrice)+"</p>"+
@@ -90,7 +96,7 @@ function load(pageInfo, target){
 			else if(index > 0){
 				var idSpan = $('#' + target + " span[class='tb-padl']");
 				$.each(idSpan, function(i, span){
-					if(span.innerHTML.substring(4, span.innerHTML.length) == key){
+					if(span.innerHTML.substring(4) == key){
 						//如果这个span里的订单id是当前订单详情里的id,那么将之后的购物项打印到这个订单中
 						$(span).parent().parent().parent().append(
 							"<tr>"+
@@ -101,7 +107,7 @@ function load(pageInfo, target){
 										"</a>"+
 										"<div class='f1 reinfo clearfix'>"+
 											"<div class='relname'>"+details.product.productName+"</div>"+
-											"<div class='reldesc'>"+details.productSpecs.productSpecs+"</div>"+
+											"<div class='reldesc'>"+specs+"</div>"+
 										"</div>"+
 										"<div class='f1 reprice'>"+
 											"<p class='re-newpri'>"+(details.productSpecs.specsPrice-details.productSpecs.promotionPrice)+"</p>"+
@@ -219,6 +225,11 @@ function queryOrderByStatus(statusId, target){
 		type:'get',
 		data:{'statusId': statusId, 'pageNum': 1, 'pageSize': 2},
 		success:function(result){
+			if(result.data != null && result.data.total != null){
+				var statusTarget = target.substring(2);
+				$('#'+statusTarget+' span[class=topay]').remove();
+				$('#'+statusTarget).append('<span class="ico-point topay" style="display: inline;">'+result.data.total+'</span>');
+			}
 			load(result.data, target);
 			var url = 'http://localhost:8080/lol/user/order/query_by_status';
 			page(result.data, target, url, statusId);
@@ -226,7 +237,35 @@ function queryOrderByStatus(statusId, target){
 	})
 }
 
+/**
+ * @param {Object} statusId 状态id
+ * 根据状态id,在订单操作模块中显示不同的标签
+ */
+function statusButton(statusName){
+	if(statusName == '待付款'){
+		$('.a').append(
+			"<a href='javascript:;' class='ce-btn btn-repay' title='去支付'>去支付</a>"+
+			"<a href='javascript:;' class='ce-btn btn-repay' title='取消订单'>取消订单</a>"
+		);
+	}
+}
 
+//点击订单详情,
+function clickOrderInfo(){
+	$('#con_order').on('click', '.re-link', function(){
+		var orderId = $($($($(this).parent().parent().parent().children()[0]).children()[0]).children()[1]).text();
+		orderId = orderId.substring(4);
+		console.info(orderId);
+		//判断当前浏览器是否支持
+		if (window.localStorage) {
+			//存储变量的值 
+			//localStorage.setItem('orderId', orderId);
+			localStorage.orderId = orderId;
+　　　　} else {
+　　　　		alert("NOT SUPPORT");
+　　　　}
+	})
+}
 
 
 
@@ -238,4 +277,5 @@ $(function(){
 	queryOrderByStatus(1002, 'dj4');
 	queryOrderByStatus(1003, 'dj5');
 	delOrder();
+	clickOrderInfo()
 })
