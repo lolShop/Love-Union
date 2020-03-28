@@ -3,6 +3,7 @@ package edu.nf.lol.product.entity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 这是商品型表
@@ -17,4 +18,5 @@ public class ProductType {
     private   Date        createTime;
     private   Date        updateTime;
     private   Integer      productState;
+    private List<ProductType> productTypeList;
 }
