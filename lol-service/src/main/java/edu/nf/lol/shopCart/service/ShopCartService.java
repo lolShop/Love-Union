@@ -25,4 +25,6 @@ public interface ShopCartService {
     void checkAll(Integer state, Integer uid);
 
     void settlement(Integer uid);
+
+    ShopCart findShopCart(Integer specId);
 }

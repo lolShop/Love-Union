@@ -35,4 +35,11 @@ public class ShopCartTest {
         ShopCart sc = shopCartService.listNum(1000);
         System.out.println(sc.getCount() + "  " + sc.getMoney());
     }
+
+    @Test
+    public void testFindShopCart(){
+        ShopCart sc = shopCartService.findShopCart(1002);
+        System.out.println(sc.getShopId());
+
+    }
 }

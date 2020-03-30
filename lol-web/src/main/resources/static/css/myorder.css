@@ -35,7 +35,7 @@
     background-position: -619px -275px;
 }
 .ico-center {
-    background: url(../image/ico_center.png) no-repeat;
+    background: url(../image/ordereval/ico_center.png) no-repeat;
 }
 .sortinglist {
     position: absolute;
@@ -155,7 +155,7 @@
     display: block;
 }
 .ico-center {
-    background: url(../image/ico_center.png) no-repeat;
+    background: url(../image/ordereval/ico_center.png) no-repeat;
 }
 .fr{
 	float: right;
