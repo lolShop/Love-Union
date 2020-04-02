@@ -51,4 +51,11 @@ public interface UserOrderDao {
      * @param orderInfo
      */
     void deleteOrderDetails(OrderInfo orderInfo);
+
+    /**
+     * 查询订单详细信息
+     * @param orderInfo 包含订单id
+     * @return
+     */
+    OrderInfo queryOrderInfo(OrderInfo orderInfo);
 }

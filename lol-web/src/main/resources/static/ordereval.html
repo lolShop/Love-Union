@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>个人信息</title>
+		<link rel="stylesheet" type="text/css" href="css/allcss.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/center.css" />
+		<link rel="stylesheet" href="css/personal.css" type="text/css" />
+		<link rel="stylesheet" href="css/myorder.css"/>
+		
+		<script src="js/jquery-min.js"></script>
+		<style >
+			
+		</style>
+	</head>
+	<body style="margin: 0; background-color:#f5f5f5;">
+		<div style="width: 100%; height: 156px; background-color: black;"></div>
+		
+		<div class="center mid">
+		    <!-- center-none S -->
+		    <div class="center-main clearfix">
+		        <!-- 左边的菜单栏 -->
+				<div class="f1 center-leftbar">
+					<p class="cleftbar-tit"><b>个人中心</b></p>
+					<ul class="cleftbar-ul">
+						<li class="cleftbar-li myorder">
+							<a href="myorder.html" class="cleftbar-link" title="我的订单">我的订单</a>
+						</li>
+						<li class="cleftbar-li coupon">
+							<a href="#" class="cleftbar-link" title="优惠卡券">优惠卡券</a>
+						</li>
+						<li class="cleftbar-li address">
+							<a href="address.html" class="cleftbar-link" title="收货地址">收货地址</a>
+						</li>
+						<li class="cleftbar-li collect">
+							<a href="collect.html" class="cleftbar-link" title="我的收藏">我的收藏</a>
+						</li>
+						<li class="cleftbar-li personal">
+							<a href="personal.html" class="cleftbar-link" title="个人信息" style="color: #F3BF19;">个人信息</a>
+						</li>
+						<li class="cleftbar-li receive">
+							<a href="#" class="cleftbar-link" title="领取中心">领取中心</a>
+						</li>
+						<li class="cleftbar-li sub">
+							<a href="#" class="cleftbar-link" title="订阅中心">订阅中心</a>
+						</li>
+						<li class="cleftbar-li notice">
+							<a href="#" class="cleftbar-link" title="商城公告">商城公告</a>
+						</li>
+					</ul>
+					<!-- 实现经过标签后改变颜色 -->
+					<script>
+						$(function(){
+							$(".cleftbar-ul li").on("mouseover", function(){
+								$($(this).children()[0]).css("color", "#f3bf19");
+							})
+							$(".cleftbar-ul li").on("mouseleave", function(){
+								$($(this).children()[0]).css("color", "#666");
+								if($($(this).children()[0]).attr("title") == "个人信息"){
+									$($(this).children()[0]).css("color", "#f3bf19");
+								}
+							})
+						})
+					</script>
+				</div>
+				<!-- 右边的主体 -->
+				<div class="f1 conter-cont">
+					<h2 class="ct-tit">
+						<span class="tit-fb">订单评价</span>
+					</h2>
+					<div class="ct-ordereval">
+						<div id="dj1">     
+							<div class="ct-evalbox clearfix">
+								<div class="fl eval-goods">
+									<div class="eval-goodimg">
+										<a href="/wuxia/detail.shtml?id=6588" style="display: block"><img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/201809/20180910104035_91086.jpg" width="113" height="108" alt="商品图"></a>
+									</div>
+									<p class="eval-goodname">天涯明月刀 补差价专拍链接 乱拍不退款</p>
+								</div>
+								<div class="fl eval-detail">
+									<div class="eval-point clearfix">
+										<label class="fl eval-label">
+											<span class="red">*</span>商品评分：
+										</label>
+										<div class="fl eval-star" style="cursor: pointer;">
+											<img src="image/ordereval/star-on.png" alt="1" id="1" title="bad">&nbsp;
+											<img src="image/ordereval/star-on.png" alt="2" id="2" title="poor">&nbsp;
+											<img src="image/ordereval/star-on.png" alt="3" id="3" title="regular">&nbsp;
+											<img src="image/ordereval/star-on.png" alt="4" id="4" title="good">&nbsp;
+											<img src="image/ordereval/star-on.png" alt="5" id="5" title="gorgeous">
+											<input type="hidden" id="score" value="5">
+										</div>
+									</div>
+									<div class="eval-comt clearfix">
+										<label class="fl eval-label"><span class="red">*</span>评价：</label>
+										<div class="fl eval-areabox">
+											<textarea class="eval-area" id="content" placeholder="分享下您的心得吧~" ></textarea>
+										</div>
+									</div>
+									<div class="ct-useritem clearfix">
+										<label class="fl eval-label"><span class="red">*</span>晒图：</label>
+										<div class="fl ico-center ico-upload">
+											<span>本地上传</span>
+											<form enctype="multipart/form-data" id="f1">
+												<input type="file" name="file" id="file"  class="btn-upload" accept="image/*">
+											</form>
+										</div>
+										<p class="fl eval-tips">图片大小不超过2M，支持jpg、png格式</p>
+									</div>
+									<div class="eval-imglist clearfix">
+										<ul class="eval-imgul fl">
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="eval-action">
+							<a href="javascript:;"  class="fr btn-publish" title="发布评论">发布评论</a><!-- 按钮不可用时添加btn-gray -->
+							<div class="fr eval-nming">
+								<i class="ico-center eval-check eval-checked" ></i><!-- 选中eval-checked -->
+								<span>匿名评论</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</body>
+	<script>
+		$(function(){
+
+			//点击哪个菜单，就变色
+			$('.ct-ordertab li').on('click', function(){
+				$('.ct-ordertab li').removeClass('current');
+				$(this).addClass('current');
+			});
+			
+			//点击哪个菜单，就出现相应内容
+			$('.ct-ordertab li').on('click', function(){
+				//获取当前点击的li元素在ul中的索引
+				var index = $('.ct-ordertab li').index(this);
+				//点击的li对应的div的id
+				var id = 'dj'+(index+1);
+				//所有的div
+				var all = $('#con_order').children();
+				all.css('display', 'none');
+				$('#'+id).css('display', 'block');
+			});
+		})
+		
+		
+		var imgs = $('.eval-star img');
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].onmouseover = function(e){
+				var id =parseInt(this.id);
+				for(var j=1;j<6;j++){
+					if(j<id){
+						$("#"+j).attr('src', 'image/ordereval/star-on.png');
+					}else if(j==id){
+						if(e.offsetX < $('#'+id).width()/2){
+							$("#"+j).attr('src', 'image/ordereval/star-half.png');
+						}else{
+							$("#"+j).attr('src', 'image/ordereval/star-on.png');
+						}
+					}else if(j>id){
+						$("#"+j).attr('src', 'image/ordereval/star-off.png');
+					}
+		　　　　}
+					
+			}
+			imgs[i].onmousemove = function(e){
+				var id =parseInt(this.id);
+				for(var j=1;j<6;j++){
+					if(j<id){
+						$("#"+j).attr('src', 'image/ordereval/star-on.png');
+					}else if(j==id){
+						if(e.offsetX < $('#'+id).width()/2){
+							$("#"+j).attr('src', 'image/ordereval/star-half.png');
+							$("#score").val(j-0.5);
+						}else{
+							$("#"+j).attr('src', 'image/ordereval/star-on.png');
+							$("#score").val(j);
+						}
+					}else if(j>id){
+						$("#"+j).attr('src', 'image/ordereval/star-off.png');
+					}
+		　　　　}
+			}
+
+			//匿名评论
+			$(".eval-check").click(function () {
+				if($(this).hasClass("eval-checked")){
+					$(this).removeClass("eval-checked");
+				}else{
+					$(this).addClass("eval-checked");
+				}
+			})
+			
+			
+		}
+		$(".btn-upload").change(function () {
+			var icon = $(".upload-icon");
+			var formData = new FormData(),
+				fs = $("#file")[0].files;
+			var max_size = 1024 * 1024 * 2;
+			var yz = true;
+			for (var i = 0; i < fs.length; i++) {
+				var d = fs[i]
+				if(d.size <= max_size){  //文件必须小于100M
+					if(/.(jpg|png)$/.test(d.name)){
+						formData.append("file", fs[i]);  //文件上传处理
+					}else{
+						alert('上传文件必须是jpg或png！')
+						yz = false
+					}
+				}else{
+					alert('上传文件过大！')
+					yz = false
+				}
+			}
+			// var formData = new FormData(document.getElementById('f1'));
+			if(yz){
+				$(".eval-imgul").append(
+						'<li>'+
+							'<div class="eval-imgdel">'+
+								'<div class="imgdel-zzc"></div>'+
+								'<a href="javascript:;" class="btn-imgdel" title="删除">删除</a>'+
+							'</div>'+
+							'<img id="blogMainImg" width="64" height="64" alt="商品图">'+
+						'</li>'
+				)
+				var file = $(".btn-upload")[0].files[0];
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function (e) {
+					var img = document.getElementById("blogMainImg");
+					img.src = e.target.result;
+				};
+			}
+		})
+		//删除照片
+		$(".eval-imgul").on("click",".btn-imgdel",function () {
+			$(this).parent().parent().remove();
+		})
+
+
+		//发表评论
+		$(".btn-publish").click(function () {
+			if($(".eval-area").val()==""){
+				$(".eval-area").val("默认好评")
+			}
+			alert($(".eval-area").val());
+			if(!$("#blogMainImg").length>0){
+				$.ajax({
+					url:"comment/publishComment",
+					type:"post",
+					data:{"description":$("#score").val(),"content":$(".eval-area").val(),"userId":1000,"detailsId":1000},
+					success:function (result) {
+						alert(result.data)
+					}
+				})
+			}else{
+				var formData = new FormData(document.getElementById('f1'));
+				$.ajax({
+					url:"comment/ajax_upload",
+					type:"post",
+					data:formData,
+					processData : false,
+					contentType : false,
+					success:function () {
+					}
+				})
+				$.ajax({
+					url:"comment/publishComment",
+					type:"post",
+					data:{"description":$("#score").val(),"content":$(".eval-area").val(),"userId":1000,"detailsId":1000,"photo":"1"},
+					success:function (result) {
+						alert(result.data)
+					}
+				})
+
+			}
+
+
+		})
+
+
+		
+	</script>
+</html>

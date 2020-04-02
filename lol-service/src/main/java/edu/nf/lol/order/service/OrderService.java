@@ -4,6 +4,7 @@ import edu.nf.lol.order.entity.OrderInfo;
 import edu.nf.lol.shopCart.entity.ShopCart;
 import edu.nf.lol.user.entity.Address;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -26,6 +27,17 @@ public interface OrderService {
      */
     List<ShopCart> getUserShopCar(Integer userId);
 
+    /**
+     * 下单
+     * @param orderInfo
+     */
     void placeOrder(OrderInfo orderInfo);
 
+    /**
+     * 修改订单状态为待发货
+     * @param orderInfo
+     */
+    void updateOrderStaticOne(OrderInfo orderInfo);
+
+    BigDecimal getOrderPrice(String orderId);
 }

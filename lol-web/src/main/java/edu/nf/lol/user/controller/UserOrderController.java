@@ -66,4 +66,26 @@ public class UserOrderController extends BaseController {
         service.deleteOrder(orderInfo);
         return success("删除成功");
     }
+
+    /**
+     * 修改订单状态
+     * @param orderInfo 包含需要修改成的状态
+     * @return
+     */
+    @PostMapping("/update_status")
+    public ResponseVO updateOrderStatus(OrderInfo orderInfo){
+        service.updateOrderStatus(orderInfo);
+        return success("修改成功");
+    }
+
+    /**
+     * 查询订单详情
+     * @param orderInfo 包含订单详情
+     * @return
+     */
+    @GetMapping("/query_info")
+    public ResponseVO queryOrderInfo(OrderInfo orderInfo){
+        return success(service.queryOrderInfo(orderInfo));
+    }
+
 }

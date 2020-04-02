@@ -69,4 +69,12 @@ public class UserOrderTest {
         userOrderService.deleteOrder(orderInfo);
     }
 
+    @Test
+    void testQueryOrderInfo(){
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setOrderId("'LOL-20200317170612664-815'");
+        OrderInfo order = userOrderService.queryOrderInfo(orderInfo);
+        System.out.println(order.getDetails());
+    }
+
 }

@@ -62,7 +62,7 @@ input, textarea, select {
     cursor: pointer;
 }
 .ico-center {
-    background: url(../image/ico_center.png) no-repeat;
+    background: url(../image/myorder/ico_center.png) no-repeat;
 }
 .uitem-actbox {
     margin: 30px 0 0 85px;

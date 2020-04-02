@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.user.dao.UserAddressDao">
+
+    <resultMap id="addressMap" type="edu.nf.lol.user.entity.Address">
+        <id property="addressId" column="address_id"/>
+        <result property="takeName" column="take_name"/>
+        <result property="takePhone" column="take_phone"/>
+        <result property="takeAddress" column="take_address"/>
+        <result property="postcode" column="postcode"/>
+        <result property="status" column="status"/>
+        <association property="user" resultMap="userMap"/>
+    </resultMap>
+
+    <resultMap id="userMap" type="edu.nf.lol.user.entity.User">
+        <id property="userId" column="user_id"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="password" column="user_pwd"/>
+        <result property="userName" column="user_name"/>
+        <result property="photo" column="photo"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <select id="queryAddress" resultMap="addressMap" parameterType="edu.nf.lol.user.entity.User">
+        select address_id, take_name, take_phone, take_address, postcode, status from address_info
+        where user_id = #{userId} order by address_id desc
+    </select>
+
+    <insert id="addAddress" parameterType="edu.nf.lol.user.entity.Address">
+        insert into address_info (user_id, take_name, take_phone, take_address, postcode, status)
+        values(#{user.userId}, #{takeName}, #{takePhone}, #{takeAddress}, #{postcode}, 0);
+    </insert>
+
+    <update id="updateAddress" parameterType="edu.nf.lol.user.entity.Address">
+        update address_info
+        set take_name = #{takeName}, take_phone = #{takePhone}, take_address = #{takeAddress}, postcode = #{postcode}
+        where address_id = #{addressId};
+    </update>
+
+    <delete id="delAddress" parameterType="edu.nf.lol.user.entity.Address">
+        delete from address_info where address_id = #{addressId};
+    </delete>
+
+    <!-- 修改所有的收货地址为非默认收货地址 -->
+    <update id="updateAllStatus" parameterType="edu.nf.lol.user.entity.Address">
+        update address_info set status = 0 where user_id = ${user.userId}
+    </update>
+
+    <!--修改指定收货地址的状态为默认收货地址-->
+    <update id="updateStatus" parameterType="edu.nf.lol.user.entity.Address">
+        update address_info set status = 1 where address_id = #{addressId}
+    </update>
+</mapper>

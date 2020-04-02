@@ -118,7 +118,7 @@ var initShopCar = function(){
 					'<div class="img">' +
 					'<div>' +
 					'<a href="#">' +
-					'<img src="image/orderplace/'+data.productSpecs.product.productMainImage+'" width="113" height="108" />' +
+					'<img src="http://49.234.120.206:8080/image/'+data.productSpecs.product.productMainImage+'" width="113" height="108" />' +
 					'</a>' +
 					'</div>' +
 					'</div>' +
@@ -177,7 +177,22 @@ $(function () {
 	initShopCar();
 })
 
-
+//添加收货地址
 $("#tjbd").click(function(){
 	$.post('http://localhost:8080/lol/order/addAddress',$("#addressform").serialize());
 });
+
+//提交订单
+$("#add-order-pay").click(function(){
+	var form = $('<form>\n' +
+		'<input name="addressId" value="'+$("#ckaddress").val()+'"/>' +
+		'<input name="orderRemarks" value="'+$("#order-remarks").val()+'"/>' +
+		'</form>')
+	form.attr('method','post');
+	form.attr('action','http://localhost:8080/lol/order/placeOrder');
+	$('body').append(form);  //将表单放置在web中
+	form.submit();  //表单提交
+	//$.get('http://localhost:8080/lol/order/placeOrder',{addressId:$("#ckaddress").val(),orderRemarks:$("#order-remarks").val()})
+	//window.location.replace("http://localhost:8080/lol/order/placeOrder?addressId="+$("#ckaddress").val()+"&orderRemarks="+$("#order-remarks").val()+"");
+})
+

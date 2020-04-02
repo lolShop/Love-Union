@@ -33,6 +33,12 @@ public interface UserDao {
     User queryUserInfo(User user);
 
     /**
+     * 修改个人资料
+     * @param user
+     */
+    void updateInfo(User user);
+
+    /**
      * 修改头像
      * @param user
      */

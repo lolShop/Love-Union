@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -19,20 +18,26 @@ public class ShopCartTest {
     private ShopCartService shopCartService;
 
     @Test
-    public void testListShopCart() {
+    public void testListShopCart(){
         List<ShopCart> list = shopCartService.listShopCart(1000);
-        for (ShopCart sc : list) {
+        for (ShopCart sc:list) {
             System.out.println(
-                    sc.getUser().getUserName() + "  " + sc.getProductSpecs().getProduct().getProductName() + "    " + sc.getProductSpecs().getProductSpecs() +
-                            "  " + sc.getProductSpecs().getPromotionPrice() + "   " + sc.getProductSpecs().getSpecsPrice() + "    " + sc.getShopCount() + "   " +
-                            sc.getProductSpecs().getSpecsPrice() + sc.getProductSpecs().getProduct().getProductMainImage()
+                sc.getUser().getUserName()+"  "+sc.getProductSpecs().getProduct().getProductName()+"    "+sc.getProductSpecs().getProductSpecs()+
+                        "  "+sc.getProductSpecs().getPromotionPrice()+"   "+sc.getProductSpecs().getSpecsPrice()+"    "+sc.getShopCount()+"   "+
+                        sc.getProductSpecs().getSpecsPrice()+sc.getProductSpecs().getProduct().getProductMainImage()
             );
         }
     }
+    @Test
+    public void testListNum(){
+        ShopCart sc = shopCartService.listNum(1000);
+        System.out.println(sc.getCount()+"  "+sc.getMoney());
+    }
 
     @Test
-    public void testListNum() {
-        ShopCart sc = shopCartService.listNum(1000);
-        System.out.println(sc.getCount() + "  " + sc.getMoney());
+    public void testFindShopCart(){
+        ShopCart sc = shopCartService.findShopCart(1002);
+        System.out.println(sc.getShopId());
+
     }
 }

@@ -264,7 +264,7 @@ input, textarea, select {
     white-space: nowrap;
 }
 .ico-center {
-    background: url(../image/ico_center.png) no-repeat;
+    background: url(../image/myorder/ico_center.png) no-repeat;
 }
 .ct-useritem .uitem-sel .uitem-botarr {
     position: absolute;
