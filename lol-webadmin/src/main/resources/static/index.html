@@ -81,34 +81,16 @@
                 <li> <a href="lyear_js_notify.html">通知消息</a> </li>
               </ul>
             </li>
-            <li class="nav-item nav-item-has-subnav">
-              <a href="javascript:void(0)"><i class="mdi mdi-menu"></i> 多级菜单</a>
-              <ul class="nav nav-subnav">
-                <li> <a href="#!">一级菜单</a> </li>
-                <li class="nav-item nav-item-has-subnav"> 
-                  <a href="#!">一级菜单</a>
-                  <ul class="nav nav-subnav">
-                    <li> <a href="#!">二级菜单</a> </li>
-                    <li class="nav-item nav-item-has-subnav"> 
-                      <a href="#!">二级菜单</a>
-                      <ul class="nav nav-subnav">
-                        <li> <a href="#!">三级菜单</a> </li>
-                        <li> <a href="#!">三级菜单</a> </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li> <a href="#!">一级菜单</a> </li>
-              </ul>
+            <li class="nav-item nav-item-has-subnav" id="productType">
+              <a href="javascript:void(0)"><i class="mdi mdi-menu"></i> 商品分类显示</a>
             </li>
           </ul>
         </nav>
-        
         <div class="sidebar-footer">
           <p class="copyright">Copyright &copy; 2019. All rights reserved. More Templates 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
         </div>
       </div>
-      
+
     </aside>
     <!--End 左侧导航-->
     
@@ -497,6 +479,7 @@
 
 <!--图表插件-->
 <script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
 $(document).ready(function(e) {
     var $dashChartBarsCnt  = jQuery( '.js-chartjs-bars' )[0].getContext( '2d' ),
