@@ -27,20 +27,22 @@ public class UserController extends BaseController {
     @PostMapping("/user_login")
     public ResponseVO userLogin(@Valid User user, HttpSession session){
         User u = service.findUser(user);
-        session.setAttribute("OnLineUser", u);
-        System.out.println("用户:"+u.getUserName()+"验证成功!并加入session作用域");
-        return success("index.html");
+        if(u != null){
+            session.setAttribute("OnLineUser", u);
+            System.out.println("用户:"+u.getUserName()+"验证成功!并加入session作用域");
+            return success("index.html");
+        }
+        return fail(HttpStatus.SC_INTERNAL_SERVER_ERROR,"login.html");
     }
 
     @PostMapping("/user_register")
     public ResponseVO addUser(@Valid User user){
         User u = service.userRegisterCheck(user);
-        if(u.getUserPhone().equals(user.getUserPhone())){
-            return fail(HttpStatus.SC_INTERNAL_SERVER_ERROR,"账号已存在");
-        }else{
-            service.userRegister(user);
-            return success ("login.html");
+        if(u != null){
+            return fail(HttpStatus.SC_INTERNAL_SERVER_ERROR,"账号已存在,请重新注册");
         }
+        service.userRegister(user);
+        return success ("login.html");
     }
 
     @GetMapping("/get_OnLine_user")

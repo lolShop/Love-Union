@@ -1,5 +1,8 @@
 $(function(){
     $('#registerBut').on('click', function(){
+        if($('#u_name').val() == "" || $('#password').val() == "" ||$('#phone').val() == ""){
+            alert("请正确填写注册信息");
+        }
         if($('#rePassword').val() != $('#password').val()){
             alert("两次密码不一致");
         }else{
@@ -11,9 +14,12 @@ $(function(){
                     if(result.code == 200){
                         alert("注册成功!");
                         location.href = result.message;
-                    }else{
-                        alert("此账号已被注册,请重新注册");
-                        location.href = "register.html";
+                    }else if(result.code == 500){
+                        alert(result.message);
+                        $('#u_name').val("");
+                        $('#password').val("");
+                        $('#phone').val("");
+                        $('#rePassword').val("");
                     }
                 }
             });

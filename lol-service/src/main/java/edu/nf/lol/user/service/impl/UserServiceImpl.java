@@ -28,13 +28,34 @@ public class UserServiceImpl implements UserService {
         try {
             User us = dao.getUserByPhone(user);
             if(us.getUserPhone().equals(user.getUserPhone()) && us.getPassword().equals(user.getPassword())){
+                log.info("用户消息:"+user.getUserName()+"已登陆");
                 return us;
+            }else{
+                return null;
             }
-            log.info("用户消息:"+user.getUserName()+"已登陆");
         } catch (Exception e) {
             log.error(e.getMessage());
         }
         throw new LolException("用户名或密码错误!");
+    }
+
+    /**
+     * 注册验证
+     * @param user
+     * @return
+     */
+    @Override
+    public User userRegisterCheck(User user) {
+        try {
+            User u = dao.getUserByPhone(user);
+            if(u != null){
+                return u;
+            }
+            return null;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        throw new LolException("此用户已存在!");
     }
 
     /**
@@ -48,16 +69,6 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public User userRegisterCheck(User user) {
-        try {
-            return dao.getUserByPhone(user);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        throw new LolException("此用户已存在!");
     }
 
     /**
