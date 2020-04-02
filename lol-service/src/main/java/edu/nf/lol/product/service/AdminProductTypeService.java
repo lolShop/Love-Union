@@ -5,12 +5,18 @@ import edu.nf.lol.product.entity.ProductType;
 import java.util.List;
 
 /**
- * @author Crazy
- * @date 2020/3/27
+ * @author zachery
+ * @title: AdminProductTypeService
+ * @projectName lol
+ * @description: TODO
+ * @date 2020/3/2418:43
  */
 public interface AdminProductTypeService {
+
     /**
-     * 这是后台的商品分级别显示 用递归方法实现
+     * 商品分类查询
+     * @param parentId
+     * @return
      */
-       List<ProductType>   listProductTypeParentId(Integer parentId);
+    List<ProductType> adminProductTypeAll(Integer parentId);
 }

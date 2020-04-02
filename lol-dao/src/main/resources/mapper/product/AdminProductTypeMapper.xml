@@ -2,16 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.nf.lol.product.dao.AdminProductTypeDao">
+
     <resultMap id="productTypeMap" type="edu.nf.lol.product.entity.ProductType">
         <id property="productTypeId" column="product_type_id"/>
         <result property="parentId" column="parent_id"/>
-        <result property="productTypeName" column="product_type_name"/>
+        <result property="productTypeName" column="Product_type_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
         <result property="productState" column="product_state"/>
     </resultMap>
-    <select id="listProductTypeParentId" resultMap="productTypeMap">
-        SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type WHERE parent_id=#{parentId}
+    <resultMap id="productMap" type="edu.nf.lol.product.entity.Product">
+        <id  property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productCreateTime" column="product_create_time"/>
+        <result property="productUpdateTime" column="product_update_time"/>
+        <result property="productMainImage" column="product_main_image"/>
+        <result property="productParticular" column="product_particular"/>
+        <result property="productWeight" column="product_weight"/>
+        <result property="productAttribute" column="product_attribute"/>
+        <result property="productState" column="product_state"/>
+        <association  property="productType" resultMap="productTypeMap"/>
+    </resultMap>
+    <select id="adminProductTypeAll" resultMap="productTypeMap" resultType="edu.nf.lol.product.entity.ProductType">
+        select * from product_type where parent_id = #{parentId}
     </select>
-    <select id="listProductTypeAll" resultMap="productTypeMap">
-        SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type
-    </select>
+
+
 </mapper>

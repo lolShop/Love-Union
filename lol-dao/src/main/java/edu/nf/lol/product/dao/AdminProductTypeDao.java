@@ -1,19 +1,25 @@
 package edu.nf.lol.product.dao;
 
 import edu.nf.lol.product.entity.ProductType;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
- * @author Crazy
- * @date 2020/3/27
+ * @author zachery
+ * @title: AdminProductTypeDao
+ * @projectName lol
+ * @description: TODO
+ * @date 2020/3/2417:32
+ * 后台商品分类
  */
+@Repository
 public interface AdminProductTypeDao {
     /**
-     * 这是后台的商品分级别显示 用递归方法实现
+     * 商品分类查询
+     * @param parentId
+     * @return
      */
-       List<ProductType>   listProductTypeParentId(Integer parentId );
-       List<ProductType>   listProductTypeAll();
+    List<ProductType> adminProductTypeAll(Integer parentId);
 
 }
