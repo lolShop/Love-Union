@@ -8,6 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/3/10
  */
 @SpringBootApplication(scanBasePackages = "edu.nf.lol")
-@MapperScan({"edu.nf.lol.product.dao","edu.nf.lol.order.dao","edu.nf.lol.shopCart.dao","edu.nf.lol.user.dao"})
+@MapperScan({"edu.nf.lol.product.dao","edu.nf.lol.*.dao","edu.nf.lol.shopCart.dao","edu.nf.lol.user.dao"})
 public class SpringBootInitializer {
 }

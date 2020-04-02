@@ -77,10 +77,6 @@
         update shop_cart set shop_state=#{param1} where shop_id=#{param2}
     </update>
 
-    <update id="cancel" parameterType="Integer">
-        update shop_cart set shop_state=0 where shop_id=#{shopId}
-    </update>
-
     <update id="checkAll" >
         update shop_cart set shop_state=#{param1} where shop_u_id=#{param2}
     </update>

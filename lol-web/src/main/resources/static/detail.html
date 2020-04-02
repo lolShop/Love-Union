@@ -5,6 +5,7 @@
 		<title>详情页-爱联盟周边商城</title>
 		<link href="css/img.css" type="text/css" rel="stylesheet">	
 		<link href="css/detail.css" type="text/css" rel="stylesheet">
+		<link href="css/pagination.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="top">
@@ -158,50 +159,51 @@
 										</div>
 										<div class="comment-list clearfix">
 											<ul class="cent-ul">
-												<li>
-													<div class="fl headimg">
-														<div class="imgbox">
-															<img src="image/detail/jcp.png" width="58" height="58" title="匿名用户">
-														</div>
-														<p class="qqnick">匿名用户</p>
-													</div>
-													<div class="fl comment-text">
-														<div class="comment-point clearfix">
-															<span class="fl">商品评分</span>
-															<div class="fl pord-starbox">
-																<i class="ico-detail i-star10"></i>
-															</div>
-															<span class="fl all-point ml5">5.0分</span>
-															<div class="fr comment-time">2020-01-19 23:04:42</div>
-														</div>
-														<p class="text-detail">很惊艳，钱花的不亏</p>
-													 </div>
-												 </li>
-												 <li>
-													 <div class="fl headimg">
-														 <div class="imgbox">
-															 <img src="image/detail/jcp.png" width="58" height="58" title="覆灭的未来">
-														 </div>
-														 <p class="qqnick">覆灭的未来</p>
-													 </div>
-													 <div class="fl comment-text">
-														 <div class="comment-point clearfix">
-															 <span class="fl">商品评分</span>
-															 <div class="fl pord-starbox">
-																 <i class="ico-detail i-star10"></i>
-															 </div>
-															 <span class="fl all-point ml5">5.0分</span>
-															 <div class="fr comment-time">2020-01-15 20:33:05</div>
-														 </div>
-														 <p class="text-detail">太帅了</p>
-													  </div>
-												 </li>
+<!--												<li>-->
+<!--													<div class="fl headimg">-->
+<!--														<div class="imgbox">-->
+<!--															<img src="image/detail/jcp.png" width="58" height="58" title="匿名用户">-->
+<!--														</div>-->
+<!--														<p class="qqnick">匿名用户</p>-->
+<!--													</div>-->
+<!--													<div class="fl comment-text">-->
+<!--														<div class="comment-point clearfix">-->
+<!--															<span class="fl">商品评分</span>-->
+<!--															<div class="fl pord-starbox">-->
+<!--																<i class="ico-detail i-star10"></i>-->
+<!--															</div>-->
+<!--															<span class="fl all-point ml5">5.0分</span>-->
+<!--															<div class="fr comment-time">2020-01-19 23:04:42</div>-->
+<!--														</div>-->
+<!--														<p class="text-detail">很惊艳，钱花的不亏</p>-->
+<!--													 </div>-->
+<!--												 </li>-->
+<!--												 <li>-->
+<!--													 <div class="fl headimg">-->
+<!--														 <div class="imgbox">-->
+<!--															 <img src="image/detail/jcp.png" width="58" height="58" title="覆灭的未来">-->
+<!--														 </div>-->
+<!--														 <p class="qqnick">覆灭的未来</p>-->
+<!--													 </div>-->
+<!--													 <div class="fl comment-text">-->
+<!--														 <div class="comment-point clearfix">-->
+<!--															 <span class="fl">商品评分</span>-->
+<!--															 <div class="fl pord-starbox">-->
+<!--																 <i class="ico-detail i-star10"></i>-->
+<!--															 </div>-->
+<!--															 <span class="fl all-point ml5">5.0分</span>-->
+<!--															 <div class="fr comment-time">2020-01-15 20:33:05</div>-->
+<!--														 </div>-->
+<!--														 <p class="text-detail">太帅了</p>-->
+<!--													  </div>-->
+<!--												 </li>-->
 											</ul>
 										</div>
 										<!-- 分页按钮  -->
-										<div class="page pagesmar" id="page_detail_tab_comment"></div>
+										<div id="page" style="padding-top: 30px;padding-bottom: 70px;margin-left: 25px;" align="left"></div>
 										</div>
 									</div>
+
 								</div>
 								
 				                <!-- 联系商家 -->
@@ -256,5 +258,70 @@
 		<script src="js/jquery-min.js"></script>
 		<script src="js/img.js"></script> 
 		<script src="js/detail.js"></script>
+		<script src="js/jquery.pagination.js"></script>
+		<script>
+			$(function () {
+				$.ajax({
+					url:"comment/listComment",
+					type:"post",
+					data:{"pid":1,'pageNum' : 1, 'pageSize' :10},
+					success:function (result) {
+						addTable(result.data);
+						page(result.data);
+					}
+				})
+			})
+			function addTable(pageInfo){
+				$(".cent-ul li").remove();
+				$.each(pageInfo.list, function(index, obj){
+					$(".cent-ul").append(
+							'<li>'+
+							'<div class="fl headimg">'+
+							'<div class="imgbox">'+
+							'<img src="image/user/'+obj.user.photo+'" width="58" height="58" title="匿名用户">'+
+							'</div>'+
+							'<p class="qqnick">'+obj.user.userName+'</p>'+
+							'</div>'+
+							'<div class="fl comment-text">'+
+							'<div class="comment-point clearfix">'+
+							'<span class="fl">商品评分</span>'+
+							'<div class="fl pord-starbox">'+
+							'<i class="ico-detail i-star'+obj.description*2+'"></i>'+
+							'</div>'+
+							'<span class="fl all-point ml5">'+obj.description+'分</span>'+
+							'<div class="fr comment-time">'+obj.comDate+'</div>'+
+							'</div>'+
+							'<p class="text-detail">'+obj.content+'</p>'+
+							'</div>'+
+							'</li>'
+					)
+				});
+
+			}
+
+			//分页方法
+			function page(pageInfo){
+				$("#page").pagination(pageInfo.total, { //第一个参数指定共多少条记录
+					items_per_page:pageInfo.pageSize, // 每页显示多少条记录
+					next_text:"下一页", //下一页按钮图标
+					prev_text:"上一页", //上一页按钮图标
+					num_display_entries:4,//主体页数
+					num_edge_entries: 2, //边缘页数
+					callback: function(index){//定义一个回调函数，用于每次点击页码发起分页查询请求
+						//index为当前页码，只不过下标是从0开始，因此需要+1操作
+						var pageNum = ++index;
+						$.ajax({
+							url : 'comment/listComment',
+							type :'post',
+							data : {'pageNum':pageNum,'pageSize':10,"pid":1},
+							success : function(result){
+								//渲染表格
+								addTable(result.data);
+							}
+						});
+					}
+				});
+			}
+		</script>
 	</body>
 </html>

@@ -9,6 +9,12 @@ server:
   # 指定项目的ContextPath路径
   servlet:
     context-path: /lol
+    multipart:
+      enabled: true
+      # 每个文件限制为10M
+      max-file-size: 10MB
+      # 单次请求所有文件容量不能大于100MB
+      max-request-size: 100MB
 debug: true
 spring:
   # 字符编码过滤器配置（CharacterEncodingFilter）
