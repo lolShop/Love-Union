@@ -2,6 +2,7 @@ package edu.nf.lol;
 
 
 import edu.nf.lol.vo.ResponseVO;
+import org.springframework.http.HttpStatus;
 
 /**
  * @author Crazy
@@ -19,5 +20,12 @@ public class BaseController<T> {
         vo.setCode(code);
         vo.setMessage(message);
         return  vo;
+    }
+
+    protected ResponseVO success(String message){
+        ResponseVO vo = new ResponseVO();
+        vo.setCode(HttpStatus.OK.value());
+        vo.setMessage(message);
+        return vo;
     }
 }

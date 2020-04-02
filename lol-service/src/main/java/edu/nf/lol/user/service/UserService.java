@@ -8,9 +8,25 @@ import edu.nf.lol.user.entity.User;
  */
 public interface UserService {
 
-    User userLogin(User user);
+    /**
+     *用户验证登陆
+     * @param user
+     * @return
+     */
+    User findUser(User user);
 
+    /**
+     * 注册
+     * @param user
+     */
     void userRegister(User user);
+
+    /**
+     *  注册验证
+     * @param user
+     * @return
+     */
+    User userRegisterCheck(User user);
 
     User queryUserInfo(User user);
 

@@ -26,9 +26,9 @@ public class UserServiceTest {
     @Test
     void testUserLogin(){
         User user = new User();
-        user.setUserPhone("123456");
-        user.setPassword("12345");
-        User u = userService.userLogin(user);
-        System.out.println(u);
+        user.setUserPhone("17688174618");
+        user.setPassword("123456");
+        User u = userService.findUser(user);
+        System.out.println(u.getUserName());
     }
 }

@@ -4,7 +4,7 @@ $(function(){
             alert("两次密码不一致");
         }else{
             $.ajax({
-                url : '../author_register',
+                url : 'user/user_register',
                 data : $('#f1').serialize(),
                 type : 'post',
                 success : function(result){
@@ -13,7 +13,7 @@ $(function(){
                         location.href = result.message;
                     }else{
                         alert("此账号已被注册,请重新注册");
-                        location.href = "auth-register.html";
+                        location.href = "register.html";
                     }
                 }
             });

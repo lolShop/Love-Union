@@ -1,7 +1,7 @@
 $(function(){
     $('#loginBut').on('click', function(){
         $.ajax({
-            url : '../author_login',
+            url : 'user/user_login',
             data : $('#f1').serialize(),
             type : 'post',
             success : function(result){

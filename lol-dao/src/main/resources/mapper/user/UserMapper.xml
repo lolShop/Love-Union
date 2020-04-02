@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.user.dao.UserDao">
+
+    <resultMap id="userMap" type="edu.nf.lol.user.entity.User">
+        <id property="userId" column="user_id"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="password" column="user_pwd"/>
+        <result property="userName" column="user_name"/>
+        <result property="photo" column="photo"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    <insert id="userRegister" parameterType="edu.nf.lol.user.entity.User">
+        insert into user_info(user_phone, user_pwd, user_name)
+        values(#{userPhone},#{password},#{userName})
+    </insert>
+    <update id="updateUserPhoto"></update>
+    <update id="updateUserPwd"></update>
+    <select id="getUserByPhone" resultMap="userMap">
+        select user_id, user_phone, user_pwd, user_name, photo, sex, birthday, phone, email
+         from user_info where user_phone = #{userPhone}
+    </select>
+    <select id="queryUserInfo" resultType="edu.nf.lol.user.entity.User"></select>
+</mapper>
