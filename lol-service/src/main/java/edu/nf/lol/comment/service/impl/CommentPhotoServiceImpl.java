@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author Administrator
  * @date 2020/4/1
@@ -21,5 +23,10 @@ public class CommentPhotoServiceImpl implements CommentPhotoService {
     @Override
     public void publishPhotoComment(CommentPhoto commentPhoto) {
         commentPhotoDao.publishCommentPhoto(commentPhoto);
+    }
+
+    @Override
+    public List<CommentPhoto> findCommentPhoto(Integer comId) {
+        return commentPhotoDao.findCommentPhoto(comId);
     }
 }

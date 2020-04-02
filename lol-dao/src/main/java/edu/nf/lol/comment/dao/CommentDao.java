@@ -23,4 +23,6 @@ public interface CommentDao {
      * @return
      */
     List<Comment> listComment(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize,Integer pid);
+
+    double fs(Integer pid);
 }

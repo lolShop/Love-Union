@@ -39,10 +39,18 @@ public class CommentServiceTest {
     @Test
     public void testListComment(){
         PageInfo<Comment> pageInfo = commentService.listComment(1,10,1);
-        for (Comment c:pageInfo.getList()) {
-            System.out.println(c.getContent()+"   "+c.getDescription()+"  "+c.getCommentPhoto().getPhoto()+"   "+
-                c.getComDate()+"   "+c.getUser().getUserName()+"   "+c.getProduct().getProductId()+"   "+c.getUser().getPhoto()
+        for(Comment c:pageInfo.getList()){
+            List<CommentPhoto> list = commentPhotoService.findCommentPhoto(c.getComId());
+            c.setCommentPhotos(list);
+            System.out.println(c.getContent()+"   "+c.getDescription()+"   "+
+                    c.getComDate()+"   "+c.getUser().getUserName()+"   "+c.getProduct().getProductId()+"   "+c.getUser().getPhoto()
+
             );
+            for(CommentPhoto cp:c.getCommentPhotos()){
+                System.out.println(cp.getPhoto());
+            }
         }
+
+
     }
 }

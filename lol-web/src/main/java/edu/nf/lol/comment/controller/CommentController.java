@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -62,7 +63,17 @@ public class CommentController extends BaseController {
     @PostMapping("/listComment")
     public ResponseVO<PageInfo<Comment>> listComment(Integer pageNum,Integer pageSize,Integer pid){
         PageInfo<Comment> pageInfo = commentService.listComment(pageNum,pageSize,pid);
+        for(Comment c:pageInfo.getList()){
+            List<CommentPhoto> list = commentPhotoService.findCommentPhoto(c.getComId());
+            c.setCommentPhotos(list);
+        }
         return success(pageInfo);
+    }
+
+    @PostMapping("/fs")
+    public ResponseVO fs(Integer pid){
+        Double fs = commentService.fs(pid);
+        return success(fs);
     }
 
 

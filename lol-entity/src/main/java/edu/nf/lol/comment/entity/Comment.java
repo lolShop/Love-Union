@@ -7,6 +7,7 @@ import edu.nf.lol.user.entity.User;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Administrator
@@ -29,4 +30,5 @@ public class Comment {
     private Integer detailsId;
     private CommentPhoto commentPhoto;
     private Product product;
+    private List<CommentPhoto> commentPhotos;
 }

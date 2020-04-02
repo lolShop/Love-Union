@@ -49,10 +49,12 @@
         insert into comment_info(user_id,details_id,description,content) values (#{userId},#{detailsId},#{description},#{content})
     </insert>
     <select id="listComment" resultMap="commentMap">
-        select com.content,cp.photo,com.description,com.com_date,u.user_name,p.product_id,u.user_photo
-        from comment_info com, comment_photo cp,user_info u,order_details od,product_info p
-        where com.com_id=cp.com_id and com.user_id=u.user_id and od.details_id=com.details_id and
-        od.good_id=p.product_id and p.product_id=#{param3} order by com.com_date desc
+        select com.com_id,com.content,com.description,com.com_date,u.user_name,u.user_photo,p.product_id from
+        comment_info com,user_info u,order_details od,product_info p where com.user_id=u.user_id and
+        od.details_id=com.details_id and od.good_id=p.product_id and p.product_id=#{param3} order by com.com_date desc
+    </select>
+    <select id="fs" resultType="java.lang.Double">
+        select avg(description)  from comment_info com,user_info u,order_details od,product_info p where com.user_id=u.user_id and od.details_id=com.details_id and od.good_id=p.product_id and p.product_id=#{pid}
     </select>
 
 

@@ -33,5 +33,10 @@ public class CommentServiceImpl implements CommentService {
         return pageInfo;
     }
 
+    @Override
+    public Double fs(Integer pid) {
+        return commentDao.fs(pid);
+    }
+
 
 }

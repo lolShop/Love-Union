@@ -10,6 +10,9 @@
     <insert id="publishCommentPhoto" parameterType="edu.nf.lol.comment.entity.CommentPhoto">
         insert into comment_photo(photo,com_id) values(#{photo},#{comId})
     </insert>
+    <select id="findCommentPhoto" resultMap="commentPhotoMap" parameterType="integer">
+        select photo from comment_photo where com_id=#{comId}
+    </select>
 
 
 </mapper>

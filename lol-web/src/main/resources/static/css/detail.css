@@ -474,6 +474,36 @@ detail .pord-tab {
 .pord-starall .i-star0 {
     background-position: -156px -152px;
 }
+.pord-starall .i-star1 {
+    background-position: -126px -181px;
+}
+.pord-starall .i-star2 {
+    background-position: -126px -152px;
+}
+.pord-starall .i-star3 {
+    background-position: -95px -181px;
+}
+.pord-starall .i-star4 {
+    background-position: -95px -152px;
+}
+.pord-starall .i-star5 {
+    background-position: -64px -181px;
+}
+.pord-starall .i-star6 {
+    background-position: -64px -152px;
+}
+.pord-starall .i-star7 {
+    background-position: -32px -181px;
+}
+.pord-starall .i-star8 {
+    background-position: -32px -152px;
+}
+.pord-starall .i-star9 {
+    background-position: -2px -181px;
+}
+.pord-starall .i-star10 {
+    background-position: -2px -152px;
+}
 .comment-list .cent-ul .headimg {
     width: 72px;
     height: auto;
@@ -733,4 +763,32 @@ strong{
 	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 	border-radius: 0;
 	background: rgba(0,0,0,0.1);
+}
+.comment-list .cent-ul .roll-list-box li {
+    float: left;
+    padding: 0;
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+.comment-list .cent-ul .roll-list-box li .simgbox {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #f2f2f2;
+    position: relative;
+}
+.comment-list .cent-ul .roll-list-box li img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    margin: auto;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
 }
