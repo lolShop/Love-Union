@@ -28,7 +28,7 @@ public class UserController extends BaseController {
     public ResponseVO userLogin(@Valid User user, HttpSession session){
         User u = service.findUser(user);
         if(u != null){
-            session.setAttribute("OnLineUser", u);
+            session.setAttribute("user", u);
             System.out.println("用户:"+u.getUserName()+"验证成功!并加入session作用域");
             return success("index.html");
         }
@@ -47,7 +47,7 @@ public class UserController extends BaseController {
 
     @GetMapping("/get_OnLine_user")
     public ResponseVO getOnLineUser(HttpSession session){
-        User u = (User) session.getAttribute("OnLineUser");
+        User u = (User) session.getAttribute("user");
         return success(u);
     }
 
