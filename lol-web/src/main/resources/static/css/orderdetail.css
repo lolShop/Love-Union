@@ -93,7 +93,7 @@ div {
 }
 
 .ico-center {
-    background: url(../image/ico_center.png) no-repeat;
+    background: url(../image/myorder/ico_center.png) no-repeat;
 }
 
 .order-process .pro-finish .pro-name {
@@ -377,5 +377,15 @@ body {
     color: #333;
 }
 
-
-
+/* 第二个变黄色 */
+.or-pay-yellow{
+    background-position: -274px -368px;
+}
+/* 第三个变黄色 */
+.or-delivery-yellow{
+    background-position: -457px -224px;
+}
+/* 第四个变黄色 */
+.or-receipt-yellow{
+    background-position: -389px -224px;
+}

@@ -3,12 +3,10 @@ var userId = 1000;
 //页面初始化,加载时需要查询所有的商品收藏
 function init(){
 	$.ajax({
-		url:'http://127.0.0.1:8080/lol/user/collect/query_collect',
+		url:'user/collect/query_collect',
 		type:'get',
-		data:{'pageNum': 1, 'pageSize': 2},
+		data:{'pageNum': 1, 'pageSize': 8},
 		success:function(result){
-			console.info(result);
-			return;
 			range(result.data);
 			page(result.data);
 		}
@@ -60,7 +58,7 @@ function page(pageInfo){
 			//index为当前页码，只不过下标是从0开始，因此需要+1操作
 			var pageNum = ++index;
 			$.ajax({
-				url : 'http://localhost:8080/lol/user/collect/query_collect',
+				url : 'user/collect/query_collect',
 				type : 'get',
 				data : {'pageNum' : pageNum, 'pageSize' : 8},
 				success : function(result){
@@ -81,7 +79,7 @@ function cancelCollect(){
 	$("#dj1 ul").on("mouseleave", ".top-img", function(){
 		$($(this).children()[1]).css("display", "none");
 	})
-	<!-- 改变取消收藏的背景透明度 -->
+	//<!-- 改变取消收藏的背景透明度 -->
 	$("#dj1 ul").on("mouseover", ".collect-action", function(){
 		$($(this).children()[0]).css("opacity", "0.7");
 	});
@@ -95,7 +93,7 @@ function implCancelCollect(){
 	$('#dj1 ul').on('click', '.btn-cancel', function(){
 		var productId = $(this).parent().children()[0].innerHTML;
 		$.ajax({
-			url:'http://127.0.0.1:8080/lol/user/collect/cancel_collect',
+			url:'user/collect/cancel_collect',
 			type:'post',
 			data:{'product.productId': productId, 'user.userId': userId},
 			success: function(result){
@@ -115,5 +113,11 @@ $(function(){
 	init();
 	cancelCollect();
 	implCancelCollect();
+	$.get("top.html", function (data) {
+		$(".head_top").html(data);
+	});
+	$.get("bottom.html", function (data) {
+		$(".bottom").html(data);
+	});
 })
 

@@ -14,6 +14,8 @@ public interface UserService {
 
     User queryUserInfo(User user);
 
+    void updateInfo(User user);
+
     void updateUserPhoto(User user);
 
     void updateUserPwd(User user);

@@ -54,6 +54,20 @@ public class UserOrderServiceImpl implements UserOrderService {
         }
     }
 
+    @Override
+    public OrderInfo queryOrderInfo(OrderInfo orderInfo) {
+        try {
+            OrderInfo order =  userOrderDao.queryOrderInfo(orderInfo);
+            List<OrderDetails> details = userOrderDao.queryOrderItem(order.getOrderId());
+            System.out.println(details);
+            order.setDetails(details);
+            return order;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("查询失败");
+        }
+    }
+
     /**
      * 根据提供的订单集合，查询每个订单的购物项，并返回分页对象
      * @param orderInfos

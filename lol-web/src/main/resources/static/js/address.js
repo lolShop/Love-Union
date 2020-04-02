@@ -8,7 +8,7 @@ var userId = 1000;
 //初始化页面,打印所有的收货地址信息
 function init(){
 	$.ajax({
-		url:'http://127.0.0.1:8080/lol/user/address/all/' + userId,
+		url:'user/address/all/' + userId,
 		type:'get',
 		success:function(result){
 			$("#dj1 ul li:not(:first)").remove();
@@ -45,7 +45,7 @@ function setDefaultStatus(){
 		//获取地址id
 		var addressId = $(this).parent().parent().children()[0].innerHTML;
 		$.ajax({
-			url:'http://127.0.0.1:8080/lol/user/address/update_status',
+			url:'user/address/update_status',
 			type:'post',
 			data:{"addressId": addressId, "user.userId": userId},
 			success:function(result){
@@ -68,7 +68,7 @@ function delAddress(){
 		//获取地址id
 		var addressId = $(this).parent().parent().children()[0].innerHTML;
 		$.ajax({
-			url:'http://127.0.0.1:8080/lol/user/address/del_address',
+			url:'user/address/del_address',
 			type:'post',
 			data:{"addressId": addressId, "user.userId": userId},
 			success:function(result){
@@ -106,7 +106,7 @@ function clickSaveAddress(){
 		var postcode = $("input[name=zip]").val();
 		//判断当前是进行修改还是新增
 		var type = $(".addr-tit").text().split("收货地址")[0];
-		var url = type == "新增" ? "http://127.0.0.1:8080/lol/user/address/add_address" : "http://127.0.0.1:8080/lol/user/address/update_info";
+		var url = type == "新增" ? "user/address/add_address" : "user/address/update_info";
 		var data = type == "新增" ? 
 			{'takeName': takeName, 'takePhone':takePhone, 'takeAddress':takeAddress, 'postcode':postcode, 'user.userId':userId} : 
 			{'takeName': takeName, 'takePhone':takePhone, 'takeAddress':takeAddress, 'postcode':postcode, 'addressId':addressId};
@@ -193,4 +193,10 @@ $(function(){
 	clickSaveAddress();
 	clickUpdate();
 	clickInsert();
+	$.get("top.html", function (data) {
+		$(".head_top").html(data);
+	});
+	$.get("bottom.html", function (data) {
+		$(".bottom").html(data);
+	});
 })
