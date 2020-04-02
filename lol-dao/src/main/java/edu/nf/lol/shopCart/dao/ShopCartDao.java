@@ -26,6 +26,8 @@ public interface ShopCartDao {
      */
     ShopCart listNum(@Param("uid") Integer uid);
 
+    ShopCart findShopCart(Integer specId);
+
     /**
      * 根据id增加商品数量
      * @param shopId

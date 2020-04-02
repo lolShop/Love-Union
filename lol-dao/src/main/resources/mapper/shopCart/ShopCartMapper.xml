@@ -57,6 +57,10 @@
         select  sc.shop_u_id,sum(sc.shop_count) as sl,sum(sc.shop_count*spec.promotion_price) as zje from shop_cart sc, product_specs spec where sc.specs_product_id=spec.specs_id and sc.shop_u_id=#{uid}  GROUP BY sc.shop_state having sc.shop_state=1;
     </select>
 
+    <select id="findShopCart" resultMap="shopCartMap" parameterType="Integer">
+        select shop_id,shop_u_id,specs_product_id,shop_count,shop_state from shop_cart where specs_product_id=#{specId} and shop_state !=2
+    </select>
+
     <update id="addCount" parameterType="Integer">
         update shop_cart set shop_count=shop_count+1 where shop_id=#{shopId}
     </update>
@@ -71,10 +75,6 @@
 
     <update id="select" >
         update shop_cart set shop_state=#{param1} where shop_id=#{param2}
-    </update>
-
-    <update id="cancel" parameterType="Integer">
-        update shop_cart set shop_state=0 where shop_id=#{shopId}
     </update>
 
     <update id="checkAll" >
