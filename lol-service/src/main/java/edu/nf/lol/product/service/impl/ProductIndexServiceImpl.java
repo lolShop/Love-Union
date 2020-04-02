@@ -4,7 +4,6 @@ import edu.nf.lol.product.dao.ProductIndexDao;
 import edu.nf.lol.product.entity.Product;
 import edu.nf.lol.product.entity.ProductDto;
 import edu.nf.lol.product.service.ProductIndexService;
-import edu.nf.lol.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -23,8 +22,7 @@ public class ProductIndexServiceImpl implements ProductIndexService {
     private ProductIndexDao productIndexDao;
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
-    @Autowired
-    private ProductRepository productRepository;
+
     @Override
     public List<Product> productRecommend(Integer state) {
         List<Product> list=(List<Product>)redisTemplate.opsForValue().get("productRecommend");
@@ -45,7 +43,6 @@ public class ProductIndexServiceImpl implements ProductIndexService {
             productDto.setProductMainImage(product.getProductMainImage());
             productDto.setSpecsPrice(product.getProductSpecsList().get(0).getSpecsPrice());
             productDto.setPromotionPrice(product.getProductSpecsList().get(0).getPromotionPrice());
-            productRepository.index(productDto);
         });
         return list;
     }

@@ -1,7 +1,6 @@
 package edu.nf.lol.comment.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import edu.nf.lol.BaseController;
 import edu.nf.lol.comment.entity.Comment;
 import edu.nf.lol.comment.entity.CommentPhoto;

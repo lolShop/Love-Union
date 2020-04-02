@@ -2,7 +2,6 @@ package edu.nf.lol.service.test.product;
 
 
 
-import edu.nf.lol.repository.ProductRepository;
 import edu.nf.lol.product.entity.*;
 import edu.nf.lol.product.service.ProductDetailService;
 
@@ -31,8 +30,7 @@ public class ProductDetailTest {
     private ProductSpecsService productSpecsService;
     @Autowired
     private ProductIndexService productIndexService;
-    @Autowired
-    private ProductRepository productRepository;
+
     @Test
     public void testProductDetail(){
         Product product= new Product();
@@ -74,6 +72,6 @@ public class ProductDetailTest {
         product.setProductId(1);
         product.setProductName("悠米卫衣");
         product.setProductMainImage("20200102113518_85881.jpg");
-        productRepository.index(product);
+
     }
 }
