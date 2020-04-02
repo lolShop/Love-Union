@@ -1,5 +1,11 @@
 
 $(function(){
+	function GetQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if(r != null) return decodeURI(r[2]);
+		return null;
+	}
    $(".jqzoom").jqueryzoom({
 		xzoom:230,
 		yzoom:220,
@@ -69,10 +75,11 @@ $(function(){
 	$.get("bottom.html", function (data) {
 		$(".bottom").html(data);
 	});
+
 	$.ajax({
 		url:"product/detail",
 		method:"get",
-		data:{"productId":1},
+		data: {"productId":GetQueryString("productId")},
 		success:function (result) {
 			//动态显示商品信息
 			$("#product").append("<span class='pord-name'>"+result.data.productName+"</span>" +
