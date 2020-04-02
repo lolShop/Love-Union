@@ -25,7 +25,12 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User userLogin(User user) {
-        return dao.userLogin(user);
+        try {
+            return dao.userLogin(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("登录失败");
+        }
     }
 
     /**
@@ -34,7 +39,12 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void userRegister(User user) {
-        dao.userRegister(user);
+        try {
+            dao.userRegister(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("注册失败");
+        }
     }
 
     /**
@@ -47,7 +57,18 @@ public class UserServiceImpl implements UserService {
         try {
             return dao.queryUserInfo(user);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("查询失败");
+        }
+    }
+
+    @Override
+    public void updateInfo(User user) {
+        try{
+            dao.updateInfo(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("修改失败");
         }
     }
 
@@ -60,6 +81,7 @@ public class UserServiceImpl implements UserService {
         try {
             dao.updateUserPhoto(user);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("修改失败");
         }
     }
@@ -70,6 +92,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void updateUserPwd(User user) {
-        dao.updateUserPwd(user);
+        try {
+            dao.updateUserPwd(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("修改失败");
+        }
     }
 }

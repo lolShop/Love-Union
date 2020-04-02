@@ -24,9 +24,20 @@
     <!-- 用户注册 -->
     <insert id="userRegister" parameterType="edu.nf.lol.user.entity.User">
         insert into user_info(user_phone, user_pwd, user_name, photo, sex, birthday, phone, email)
-        values(#{userPhone}, #{password}, #{userName}, 'default.jpg', 1, '2000-01-01', #{phone}, #{email})
+        values(#{userPhone}, #{password}, #{userName}, 'default.jpg', default, default, #{phone}, #{email})
     </insert>
 
+    <!-- 根据用户id查询用户基本信息 -->
+    <select id="queryUserInfo" parameterType="edu.nf.lol.user.entity.User" resultMap="userMap">
+        select user_id, user_phone, user_pwd, user_name, photo, sex, birthday, phone, email
+        from user_info where user_id = ${userId};
+    </select>
+
+    <!-- 修改信息 -->
+    <update id="updateInfo" parameterType="edu.nf.lol.user.entity.User">
+        update user_info set user_name = '${userName}', sex = ${sex}, email = #{email};
+    </update>
+    
     <!-- 修改头像 -->
     <update id="updateUserPhoto" parameterType="edu.nf.lol.user.entity.User">
         update user_info set photo = #{photo} where user_id = #{userId};
@@ -34,6 +45,6 @@
 
     <!-- 修改密码 -->
     <update id="updateUserPwd" parameterType="edu.nf.lol.user.entity.User">
-        update user_info set password = #{password} where user_id = #{userId};
+        update user_info set user_pwd = #{password} where user_id = #{userId};
     </update>
 </mapper>
