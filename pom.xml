@@ -62,6 +62,12 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jacksonDatabind.version}</version>
             </dependency>
+            <!-- aliPay sdk -->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>4.9.79.ALL</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
