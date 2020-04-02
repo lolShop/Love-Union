@@ -2,25 +2,20 @@ package edu.nf.lol.service.test.product;
 
 
 
-
-
-import edu.nf.lol.product.entity.Product;
-import edu.nf.lol.product.entity.ProductImage;
-import edu.nf.lol.product.entity.ProductSpecs;
-import edu.nf.lol.product.entity.ProductType;
+import edu.nf.lol.repository.ProductRepository;
+import edu.nf.lol.product.entity.*;
 import edu.nf.lol.product.service.ProductDetailService;
 
 
+import edu.nf.lol.product.service.ProductIndexService;
+
 import edu.nf.lol.product.service.ProductSpecsService;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.security.Key;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -28,12 +23,16 @@ import java.util.Map;
  * @date 2020/3/5
  */
 
-//@SpringBootTest
+@SpringBootTest
 public class ProductDetailTest {
     @Autowired
     private ProductDetailService productDetailService;
     @Autowired
     private ProductSpecsService productSpecsService;
+    @Autowired
+    private ProductIndexService productIndexService;
+    @Autowired
+    private ProductRepository productRepository;
     @Test
     public void testProductDetail(){
         Product product= new Product();
@@ -56,10 +55,25 @@ public class ProductDetailTest {
     }
     @Test
     public  void  testProductSpecsProductId(){
-        ProductSpecs specs= new ProductSpecs();
-        specs.setProductSpecs("{'颜色':'彩色','尺码':'XXL'}");
-        System.out.println(specs.getProductSpecs());
-//        ProductSpecs specs1=productSpecsService.productSpecsProductId();
-//        System.out.println(specs1);
+//        ProductSpecs specs= new ProductSpecs();
+////        specs.setProductSpecs("{'颜色':'彩色','尺码':'XXL'}");
+////        System.out.println(specs.getProductSpecs());
+//////        ProductSpecs specs1=productSpecsService.productSpecsProductId();
+//////        System.out.println(specs1);
+//        List<Product> products=productIndexService.productAll();
+//        products.forEach(product -> {
+//            ProductDto productDto= new ProductDto();
+//            productDto.setProductId(product.getProductId());
+//            productDto.setProductName(product.getProductName());
+//            productDto.setProductMainImage(product.getProductMainImage());
+////            productDto.setSpecsPrice(product.getProductSpecsList().get(0).getSpecsPrice());
+////            productDto.setPromotionPrice(product.getProductSpecsList().get(0).getPromotionPrice());
+//            productRepository.index(productDto);
+//        });
+        ProductDto product=new ProductDto();
+        product.setProductId(1);
+        product.setProductName("悠米卫衣");
+        product.setProductMainImage("20200102113518_85881.jpg");
+        productRepository.index(product);
     }
 }

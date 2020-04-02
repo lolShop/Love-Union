@@ -22,7 +22,6 @@ public class AdminProductTest {
     private AdminProductTypeService adminProductTypeService;
     @Test
     public void testProductDetail(){
-
         List<Product> list = adminProductService.adminProductAll();
         System.out.println(list);
         list.forEach(product -> {
