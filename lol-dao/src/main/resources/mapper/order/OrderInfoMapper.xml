@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.order.dao.AdminOrderInfoDao">
+    <resultMap id="orderInfoMap" type="edu.nf.lol.order.entity.OrderInfo">
+        <id property="orderId" column="order_id"/>
+        <result property="orderStaticId" column="order_static_id"/>
+        <result property="addressId" column="address_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="preferentialAmount" column="preferential_amount"/>
+        <result property="paymentMoney" column="payment_money"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="paymentTime" column="payment_time"/>
+        <result property="deliveryTime" column="delivery_time"/>
+        <result property="receivingTime" column="receiving_time"/>
+        <association  property="address" resultMap="addressMap"/>
+        <association  property="user" resultMap="userMap"/>
+        <association property="orderStatic" resultMap="orderStaticMap"/>
+    </resultMap>
+    <resultMap id="addressMap" type="edu.nf.lol.user.entity.Address">
+        <id property="addressId" column="address_id"/>
+        <id property="userId" column="user_id"/>
+        <result property="takeName" column="take_name"/>
+        <result property="takePhone" column="take_phone"/>
+        <result property="takeAddress" column="take_address"/>
+        <result property="postcode" column="post_code"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <resultMap id="userMap" type="edu.nf.lol.user.entity.User">
+        <id property="userId" column="user_id"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="password" column="user_pwd"/>
+        <result property="userName" column="user_name"/>
+        <result property="photo" column="photo"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <resultMap id="orderStaticMap" type="edu.nf.lol.order.entity.OrderStatic">
+        <id property="staticId" column="static_id"/>
+        <result property="staticName" column="static_name"/>
+    </resultMap>
+
+
+    <select id="pageOrder" resultMap="orderInfoMap" parameterType="edu.nf.lol.order.entity.OrderInfo">
+
+							SELECT
+							oi.order_id,
+							order_static.static_id,
+							oi.address_id,
+							oi.user_id,
+							oi.payment_money,
+							oi.order_time,
+							ao.take_address,
+							ao.take_phone,
+							ui.user_name,
+							order_static.static_name
+					FROM
+							order_info AS oi
+							LEFT JOIN address_info AS ao ON oi.address_id = ao.address_id
+							LEFT JOIN user_info AS ui ON oi.user_id = ui.user_id left join
+							order_static as order_static on oi.order_static_id=order_static.static_id
+	</select>
+   <select id="pageOrder2" resultMap="orderInfoMap">
+       select *from order_info
+
+   </select>
+    <select id="chanxun" resultMap="orderInfoMap" parameterType="edu.nf.lol.order.entity.OrderInfo">
+        	SELECT
+			oi.order_id,
+			order_static.static_id,
+			oi.address_id,
+			oi.user_id,
+			oi.payment_money,
+			oi.order_time,
+			ao.take_address,
+			ao.take_phone,
+			ui.user_name,
+			order_static.static_name
+		FROM
+			order_info AS oi
+			LEFT JOIN address_info AS ao ON oi.address_id = ao.address_id
+			LEFT JOIN user_info AS ui ON oi.user_id = ui.user_id
+			LEFT JOIN order_static as order_static on oi.order_static_id=order_static.static_id
+			where order_static.static_name=#{param3}
+    </select>
+</mapper>

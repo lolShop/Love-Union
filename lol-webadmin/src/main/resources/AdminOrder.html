@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单分页</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/pagination.css">
+    <script src="js/jquery1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.pagination.js"></script>
+</head>
+
+<body>
+<div class="container" >
+    <table id="tbl" class="table table-hover table-bordered table-condensed">
+        <tr>
+            <th>订单编号</th>
+            <th>状态Id</th>
+            <th>地址Id</th>
+            <th>用户Id</th>
+            <th>金额</th>
+            <th>下单时间</th>
+            <th>收货地址</th>
+            <th>联系方式</th>
+            <th>下单人</th>
+            <th>收货人</th>
+        </tr>
+    </table>
+
+    <div id="page"></div>
+
+</div>
+
+<script src="js/jquery.pagination.js"></script>
+<script>
+    //查询所有订单
+    $(function (){
+        $.ajax({
+            url:'orderPage',
+            type:'get',
+            data:{'pageNum':1,'pageSize':5},
+            success:function (result) {
+                if(result.code==500){
+                    console.log("2222222")
+                    alert(result.message);
+                }else{
+                    console.log("1111111")
+                    //渲染表格
+                    addTable(result.data);
+                    //渲染分页
+                    page(result.data);
+                }
+
+            }
+        });
+
+    })
+    //渲染表格
+    function addTable(pageInfo){
+        console.log("xxxxxxx")
+        $('#tbl tr:not(:first)').remove();
+        $.each(pageInfo.list, function(index, obj){
+            console.log(obj)
+            console.log($('#tbl'))
+            $('#tbl').append(
+                '<tr>' +
+                '<td>'+obj.orderId+'</td>'+
+                '<td>'+obj.orderStatic.orderStaticId+'</td>'+
+                '<td>'+obj.addressId+'</td>'+
+                '<td>'+obj.userId+'</td>'+
+                '<td>'+obj.paymentMoney+'</td>'+
+                '<td>'+obj.orderTime+'</td>'+
+                '<td>'+obj.address.takeAddress+'</td>'+
+                '<td>'+obj.address.takePhone+'</td>'+
+                '<td>'+obj.user.userName+'</td>'+
+                '<td>'+obj.orderStatic.orderStaticName+'</td>'+
+                '</tr>'
+            );
+        });
+    }
+
+    //分页
+    function page(pageInfo){
+        $("#page").pagination(pageInfo.total, { //第一个参数指定共多少条记录
+            items_per_page:pageInfo.pageSize, // 每页显示多少条记录
+            next_text:">", //下一页按钮图标
+            prev_text:"<", //上一页按钮图标
+            num_display_entries:5,//主体页数
+            num_edge_entries: 2, //边缘页数
+            callback: function(index){//定义一个回调函数，用于每次点击页码发起分页查询请求
+                //index为当前页码，只不过下标是从0开始，因此需要+1操作
+                var pageNum = ++index;
+                $.ajax({
+                    url :'orderPage',
+                    method : 'get',
+                    data : {'pageNum' : pageNum, 'pageSize' : 5},
+                    success : function(result){
+                        //渲染表格
+                        addTable(result.data);
+                    }
+                });
+            }
+        });
+    }
+</script>
+</body>
+</html>
