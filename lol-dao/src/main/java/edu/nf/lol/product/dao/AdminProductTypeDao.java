@@ -15,5 +15,11 @@ public interface AdminProductTypeDao {
      */
        List<ProductType>   listProductTypeParentId(Integer parentId );
        List<ProductType>   listProductTypeAll();
+    /**
+     * 商品分类查询
+     * @param parentId
+     * @return
+     */
+    List<ProductType> adminProductTypeAll(Integer parentId);
 
 }

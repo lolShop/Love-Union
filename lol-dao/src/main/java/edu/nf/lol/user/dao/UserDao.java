@@ -10,7 +10,22 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserDao {
+    /**
+     * 用户注册
+     * @param user
+     * zachery
+     * @return
+     */
+    void userRegister(User user);
 
+
+    /**
+     *根据id获取用户信息,用于登陆
+     * @param user
+     * zachery
+     * @return
+     */
+    User getUserByPhone(User user);
     /**
      * 用户登录
      * @param user
@@ -18,12 +33,7 @@ public interface UserDao {
      */
     User userLogin(User user);
 
-    /**
-     * 用户注册
-     * @param user
-     * @return
-     */
-    void userRegister(User user);
+
 
     /**
      * 根据userId查询用户信息
@@ -49,4 +59,5 @@ public interface UserDao {
      * @param user
      */
     void updateUserPwd(User user);
+
 }

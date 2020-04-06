@@ -13,7 +13,7 @@
         <result property="userPhone" column="user_phone"/>
         <result property="password" column="user_pwd"/>
         <result property="userName" column="user_name"/>
-        <result property="photo" column="photo"/>
+        <result property="photo" column="user_photo"/>
         <result property="sex" column="sex"/>
         <result property="birthday" column="birthday"/>
         <result property="phone" column="phone"/>

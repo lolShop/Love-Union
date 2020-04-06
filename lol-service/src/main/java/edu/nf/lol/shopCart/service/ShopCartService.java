@@ -27,4 +27,6 @@ public interface ShopCartService {
     void settlement(Integer uid);
 
     ShopCart findShopCart(Integer specId);
+
+    void addShopCart(ShopCart shopCart);
 }

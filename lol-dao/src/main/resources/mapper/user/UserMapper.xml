@@ -8,7 +8,7 @@
         <result property="userPhone" column="user_phone"/>
         <result property="password" column="user_pwd"/>
         <result property="userName" column="user_name"/>
-        <result property="photo" column="photo"/>
+        <result property="photo" column="user_photo"/>
         <result property="sex" column="sex"/>
         <result property="birthday" column="birthday"/>
         <result property="phone" column="phone"/>
@@ -17,19 +17,14 @@
 
     <!-- 用户登录 -->
     <select id="userLogin" resultMap="userMap" parameterType="edu.nf.lol.user.entity.User">
-        select user_id, user_phone, user_pwd, user_name, photo, sex, birthday, phone, email
+        select user_id, user_phone, user_pwd, user_name, user_photo, sex, birthday, phone, email
         from user_info where user_phone = #{userPhone} and user_pwd = #{password};
     </select>
 
-    <!-- 用户注册 -->
-    <insert id="userRegister" parameterType="edu.nf.lol.user.entity.User">
-        insert into user_info(user_phone, user_pwd, user_name, photo, sex, birthday, phone, email)
-        values(#{userPhone}, #{password}, #{userName}, 'default.jpg', default, default, #{phone}, #{email})
-    </insert>
 
     <!-- 根据用户id查询用户基本信息 -->
     <select id="queryUserInfo" parameterType="edu.nf.lol.user.entity.User" resultMap="userMap">
-        select user_id, user_phone, user_pwd, user_name, photo, sex, birthday, phone, email
+        select user_id, user_phone, user_pwd, user_name, user_photo, sex, birthday, phone, email
         from user_info where user_id = ${userId};
     </select>
 
@@ -47,4 +42,12 @@
     <update id="updateUserPwd" parameterType="edu.nf.lol.user.entity.User">
         update user_info set user_pwd = #{password} where user_id = #{userId};
     </update>
+    <insert id="userRegister" parameterType="edu.nf.lol.user.entity.User">
+        insert into user_info(user_phone, user_pwd, user_name)
+        values(#{userPhone},#{password},#{userName})
+    </insert>
+    <select id="getUserByPhone" resultMap="userMap">
+        select user_id, user_phone, user_pwd, user_name, user_photo, sex, birthday, phone, email
+         from user_info where user_phone = #{userPhone}
+    </select>
 </mapper>

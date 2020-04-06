@@ -73,7 +73,7 @@ img{display:block;}
 .top-info .cartbox{margin-top:47px;width:auto;line-height:24px;font-size:14px;color:#f6f7ef;}
 .top-info .cartbox .i-cart{margin-right:7px;display:block;width:24px;height:24px;background-position:-2px -63px;}
 .top-info .cartbox .cart-num{width:auto;height:24px;color:#ffc933;font-size:14px;text-align:center;}
-.top-info .loginbar{margin-top:39px;margin-right:40px;max-width:250px;height:60px;line-height:40px;font-size:14px;}
+.top-info .loginbar{margin-top:39px;margin-right:40px;max-width:250px;height:60px;line-height:50px;font-size:14px;}
 .top-info .loginbar .unlogin,.top-info .loginbar .login-info{margin-left:43px;}
 .top-info .loginbar .i-person{margin-top:-2px;display:inline-block;width:21px;height:21px;background-position:0 -279px;vertical-align:middle;}
 .top-info .loginbar a{color:#f6f7ef;}

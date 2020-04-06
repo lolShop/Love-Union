@@ -13,4 +13,11 @@ public interface AdminProductTypeService {
      * 这是后台的商品分级别显示 用递归方法实现
      */
        List<ProductType>   listProductTypeParentId(Integer parentId);
+
+    /**
+     * 商品分类查询
+     * @param parentId
+     * @return
+     */
+    List<ProductType> adminProductTypeAll(Integer parentId);
 }

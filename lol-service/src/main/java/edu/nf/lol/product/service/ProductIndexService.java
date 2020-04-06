@@ -1,5 +1,6 @@
 package edu.nf.lol.product.service;
 
+import com.github.pagehelper.PageInfo;
 import edu.nf.lol.product.entity.Product;
 
 
@@ -10,6 +11,6 @@ import java.util.List;
  * @date 2020/4/1
  */
 public interface ProductIndexService {
-    List<Product> productRecommend(Integer state);
+    PageInfo<Product> productRecommend(Integer pageNum,Integer pageSize,Integer state);
     List<Product> productAll();
 }

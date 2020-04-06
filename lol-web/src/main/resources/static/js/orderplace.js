@@ -118,7 +118,7 @@ var initShopCar = function(){
 					'<div class="img">' +
 					'<div>' +
 					'<a href="#">' +
-					'<img src="http://49.234.120.206:8080/image/'+data.productSpecs.product.productMainImage+'" width="113" height="108" />' +
+					'<img src="image/prodcutlist/'+data.productSpecs.product.productMainImage+'" width="113" height="108" />' +
 					'</a>' +
 					'</div>' +
 					'</div>' +
@@ -179,7 +179,15 @@ $(function () {
 
 //添加收货地址
 $("#tjbd").click(function(){
-	$.post('http://localhost:8080/lol/order/addAddress',$("#addressform").serialize());
+	$.ajax({
+		url: 'user/address/add_address',
+		method: 'post',
+		data:$("#addressform").serialize(),
+		success: function (result) {
+			alert(result.data)
+		}
+	})
+	$(".popup").hide()
 });
 
 //提交订单

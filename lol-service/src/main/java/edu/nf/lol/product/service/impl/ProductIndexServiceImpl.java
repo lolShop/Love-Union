@@ -1,5 +1,6 @@
 package edu.nf.lol.product.service.impl;
 
+import com.github.pagehelper.PageInfo;
 import edu.nf.lol.product.dao.ProductIndexDao;
 import edu.nf.lol.product.entity.Product;
 import edu.nf.lol.product.entity.ProductDto;
@@ -24,13 +25,10 @@ public class ProductIndexServiceImpl implements ProductIndexService {
     private RedisTemplate<String,Object> redisTemplate;
 
     @Override
-    public List<Product> productRecommend(Integer state) {
-        List<Product> list=(List<Product>)redisTemplate.opsForValue().get("productRecommend");
-        if (list==null){
-            list=productIndexDao.productRecommend(state);
-            redisTemplate.opsForValue().set("productRecommend",list);
-        }
-        return list;
+    public PageInfo<Product> productRecommend(Integer pageNum,Integer pageSize,Integer state) {
+           List<Product> list=productIndexDao.productRecommend(pageNum,pageSize,state);
+           PageInfo pageInfo= new PageInfo(list);
+        return pageInfo;
     }
 
     @Override

@@ -43,6 +43,7 @@ $(function(){
 			$("#blk_detail_main_spec li").each(function () {
 				if ($(this).attr("class")!="hoverColor"){
 					specs+='"'+$(this).parent().prev().text()+'"'+":"+'"'+$(this).text()+'"'+","
+					$("#blk_detail_main_spec .specs").prop("id",specs)
 				}
 			})
 			$.ajax({
@@ -132,7 +133,19 @@ $(function(){
 	})
 	//添加购物车
 	$(".pord-btn").on("click","#btn_detail_cart_add",function () {
-		$("#popup_detail_cart").show();
+		$.ajax({
+			url:"shopCart/addShopCart",
+			type:"post",
+			data:{"productId":$("#blk_detail_main_spec .product").prop("id"),"count":$("#count").val(),"specs":$("#blk_detail_main_spec .specs").prop("id")},
+			success: function (result) {
+				if (result.code==200){
+					$("#popup_detail_cart").show();
+				}else {
+					alert("添加购物车失败!")
+				}
+			}
+		})
+
 	})
 	//继续购物
 	$("#popup_detail_cart").on("click","#btn-continue",function () {

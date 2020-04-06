@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * @author zhangch
@@ -22,15 +23,6 @@ public class UserController extends BaseController {
     @Autowired
     private UserService service;
 
-    @PostMapping("/user_login")
-    public ResponseVO userLogin(User user, HttpSession session){
-        User u = service.userLogin(user);
-        if(u == null){
-            return fail(HttpStatus.SC_NOT_FOUND, "账号或密码错误，登录失败");
-        }
-        session.setAttribute("user", u);
-        return success(u);
-    }
 
     /**
      * 查询用户详细资料
@@ -71,5 +63,47 @@ public class UserController extends BaseController {
         service.updateInfo(user);
         session.setAttribute("user", user);
         return success("修改成功");
+    }
+    /**
+     * zachery登陆
+     * @param user
+     * @param session
+     * @return
+     */
+    @PostMapping("/user_login")
+    public ResponseVO userLogin( User user, HttpSession session){
+        User u = service.findUser(user);
+        if(u != null){
+            session.setAttribute("user", u);
+            return success("登录成功");
+        }
+        return fail(500,"登录失败,账号或密码错误");
+    }
+
+    /**
+     * zachery注册
+     * @param user
+     * @return
+     */
+    @PostMapping("/user_register")
+    public ResponseVO addUser( User user){
+        User u = service.userRegisterCheck(user);
+        if(u != null){
+            return fail(HttpStatus.SC_INTERNAL_SERVER_ERROR,"账号已存在,请重新注册");
+        }
+            service.userRegister(user);
+        return success ("注册成功!");
+    }
+
+    @GetMapping("/get_OnLine_user")
+    public ResponseVO getOnLineUser(HttpSession session){
+        User u = (User) session.getAttribute("user");
+        return success(u);
+    }
+
+    @GetMapping("/user_Logout")
+    public ResponseVO logOutUser(HttpSession session){
+        session.removeAttribute("user");
+        return success("login.html");
     }
 }
