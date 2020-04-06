@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.shopCart.dao.ShopCartDao">
+    <resultMap id="shopCartMap" type="edu.nf.lol.shopCart.entity.ShopCart">
+        <id property="shopId" column="shop_id"/>
+        <result property="shopUid" column="shop_u_id"/>
+        <result property="specsProductId" column="specs_product_id"/>
+        <result property="shopCount" column="shop_count"/>
+        <result property="shopState" column="shop_state"/>
+        <result property="count" column="sl"/>
+        <result property="money" column="zje"/>
+        <association property="user" resultMap="userMap"/>
+        <association property="productSpecs" resultMap="productSpecsMap"/>
+    </resultMap>
+    <resultMap id="userMap" type="edu.nf.lol.user.entity.User">
+        <id property="userId" column="user_id"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="password" column="user_pwd"/>
+        <result property="userName" column="user_name"/>
+        <result property="photo" column="photo"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <resultMap id="productSpecsMap" type="edu.nf.lol.product.entity.ProductSpecs">
+        <id property="specsId" column="specs_id"/>
+        <result property="productSpecs" column="product_specs"/>
+        <result property="specsPrice" column="specs_price"/>
+        <result property="promotionPrice" column="promotion_price"/>
+        <result property="specsStock" column="specs_stock"/>
+        <result property="specsCreateTime" column="specs_create_time"/>
+        <result property="specsUpdateTime" column="specs_update_time"/>
+        <result property="specsState" column="specs_state"/>
+        <association property="product" resultMap="productMap"/>
+    </resultMap>
+
+    <resultMap id="productMap" type="edu.nf.lol.product.entity.Product">
+        <id property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productCreateTime" column="product_create_time"/>
+        <result property="productUpdateTime" column="product_update_time"/>
+        <result property="productMainImage" column="product_main_image"/>
+        <result property="productParticular" column="product_particular"/>
+        <result property="productWeight" column="product_weight"/>
+        <result property="productAttribute" column="product_attribute"/>
+        <result property="productState" column="product_state"/>
+    </resultMap>
+    <select id="listShopCart" resultMap="shopCartMap" parameterType="Integer" >
+        select sc.shop_id,sc.shop_count,sc.shop_state,p.product_name,p.product_id,p.product_main_image,u.user_name,spec.specs_price,spec.promotion_price,spec.specs_stock,
+        spec.product_specs from shop_cart sc,product_specs spec,product_info p,user_info u where sc.specs_product_id=spec.specs_id and sc.shop_u_id=u.user_id and spec.product_id=p.product_id and u.user_id=#{uid} and sc.shop_state !=2
+    </select>
+
+    <select id="listNum" resultMap="shopCartMap" parameterType="Integer">
+        select  sc.shop_u_id,sum(sc.shop_count) as sl,sum(sc.shop_count*spec.promotion_price) as zje from shop_cart sc, product_specs spec where sc.specs_product_id=spec.specs_id and sc.shop_u_id=#{uid}  GROUP BY sc.shop_state having sc.shop_state=1;
+    </select>
+
+    <select id="findShopCart" resultMap="shopCartMap" parameterType="Integer">
+        select shop_id,shop_u_id,specs_product_id,shop_count,shop_state from shop_cart where specs_product_id=#{specId} and shop_state !=2
+    </select>
+
+    <update id="addCount" parameterType="Integer">
+        update shop_cart set shop_count=shop_count+1 where shop_id=#{shopId}
+    </update>
+
+    <update id="decreaseCount" parameterType="Integer">
+        update shop_cart set shop_count=shop_count-1 where shop_id=#{shopId}
+    </update>
+
+    <delete id="delShopCart" parameterType="Integer">
+        delete from shop_cart where shop_id =#{shopId}
+    </delete>
+
+    <update id="select" >
+        update shop_cart set shop_state=#{param1} where shop_id=#{param2}
+    </update>
+
+    <update id="checkAll" >
+        update shop_cart set shop_state=#{param1} where shop_u_id=#{param2}
+    </update>
+
+    <update id="settlement" parameterType="Integer">
+        update shop_cart set shop_state=2 where shop_state=1 and shop_u_id =#{uid}
+    </update>
+    <insert id="addShopCart" parameterType="edu.nf.lol.shopCart.entity.ShopCart">
+        insert into shop_cart(shop_u_id,specs_product_id,shop_count,shop_state) values (#{shopUid},#{specsProductId},#{shopCount},1)
+    </insert>
+</mapper>

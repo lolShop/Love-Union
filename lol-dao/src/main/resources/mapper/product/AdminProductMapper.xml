@@ -9,7 +9,7 @@
         <result property="productUpdateTime" column="product_update_time"/>
         <result property="productMainImage" column="product_main_image"/>
         <result property="productParticular" column="product_particular"/>
-        <result property="productWeight" column=" product_weight"/>
+        <result property="productWeight" column="product_weight"/>
         <result property="productAttribute" column="product_attribute"/>
         <result property="productState" column="product_state"/>
         <association  property="productType" resultMap="productTypeMap"/>
@@ -25,4 +25,25 @@
     <select id="adminProductAll" resultMap="productMap">
             SELECT product_id,product_type_id,product_name,product_create_time,product_update_time,product_main_image,product_particular,product_weight,product_attribute,product_state FROM product_info
     </select>
+    <select id="adminProductDetail" resultMap="productMap">
+        SELECT product_id,product_type_id,product_name,product_create_time,product_update_time,product_main_image,
+        product_particular,product_weight,product_attribute,product_state
+        FROM product_info  WHERE product_id=#{productId}
+    </select>
+
+    <insert id="adminAddProduct" parameterType="edu.nf.lol.product.entity.Product">
+        insert into product_info(product_type_id, product_name, product_main_image, product_particular, product_weight,
+        product_attribute, product_state)
+        values(#{productType.productTypeId},#{productName},#{productMainImage},#{productParticular},#{productWeight},#{productAttribute},#{productState})
+    </insert>
+
+    <delete id="adminDelProduct" parameterType="edu.nf.lol.product.entity.Product">
+        delete from product_info where product_id = #{productId}
+    </delete>
+
+    <update id="adminUpdateProduct" parameterType="edu.nf.lol.product.entity.Product">
+        update product_info set product_name = #{productName}, product_update_time = #{productUpdateTime},
+        product_main_image = #{productMainImage}, product_particular = #{productParticular}, product_weight = #{productWeight},
+         where product_id = #{productId}
+    </update>
 </mapper>

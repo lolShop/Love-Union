@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.product.dao.AdminProductTypeDao">
+    <resultMap id="productTypeMap" type="edu.nf.lol.product.entity.ProductType">
+        <id property="productTypeId" column="product_type_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="productTypeName" column="product_type_name"/>
+        <result property="productState" column="product_state"/>
+    </resultMap>
+    <select id="listProductTypeParentId" resultMap="productTypeMap">
+        SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type WHERE parent_id=#{parentId}
+    </select>
+    <select id="listProductTypeAll" resultMap="productTypeMap">
+        SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type
+    </select>
+    <select id="adminProductTypeAll" resultMap="productTypeMap" resultType="edu.nf.lol.product.entity.ProductType">
+        select * from product_type where parent_id = #{parentId}
+    </select>
+</mapper>

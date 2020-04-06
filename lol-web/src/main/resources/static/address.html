@@ -8,7 +8,7 @@
 		<script src="js/jquery-min.js"></script>
 	</head>
 	<body style="margin: 0; background-color:#f5f5f5;">
-		<div style="width: 100%; height: 156px; background-color: black;"></div>
+		<div class="head_top"></div>
 		<div class="center mid">
 		    <!-- center-none S -->
 		    <div class="center-main clearfix">
@@ -69,7 +69,7 @@
 					<!-- 如果设置了收货地址 -->
 					<div id="dj1">
 						<div class="addr-head clearfix">
-							<p class="fl">已保存收货地址<span class="gray">（共2条，最多保存5条）</span></p>
+							<p class="fl">已保存收货地址<span class="gray">（最多保存5条）</span></p>
 							<a href="javascript:;" class="fr btn-addaddr" title="新增收货地址">+新增收货地址</a>
 						</div>
 						<div class="addr-list">
@@ -80,32 +80,6 @@
 								<span class="addrlist-tel">联系电话</span>
 								<span class="addrlist-action">操作</span>
 							</li>
-							<li class="clearfix">
-								<span class="addrlist-name">张财华</span>
-								<span class="addrlist-addr">广东|珠海|斗门区 南方it学院</span>
-								<span class="addrlist-tel">134****0276</span>
-								<span class="addrlist-action">
-									<a href="javascript:;" class="btn-change" title="修改">修改</a>
-									<a href="javascript:;" class="btn-del" title="删除">删除</a>
-								</span>
-								<span class="addrlist-default">
-									<a class="btn-default" >默认地址</a>
-									<!-- <a href="javascript:;" class="addrlist-link" title="设为默认地址">设为默认地址</a> -->
-								</span>
-							</li>
-							<li class="clearfix">
-								<span class="addrlist-name">张财华</span>
-								<span class="addrlist-addr">江西|赣州|南康区 唐江中学高三教学楼第四楼高三9班第一组第六排的左边那一桌</span>
-								<span class="addrlist-tel">134****0276</span>
-								<span class="addrlist-action">
-									<a href="javascript:;" class="btn-change" title="修改">修改</a>
-									<a href="javascript:;" class="btn-del" title="删除">删除</a>
-								</span>
-								<span class="addrlist-default">
-									<!-- <a class="btn-default" >默认地址</a> -->
-									<a href="javascript:;" class="addrlist-link" title="设为默认地址">设为默认地址</a>
-								</span>
-							</li>
 						</ul>
 						</div>
 					</div>
@@ -113,21 +87,22 @@
 					<div class="ct-addrinfo" id="blk_popup_pay_address">
 						<h4 class="addr-tit">新增收货地址( <span style="color:red;">*</span> 为必填项)</h4>
 						<form class="ct-userform">
+							<input type="hidden" id="address_id" />
 							<div class="ct-useritem">
 								<label class="f1 uitem-label"><span class="red">*</span>收件人</label>
 								<div class="f1 uitem-ipt">
-									<input class="uitem-input" placeholder="收件人" name="name">
+									<input class="uitem-input" placeholder="收件人" name="take_name">
 								</div>
 								<label class="f1 uitem-label"><span class="red">*</span>手机号码</label>
 								<div class="f1 uitem-ipt">
-									<input class="uitem-input" type="text" placeholder="手机号码" name="mobile">
+									<input class="uitem-input" type="text" placeholder="手机号码" name="take_phone">
 								</div>
 							</div>
 							<div class="ct-useritem">
 								<label class="f1 uitem-label"><span class="red">*</span>所在地区</label>
 								<div id="blk_popup_pay_address_region">
 									<div class="f1 mrselect uitem-sel zd3" id="blk_popup_pay_address_region_1">
-										<span class="uitem-seled selected" title regionid>请选择</span>
+										<span class="uitem-seled selected" title="省" regionid>请选择</span>
 										<!-- uitem-botarr 这个class是向上标志 -->
 										<i class="ico-center uitem-botarr"></i>
 										<div class="uitem-downlist" style="height: 200px;overflow: hidden; display: none;">
@@ -140,7 +115,7 @@
 										</div>
 									</div>
 									<div class="f1 mrselect uitem-sel zd3" id="blk_popup_pay_address_region_2">
-										<span class="uitem-seled selected" title regionid>请选择</span>
+										<span class="uitem-seled selected" title="市" regionid>请选择</span>
 										<i class="ico-center uitem-botarr"></i>
 										<div class="uitem-downlist" style="height: 200px;overflow: hidden; display: none;">
 											<ul>
@@ -152,7 +127,7 @@
 										</div>
 									</div>
 									<div class="f1 mrselect uitem-sel zd3" id="blk_popup_pay_address_region_3">
-										<span class="uitem-seled selected" title regionid>请选择</span>
+										<span class="uitem-seled selected" title="区" regionid>请选择</span>
 										<i class="ico-center uitem-botarr"></i>
 										<div class="uitem-downlist" style="height: 200px;overflow: hidden; display: none;">
 											<ul>
@@ -195,12 +170,6 @@
 								</div>
 							</div>
 							<div class="ct-useritem">
-								<label class="f1 uitem-label">固定电话</label>
-								<div class="f1 uitem-ipt">
-									<input class="uitem-input" placeholder="固定电话" name="tel">
-								</div>
-							</div>
-							<div class="ct-useritem">
 								<label class="f1 uitem-label">邮编</label>
 								<div class="f1 uitem-ipt">
 									<input class="uitem-input" placeholder="邮政编码" name="zip" >
@@ -214,6 +183,8 @@
 					
 				</div>
 			</div>
-		</div>	
+		</div>
+		<div class="bottom"></div>
+		<script src="js/address.js"></script>
 	</body>
 </html>

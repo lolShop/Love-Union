@@ -17,7 +17,7 @@
         <div class="top-info">
             <div class="mid clearfix">
                 <a href="" target="_blank"><div class="fl ico-comm i-jcp">爱联盟</div></a>
-                <div class="fl ico-comm i-solgan">因为热爱，所以联盟</div>
+                <div class="fl ico-comms i-solgan">英雄联盟</div>
                 <a href="buy.html" class="fr cartbox clearfix" target="_blank">
                     <i class="fl ico-comm i-cart"></i>
                     <span>购物车</span>
@@ -27,7 +27,7 @@
                     <!-- 登录前 S-->
                     <div class="unlogin">
                         <i class="ico-comm i-person"></i>
-                        <a href="javascript:;" title="立即登录">立即登录</a>
+                        <a href="http://localhost:8080/lol/login.html" title="立即登录" id="login">立即登录</a>
                     </div>
                     <!-- 登录前 E-->
                     <!-- 登录后 S-->
@@ -75,7 +75,7 @@
                     <!-- 登录后 E-->
                 </div>
                 <div class="fr sosobox clearfix">
-                    <a href="javascript:;" class="ico-comm i-search" title="搜索">搜索</a>
+                    <a href="javascript:;" class="ico-comm i-search" title="搜索" id="search">搜索</a>
                     <input class="top-soso" placeholder="请输入想要找的宝贝">
                 </div>
             </div>
@@ -85,29 +85,31 @@
         <div class="top-head top-lol">
             <div class="top-menu">
                 <div class="mid clearfix">
-                    <ul class="fl menulist clearfix" id="blk_header_navbar">                          <li class="cur">
-                        <!-- <a href="//mall.qq.com/lol/" class="ico-comm" title="首页"                            >首页</a> -->
-                        <a href="//mall.qq.com/lol/" class="ico-comm" title="首页" target="_blank">首页</a>
+                    <ul class="fl menulist clearfix" id="blk_header_navbar">
+                        <li class="cur">
+                        <a href="http://localhost:8080/lol/index.html" class="ico-comm" title="首页" target="_blank">首页</a>
                     </li>
-                        <li class="cur">
-                            <!-- <a href="https://mall.qq.com/lol/productlist.shtml?catid=101" class="ico-comm" title="雕塑手办"                            >雕塑手办</a> -->
-                            <a href="https://mall.qq.com/lol/productlist.shtml?catid=101" class="ico-comm" title="雕塑手办" target="_blank">雕塑手办</a>
+                        <li class="cur" id="1000">
+                            <a href="http://localhost:8080/lol/productlist.html?state=1000" class="ico-comm" title="雕塑手办" target="_blank">雕塑手办</a>
                         </li>
                         <li class="cur">
-                            <!-- <a href="https://mall.qq.com/lol/productlist.shtml?catid=119" class="ico-comm" title="毛绒玩偶"                            >毛绒玩偶</a> -->
-                            <a href="https://mall.qq.com/lol/productlist.shtml?catid=119" class="ico-comm" title="毛绒玩偶" target="_blank">毛绒玩偶</a>
+
+                            <a href="http://localhost:8080/lol/productlist.html?state=1001" class="ico-comm" title="毛绒玩偶" target="_blank">毛绒玩偶</a>
                         </li>
                         <li class="cur">
-                            <!-- <a href="https://mall.qq.com/lol/productlist.shtml?catid=120" class="ico-comm" title="周边服饰"                            >周边服饰</a> -->
-                            <a href="https://mall.qq.com/lol/productlist.shtml?catid=120" class="ico-comm" title="周边服饰" target="_blank">周边服饰</a>
+
+                            <a href="http://localhost:8080/lol/productlist.html?state=1002" class="ico-comm" title="周边服饰" target="_blank">周边服饰</a>
                         </li>
                         <li class="cur">
-                            <!-- <a href="https://mall.qq.com/lol/productlist.shtml?catid=117" class="ico-comm" title="官方海报"                            >官方海报</a> -->
-                            <a href="https://mall.qq.com/lol/productlist.shtml?catid=117" class="ico-comm" title="官方海报" target="_blank">官方海报</a>
+
+                            <a href="http://localhost:8080/lol/productlist.html?state=1003" class="ico-comm" title="海报艺术" target="_blank">海报艺术</a>
                         </li>
                         <li class="cur">
-                            <!-- <a href="https://mall.qq.com/lol/productlist.shtml?catid=215" class="ico-comm" title="LPL周边"                            >LPL周边</a> -->
-                            <a href="https://mall.qq.com/lol/productlist.shtml?catid=215" class="ico-comm" title="LPL周边" target="_blank">LPL周边</a>
+
+                            <a href="http://localhost:8080/lol/productlist.html?state=1004" class="ico-comm" title="LPL周边" target="_blank">LPL周边</a>
+                        </li>
+                        <li class="cur">
+                            <a href="http://localhost:8080/lol/productlist.html?state=1006" class="ico-comm" title="珠宝首饰" target="_blank">珠宝首饰</a>
                         </li>
                     </ul>
                     <a href="/lol/productlist.shtml" class="fr all-class" title="全部商品分类" target="_blank">
@@ -205,6 +207,7 @@
 </div>
 <script src="js/jquery-min.js"></script>
 <script src="js/common.js"></script>
+<script src="js/top.js"></script>
 <!-- footer E -->
 </body>
 </html>

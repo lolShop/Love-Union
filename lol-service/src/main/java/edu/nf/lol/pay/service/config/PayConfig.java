@@ -1,0 +1,27 @@
+package edu.nf.lol.pay.service.config;
+
+/**
+ * @author yangTao
+ * @date 2020/4/1
+ */
+public class PayConfig {
+
+    public static String app_id = "2016100200644331";
+
+    public static String merchant_private_key = "MIIEwAIBADANBgkqhkiG9w0BAQEFAASCBKowggSmAgEAAoIBAQDzVHR4CO4kyVUSwG8QOagzvpxI+o8nOVwGSRS3FnwI/qOxKLgyjVUARvseWql5QoJm7kjmg65HvPqCBvYCWQGYaGE2ulIZZwEYnxzZglal8+WCj2KPsU0BjXEZ/ecSUffFE4/6JVsmDbCr95dipNMB4fy61eI8uJwBGKyiVxZ5xTmMrW1NZyzGVN9K3CAV5L6FPuNjByzPUW4jjUm3gf3duanstVkPKcLxbmOotLy+GwmSdMFGvan0lALaANql21/OJUkXQ3bPAo5ClvJNZRfI8+37QRZLjvUKgTfjYT7xPBraHN08NTWQM/HuftWyBg/UMq2425e1XWZc8w3tqiM9AgMBAAECggEBAJgepU1hb9fJkgjOCuDe2ru2nye0lIgWAOThDTVEtjg9UQJxDW51Er3Aoj8guLBZFwLYVvTdP7gTeZyOU3+2OxwXrSa0ppzA21uUJUoJhLfs2P+dOiXQ1u5wiVOResLmQXqQN0NP1ULd7iQj/h0qI8wahpAbJHuHgefhkBNRVHi8zpdP9oDj4EghaZ8vAJfi0/lYj06jo96YEVDIKy2QAfVRJKYkmWx+MNMvdyj0CfOz6UV55esFZjUtan9JxNlgGXQwhXaZehDuV935X9GGWicz7D8NIf3cG3v8BSGMpEjSltGvdRq9WzimZvnrt9qfi1+ZSJAdSF9vC7GrzLwV4AECgYEA/hY2wEy19FY2lkZR5gWXUj7cndKrSAR/IAu1kEll4pEkHnu7zAw7LbZGsCCgrqTa89ZEjY/HmBrga0VYD8fUtM8jRlFqBa8cwswOBJrzITSdCyb6dNP85cz+DcHe3zq5Nmiv9tQE+SHgDnXwAMeOnEZE9B/a1cTKYUVSERMbWAECgYEA9SmBevReQqqawNtY3Dbu5JkIiRaZJirAnEEcHMrooTR1cOckOsU9CodKAJ7okT1ynYCibNTDg1ws0vdzLLvd5hJ76VkBBVanxnMr+Tg25MF6D7E7oieJAOmM7hMghrSwBR0j2ipQjXi++YG54+p9Nl0bOwKrVwhgtr8RfHheKz0CgYEAs1iUrum2qU/NWgcqudUKeZg7ev7/vWbHIKSDNORKEUFnoEiwRxf/EYYOoTV2la9xiRmd69ooBVo7PByHSyQ/JJztBi5jSr3O7ETCREfnA3Iyw3Nw59PWN5KZZLaKjUDTCO+d/Pisxfk+QJbIoJQ7Ol1zQGnXunoca8pVYg39iAECgYEAjUiGHd2GFNVMqae+5emicoreqGIlkCFDLsk28kDdH0mkBJSwBE52hwLAWus5C7pluu7Oq/lRUvpjupBwB2+cyWINlsR8Gh9+QJdO2CjVOa9mMHTq8N/nzGbLmMfdDsRCTDAm4StRkLXtGMzx267eyd2OO8umAloJokcqRJj5a+ECgYEAuTt01G6KBmhiu7dJxXC6MnOEBSBtvGn4L9pNYsFhIDe9ws55LzXX6sVRwzJsn3mbVqiGAXbNd53yh2SyHjas9KaiJJy5d2lZuVi/k8wF7qkYYYmST/IrmSDlZe6qFeHcAfGVA8EwyFvI+niVkWtGVH7Vc4iQZBZQiH3mC1dZo5I=";
+
+    public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjVOsp7SdeThTauZ2bYTbcNcxbjhLhka9SrXszflYDpRFF4ZWrl0GncK7xEz83AQ1dRUPvRHXjCY2HqtfkoqB/m6NYW5hkrMveF7FHnln8I0RTkimoXxK9Qlz+WFA/Y/giNQhtHzWYLNyBAXZtIxab9zNHnPfZu3hkjy0EiQ6cfMzSPOn3FqEqYYhsyb09FJnctMSou9PwhYTbtqcGJFWG1MY1lq6WiaaJbppJrhDnyTgLsdElM/JsfhRaW44mn2G8rqtV9dR989ifwz7xcuOXKg8aQndkVkEf1tCQL3j17SbPTG0XlUGGYO09zC6eP0/RORuWYokLqoSIhrCRuRSsQIDAQAB";
+
+    public static String notify_url = "http://localhost:8080/lol/order/updateOrderStaticOne";
+
+    public static String return_url = "http://localhost:8080/lol/order/updateOrderStaticOne";
+
+    public static String sign_type = "RSA2";
+
+    public static String charset = "utf-8";
+
+    public static String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";
+
+    public static String format = "json";
+
+}

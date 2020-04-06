@@ -19,6 +19,7 @@ public class AdminProductTest {
     @Test
     public void testProductDetail(){
         List<Product> list = adminProductService.adminProductAll();
+        System.out.println(list);
         list.forEach(product -> {
             System.out.println(product.getProductName());
         });
