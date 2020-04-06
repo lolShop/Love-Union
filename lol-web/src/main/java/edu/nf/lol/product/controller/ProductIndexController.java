@@ -1,5 +1,6 @@
 package edu.nf.lol.product.controller;
 
+import com.github.pagehelper.PageInfo;
 import edu.nf.lol.BaseController;
 
 import edu.nf.lol.product.entity.Product;
@@ -21,9 +22,9 @@ public class ProductIndexController extends BaseController {
     @Autowired
     private   ProductIndexService productIndexService;
     @GetMapping("/recommend")
-    public  ResponseVO productRecommend(){
-        List<Product> list=productIndexService.productRecommend(4);
-        return  success(list);
+    public  ResponseVO<PageInfo<Product>>productRecommend(Integer pageNum, Integer pageSize,Integer state){
+        PageInfo<Product> pageInfo=productIndexService.productRecommend(pageNum,pageSize,state);
+        return  success(pageInfo);
     }
     @GetMapping("/esAll")
     public  ResponseVO productEsAll(){

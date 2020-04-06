@@ -1,8 +1,11 @@
 package edu.nf.lol.user.service.impl;
 
+import edu.nf.lol.exception.LolException;
 import edu.nf.lol.user.dao.UserDao;
 import edu.nf.lol.user.entity.User;
 import edu.nf.lol.user.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -98,5 +101,41 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             throw new RuntimeException("修改失败");
         }
+    }
+    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    @Override
+    public User findUser(User user) {
+        try {
+            User us = dao.getUserByPhone(user);
+            if(us.getUserPhone().equals(user.getUserPhone()) && us.getPassword().equals(user.getPassword())){
+                log.info("用户消息:"+user.getUserName()+"已登陆");
+                return us;
+            }else{
+                return null;
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        throw new LolException("用户名或密码错误!");
+    }
+
+    /**
+     * 注册验证
+     * @param user
+     * @return
+     */
+    @Override
+    public User userRegisterCheck(User user) {
+        try {
+            User u = dao.getUserByPhone(user);
+            if(u != null){
+                return u;
+            }
+            return null;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        throw new LolException("此用户已存在!");
     }
 }

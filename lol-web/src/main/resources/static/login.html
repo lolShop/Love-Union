@@ -1,32 +1,81 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>登录</title>
-	</head>
-	<body>
-		<form id="login_frm">
-			<input type="text" value="123456" name="user_phone" id="user_phone" /><br/>
-			<input type="text" value="12345" name="password" id="password" /><br/>
-			<input type="button" id="login_btn" value="login" /><br/>
-		</form>
-		
-		<script src="js/jquery-min.js"></script>
-		<script>
-			$('#login_btn').on('click', function(){
-				var password = $('#password').val();
-				$.ajax({
-					url:'user/info/user_login/',
-					type:'post',
-					data:{"userPhone": "123456", "password": password},
-					success: function(result){
-						console.info(result);
-						if(result.code == 200){
-							window.location.href = "address.html";
-						}
-					}
-				})
-			})
-		</script>
-	</body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>顾客 | 登陆</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/all.css"/>
+
+      <!-- Template CSS -->
+      <link rel="stylesheet" href="css/style3.css">
+      <link rel="stylesheet" href="css/components.css">
+</head>
+
+      <body>
+      <div id="app">
+        <section class="section">
+      <div class="d-flex flex-wrap align-items-stretch">
+        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 overlay-gradient-bottom" data-background="image/loginAndRegister/login-bg.jpg">
+        <div class="absolute-bottom-left index-2">
+          <div class="text-light p-5 pb-2">
+            <div class="mb-5 pb-3">
+              <h1 class="mb-2 display-4 font-weight-bold">爱联盟周边商城</h1>
+              <h5 class="font-weight-normal text-muted-transparent">因为热爱，所以联盟</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-4 col-md-6 col-12 min-vh-100 order-2 bg-white">
+          <div class="p-4 m-3">
+            <img src="image/loginAndRegister/logo.png" alt="logo" width="140" class="rounded-circle mb-1 mt-5">
+            <h4 class="text-dark font-weight-normal">欢迎来到 <span class="font-weight-bold">爱联盟</span></h4>
+            <p class="text-muted">如果您还没有帐户，则必须先注册后方可登陆。</p>
+            <form class="needs-validation" id="f1">
+              <div class="form-group">
+                <label for="logId">账户</label>
+                <input id="logId" type="email" class="form-control" value="17688174618" name="userPhone" tabindex="1" required autofocus>
+                <div class="invalid-feedback">
+                  请填写你的账号
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="d-block">
+                  <label for="password" class="control-label">密码</label>
+                </div>
+                <input id="password" type="password" class="form-control" value="123456" name="password" tabindex="2" required>
+                <div class="invalid-feedback">
+                  请填写您的密码
+                </div>
+              </div>
+
+
+              <div class="form-group text-right">
+                <input type="button" value="登陆" id="loginBut" class="btn btn-danger btn-lg btn-block "/>
+              </div>
+
+              <div class="mt-5 text-center">
+                还没有账号？ <a href="register.html">创建一个新的账号</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>
+    </section>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="js/jquery-3.3.1.min.js" ></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.nicescroll.min.js"></script>
+      <script src="js/login.js"></script>
+  <script src="js/moment.min.js"></script>
+
+  <!-- Template JS File -->
+  <script src="js/scripts.js"></script>
+</body>
 </html>

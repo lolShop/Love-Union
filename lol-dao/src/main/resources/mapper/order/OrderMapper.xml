@@ -43,7 +43,7 @@
 
     <insert id="placeOrder" parameterType="edu.nf.lol.order.entity.OrderInfo">
         insert into order_info(order_id, order_static_id, address_id, user_id, preferential_amount, payment_money, order_remarks)
-        values (#{orderId},#{orderStatic.staticId},#{address.addressId},#{user.userId},#{preferentialAmount},#{paymentMoney},#{orderRemarks})
+        values (#{orderId},#{orderStatic.staticId},#{address.addressId},#{user.userId},0.00,#{paymentMoney},#{orderRemarks})
     </insert>
 
     <update id="updateOrderStaticOne" parameterType="edu.nf.lol.order.entity.OrderInfo">

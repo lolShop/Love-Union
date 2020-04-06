@@ -42,7 +42,7 @@ public class OrderController extends BaseController {
     public void placeOrder(Integer addressId, String orderRemarks, HttpServletResponse response, HttpSession session, HttpServletRequest request) throws IOException, AlipayApiException {
         System.out.println(addressId + orderRemarks);
         User sessionUser =(User)session.getAttribute("user");
-        Integer userId = sessionUser.getUserId() ;//session.getA....  //从会话获取用户id
+        Integer userId = sessionUser.getUserId();
         List<ShopCart> userShopCar = orderService.getUserShopCar(userId);
 
         OrderInfo orderInfo = new OrderInfo();
@@ -97,12 +97,17 @@ public class OrderController extends BaseController {
 
     @GetMapping("/getAddress")
     public ResponseVO<List<Address>> getAddressByUserId(HttpSession session){
-        return success(orderService.getAddressByUserId(1001));
+        User sessionUser =(User)session.getAttribute("user");
+        Integer userId = sessionUser.getUserId();
+        return success(orderService.getAddressByUserId(userId));
     }
 
     @GetMapping("/getUserShopCar")
     public ResponseVO<List<ShopCart>> getUserShopCar(HttpSession session){
-        return success(orderService.getUserShopCar(1001));
+
+        User sessionUser =(User)session.getAttribute("user");
+        Integer userId = sessionUser.getUserId();
+        return success(orderService.getUserShopCar(userId));
     }
 
     @PostMapping("/addAddress")

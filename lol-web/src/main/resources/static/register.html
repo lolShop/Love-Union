@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>顾客 | 注册</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/all.css"/>
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="css/style3.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+<div id="app">
+  <section class="section">
+    <div class="d-flex flex-wrap align-items-stretch">
+      <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 overlay-gradient-bottom" data-background="image/loginAndRegister/register-bg.jpg">
+        <div class="absolute-bottom-left index-2">
+          <div class="text-light p-5 pb-2">
+            <div class="mb-5 pb-3">
+              <h1 class="mb-2 display-4 font-weight-bold">爱联盟周边商城</h1>
+              <h5 class="font-weight-normal text-muted-transparent">因为热爱，所以联盟</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 min-vh-100 order-2 bg-white">
+        <div class="p-4 m-3">
+          <img src="image/loginAndRegister/logo.png" alt="logo" width="140" class="rounded-circle mb-1 mt-5">
+          <h4 class="text-dark font-weight-normal"><span class="font-weight-bold">爱联盟</span> 账号注册</h4>
+          <p class="text-muted">需完善注册信息才能继续。</p>
+          <form class="needs-validation" id="f1">
+            <div class="form-group">
+              <label for="phone">手机号码</label>
+              <input id="phone" type="email" class="form-control"  name="userPhone" tabindex="1" required autofocus>
+              <div class="invalid-feedback">
+                请填写你的账号
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="u_name">昵称</label>
+              <input id="u_name" type="email" class="form-control"  name="userName" tabindex="1" required autofocus>
+              <div class="invalid-feedback">
+                请填写你的账号
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">登陆密码</label>
+              <input id="password" type="password" class="form-control"  name="password" tabindex="1" required autofocus>
+              <div class="invalid-feedback">
+                请填写你的账号
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="d-block">
+                <label for="rePassword" class="control-label">确认密码</label>
+              </div>
+              <input id="rePassword" type="password" class="form-control" tabindex="2" required>
+              <div class="invalid-feedback">
+                请填写您的密码
+              </div>
+            </div>
+
+
+            <div class="form-group text-right">
+              <input type="button" value="注册" id="registerBut" class="btn btn-danger btn-lg btn-block "/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- General JS Scripts -->
+<script src="js/jquery-3.3.1.min.js" ></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="js/register.js"></script>
+<script src="js/moment.min.js"></script>
+
+<!-- Template JS File -->
+<script src="js/scripts.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 //	遍历result.data,遍历的数据是订单集合,得到订单id,同时定义一个总价变量,在遍历的同时累加,再遍历订单中的购物项,
 //	如果是第一个购物项,则先打印,如果还有购物项,则再打印.然后调用page分页方法,查询数据后重新调用load加载方法.
 //	2.查询不同状态订单: 
-var userId = 1000;
+
 
 function init(){
 	$.ajax({
@@ -38,11 +38,13 @@ function load(pageInfo, target){
 		var totalPrice = 0;
 		//遍历购物项,累加总价
 		$.each(orderInfo.details, function(index, detail){
+
 			//计算订单里面的所有购物项单价乘数量后的总价
 			totalPrice += (detail.productSpecs.specsPrice-detail.productSpecs.promotionPrice) * detail.goodNumber ;
 		})
 		//遍历购物项,打印数据
 		$.each(orderInfo.details, function(index, details){
+
 			var jsonObj = JSON.parse(details.productSpecs.productSpecs);
 			var specs = "";
 			for (var name in jsonObj) {
@@ -66,7 +68,7 @@ function load(pageInfo, target){
 					"<td colspan='3' class='brl'>"+
 					"<div>"+
 					"<a href='#' style='display: block;' class='f1 relpic' target='_blank'>"+
-					"<img src='https://game.gtimg.cn/images/zb/x5/uploadImg/goods/201911/20191112190040_40410.jpg' width='113' height='108' alt='商品图' />"+
+					"<img src='image/prodcutlist/"+details.product.productMainImage+"' width='113' height='108' alt='商品图' />"+
 					"</a>"+
 					"<div class='f1 reinfo clearfix'>"+
 					"<div class='relname'>"+details.product.productName+"</div>"+

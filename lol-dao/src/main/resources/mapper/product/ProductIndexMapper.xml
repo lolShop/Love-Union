@@ -25,7 +25,7 @@
         <result property="specsState" column="specs_state"/>
     </resultMap>
     <select id="productRecommend" resultMap="productMap">
-       SELECT pf.product_id,pf.product_name,pf.product_main_image,ps.specs_price,promotion_price FROM product_info pf LEFT JOIN product_specs  ps ON ps.product_id=pf.product_id  where pf.product_state=#{state}
+       SELECT pf.product_id,pf.product_name,pf.product_main_image,ps.specs_price,promotion_price FROM product_info pf LEFT JOIN product_specs  ps ON ps.product_id=pf.product_id  where pf.product_state=#{param3}
     </select>
     <select id="productAll" resultMap="productMap">
         SELECT pf.product_id,pf.product_name,pf.product_main_image,ps.specs_price,ps.promotion_price FROM  product_info pf  LEFT JOIN product_specs ps ON ps.product_id=pf.product_id;

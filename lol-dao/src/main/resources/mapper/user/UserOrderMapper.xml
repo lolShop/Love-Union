@@ -59,7 +59,7 @@
         <result property="userPhone" column="user_phone"/>
         <result property="password" column="user_pwd"/>
         <result property="userName" column="user_name"/>
-        <result property="photo" column="photo"/>
+        <result property="photo" column="user_photo"/>
         <result property="sex" column="sex"/>
         <result property="birthday" column="birthday"/>
         <result property="phone" column="phone"/>
@@ -88,7 +88,7 @@
 
     <!-- 查询出订单id，下单时间，状态id -->
     <select id="queryOrderByStatus" parameterType="edu.nf.lol.order.entity.OrderInfo" resultMap="orderInfoMap">
-        select info.order_id, info.order_time, static.static_name, address.take_name, address.take_phone, take_address
+        select info.order_id, info.order_time, static.static_name,address.take_name, address.take_phone, take_address
         from order_info info
         left join order_static static on info.order_static_id = static.static_id
         join user_info users on info.user_id = users.user_id

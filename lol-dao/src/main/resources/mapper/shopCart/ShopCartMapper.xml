@@ -84,4 +84,7 @@
     <update id="settlement" parameterType="Integer">
         update shop_cart set shop_state=2 where shop_state=1 and shop_u_id =#{uid}
     </update>
+    <insert id="addShopCart" parameterType="edu.nf.lol.shopCart.entity.ShopCart">
+        insert into shop_cart(shop_u_id,specs_product_id,shop_count,shop_state) values (#{shopUid},#{specsProductId},#{shopCount},1)
+    </insert>
 </mapper>

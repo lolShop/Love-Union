@@ -36,5 +36,4 @@ public class PagePayController {
         pagePayData.setBody("");
         pagePayService.pagePay(pagePayData,response);
     }
-
 }
