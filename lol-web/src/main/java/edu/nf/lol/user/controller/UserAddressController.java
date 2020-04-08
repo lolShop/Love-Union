@@ -23,16 +23,18 @@ public class UserAddressController extends BaseController {
     @Autowired
     private UserAddressService service;
 
-    @GetMapping("/all/{userId}")
-    public ResponseVO getAllAddress(@PathVariable("userId") Integer userId){
-        User user = new User();
-        user.setUserId(userId);
+    @GetMapping("/all")
+    public ResponseVO getAllAddress(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        System.out.println(user);
         List<Address> address = service.queryAddress(user);
         return success(address);
     }
 
     @PostMapping("/update_status")
-    public ResponseVO updateStatus(Address address){
+    public ResponseVO updateStatus(Address address, HttpSession session){
+        User user = (User)session.getAttribute("user");
+        address.setUser(user);
         service.setDefaultAddress(address);
         return success("修改成功");
     }
@@ -44,8 +46,9 @@ public class UserAddressController extends BaseController {
     }
 
     @PostMapping("/add_address")
-    public ResponseVO addAddress(Address address){
-        System.out.println(address);
+    public ResponseVO addAddress(Address address, HttpSession session){
+        User user = (User)session.getAttribute("user");
+        address.setUser(user);
         service.addAddress(address);
         return success("添加成功");
     }

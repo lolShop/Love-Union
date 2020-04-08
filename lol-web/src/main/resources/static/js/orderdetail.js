@@ -12,7 +12,7 @@ $(function(){
 
 function init(){
 	var orderId = localStorage["orderId"];
-	orderId = "'"+orderId+"'";
+	orderId = orderId;
 	$.ajax({
 		url:'user/order/query_info',
 		type:'get',
@@ -22,7 +22,8 @@ function init(){
 				alert(result.message);
 				return;
 			}
-			rangeStatus(result.data.orderStatic.staticName);
+			//渲染状态模块
+			rangeStatus(getStatusName(result.data.orderStatic));
 			//给地址模块赋值
 			$($($('.order-infobox').children()[0]).children()[1]).text(result.data.address.takeName);
 			$($($('.order-infobox').children()[1]).children()[1]).text(result.data.address.takeAddress);
@@ -32,6 +33,7 @@ function init(){
 			var totalPrice = 0;
 			var totalDiscounts = 0;
 			$.each(result.data.details, function(index, details){
+				console.log(details);
 				//规格
 				var jsonObj = JSON.parse(details.productSpecs.productSpecs);
 				var specs = "";
@@ -40,10 +42,9 @@ function init(){
 				}
 				specs = specs.substring(0,specs.length-2);
 				//总价
-				totalPrice += details.productSpecs.specsPrice * details.goodNumber;
+				totalPrice += details.productSpecs.specsPrice * details.productCount;
 				//总优惠价
-				totalDiscounts += details.productSpecs.promotionPrice * details.goodNumber;
-				var aa = (details.productSpecs.specsPrice-details.productSpecs.promotionPrice);
+				totalDiscounts += (details.productSpecs.specsPrice-details.productSpecs.promotionPrice) * details.productCount;
 				$('.order-goodlist ul').append(
 					"<li>"+
 					"<div class='fl or-goodinfo'>"+
@@ -51,12 +52,12 @@ function init(){
 					"<img src='https://game.gtimg.cn/images/zb/x5/uploadImg/goods/202001/20200102110657_67912.jpg' width='113' height='108' alt='商品图'>"+
 					"</a>"+
 					"<div class='fl or-gooddet'>"+
-					"<p class='or-goodname'>"+details.product.productName+"</p>"+
+					"<p class='or-goodname'>"+details.productSpecs.product.productName+"</p>"+
 					"<p class='or-goodcolor'>"+specs+"</p>"+
 					"</div>"+
 					"</div>"+
 					"<div class='fl or-goodpri'>"+(details.productSpecs.specsPrice).toFixed(2)+"</div>"+
-					"<div class='fl or-goodnum'>"+details.goodNumber+"</div>"+
+					"<div class='fl or-goodnum'>"+details.productCount+"</div>"+
 					"</li>"
 				);
 				//打印总价和总优惠价
@@ -66,6 +67,25 @@ function init(){
 			})
 		}
 	})
+}
+
+//根据订单状态值返回状态名称
+function getStatusName(orderStatus){
+	if(orderStatus == 1){
+		return "待付款";
+	}else if(orderStatus == 2){
+		return "待发货";
+	}else if(orderStatus == 3){
+		return "待收货";
+	}else if(orderStatus == 4){
+		return "待评价";
+	}else if(orderStatus == 5){
+		return "已完成";
+	}else if(orderStatus == 6){
+		return "已取消";
+	}else if(orderStatus == 7){
+		return "已过期";
+	}
 }
 
 function rangeStatus(statusName){

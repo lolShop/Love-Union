@@ -5,10 +5,9 @@
 
     <resultMap id="orderDetailsMap" type="edu.nf.lol.order.entity.OrderDetails">
         <id property="detailsId" column="details_id"/>
-        <result property="goodNumber" column="good_number"/>
-        <association property="orderInfo" resultMap="orderInfoMap"/>
+        <result property="productCount" column="product_count"/>
+<!--        <association property="orderInfo" resultMap="orderInfoMap"/>-->
         <association property="productSpecs" resultMap="specsMap"/>
-        <collection property="product" resultMap="productMap"/>
     </resultMap>
 
     <resultMap id="orderInfoMap" type="edu.nf.lol.order.entity.OrderInfo">
@@ -19,14 +18,10 @@
         <result property="paymentTime" column="payment_time"/>
         <result property="deliveryTime" column="delivery_time"/>
         <result property="receivingTime" column="receiving_time"/>
-        <association property="orderStatic" resultMap="orderStaticMap"/>
+        <result property="orderStatic" column="order_static"/>
+        <result property="orderRemarks" column="order_remarks"/>
         <association property="user" resultMap="userMap"/>
         <association property="address" resultMap="addressMap"/>
-    </resultMap>
-
-    <resultMap id="orderStaticMap" type="edu.nf.lol.order.entity.OrderStatic">
-        <id property="staticId" column="static_id"/>
-        <result property="staticName" column="static_name"/>
     </resultMap>
     
     <resultMap id="specsMap" type="edu.nf.lol.product.entity.ProductSpecs">
@@ -76,38 +71,36 @@
         <association property="user" resultMap="userMap"/>
     </resultMap>
 
-    <!-- 查询出订单id，下单时间，状态id -->
+    <!-- 查询出订单id，下单时间，状态 -->
     <select id="queryUsersOrder" resultMap="orderInfoMap" parameterType="edu.nf.lol.user.entity.User">
-        select info.order_id, info.order_time, static.static_name, address.take_name, address.take_phone, take_address
+        select info.order_id, info.order_time, info.order_static, address.take_name, address.take_phone, take_address
         from order_info info
-        left join order_static static on info.order_static_id = static.static_id
-        join user_info users on info.user_id = users.user_id
+        left join user_info users on info.user_id = users.user_id
         join address_info address on info.address_id = address.address_id
         where users.user_id = #{user.userId}
     </select>
 
-    <!-- 查询出订单id，下单时间，状态id -->
+    <!-- 根据状态查询出订单id，下单时间，状态id -->
     <select id="queryOrderByStatus" parameterType="edu.nf.lol.order.entity.OrderInfo" resultMap="orderInfoMap">
-        select info.order_id, info.order_time, static.static_name, address.take_name, address.take_phone, take_address
+        select info.order_id, info.order_time, info.order_static, address.take_name, address.take_phone, take_address
         from order_info info
-        left join order_static static on info.order_static_id = static.static_id
-        join user_info users on info.user_id = users.user_id
+        left join user_info users on info.user_id = users.user_id
         join address_info address on info.address_id = address.address_id
-        where static.static_id = ${orderInfo.orderStatic.staticId} and users.user_id = #{orderInfo.user.userId}
+        where info.order_static = #{orderInfo.orderStatic} and users.user_id = #{orderInfo.user.userId}
     </select>
 
     <!-- 根据提供的订单id查询出所有的商品项 -->
     <select id="queryOrderItem" resultMap="orderDetailsMap" parameterType="java.lang.String">
-        select specs.specs_price, specs.promotion_price, specs.product_specs, product.product_id, product.product_main_image, product.product_name, details.good_number
+        select specs.specs_price, specs.promotion_price, specs.product_specs, product.product_id, product.product_main_image, product.product_name, details.product_count
         from order_details details
         left join product_specs specs on details.specs_id = specs.specs_id
-        join product_info product on details.good_id = product.product_id
+        left join product_info product on specs.product_id = product.product_id
         where details.order_id = #{orderId}
     </select>
 
     <!-- 修改订单状态 -->
     <update id="updateOrderStatus" parameterType="edu.nf.lol.order.entity.OrderInfo">
-        update order_info set order_static_id = #{orderStatic.staticId} where order_id = #{orderId}
+        update order_info set order_static = #{orderStatic} where order_id = #{orderId}
     </update>
 
     <!-- 删除订单信息 -->
@@ -120,13 +113,13 @@
         delete from order_details where order_id = #{orderId}
     </delete>
 
+    <!-- 查询订单详情 -->
     <select id="queryOrderInfo" parameterType="edu.nf.lol.order.entity.OrderInfo" resultMap="orderInfoMap">
-        select info.order_id, info.order_time, static.static_name, address.take_name, address.take_phone, take_address
+        select info.order_id, info.order_time, order_static, address.take_name, address.take_phone, address.take_address, info.order_remarks
         from order_info info
-        left join order_static static on info.order_static_id = static.static_id
-        join user_info users on info.user_id = users.user_id
+        left join user_info users on info.user_id = users.user_id
         join address_info address on info.address_id = address.address_id
-        where info.order_id = ${orderId}
+        where info.order_id = #{orderId}
     </select>
 
 </mapper>
