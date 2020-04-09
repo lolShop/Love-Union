@@ -24,13 +24,24 @@ public class AdminUserListServiceImpl implements AdminUserListService {
             throw  new LolException("查询失败,请稍后重试");
         }
     }
-    public List<User> delAdminUser() {
-        try {
-            List<User> UserList=adminUserListDao.delAdminUser();
-            return  UserList;
-        }catch (RuntimeException e){
-            throw  new LolException("删除失败,请稍后重试");
-        }
+
+    public User getAdminUserId(User user){
+       return adminUserListDao.getAdminUserId(user);
+    }
+
+    @Override
+    public void delAdminUser(int uid) {
+        adminUserListDao.delAdminUser(uid);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        adminUserListDao.updateAdminUser(user);
+    }
+
+    @Override
+    public void addUserList(User user) {
+        adminUserListDao.addUserList(user);
     }
 
 }

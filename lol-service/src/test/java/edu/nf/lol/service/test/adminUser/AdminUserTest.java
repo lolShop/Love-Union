@@ -21,6 +21,17 @@ public class AdminUserTest {
 
       }
         }
+//        @Test
+//        public void testUpdateUser(){
+//            User user = new User();
+//            user.setUserId(1001);
+//            user.setPhone("小");
+//            user.setPassword("2222");
+//            user.setSex(true);
+//            user.setPhone("23213");
+//            user.setEmail("7777");
+
+//        }
     }
 
 

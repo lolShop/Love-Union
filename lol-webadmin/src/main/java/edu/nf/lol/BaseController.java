@@ -20,4 +20,10 @@ public class BaseController<T> {
         vo.setMessage(message);
         return  vo;
     }
+    protected  ResponseVO success(Integer code,String message){
+        ResponseVO vo=new ResponseVO();
+        vo.setCode(code);
+        vo.setMessage(message);
+        return  vo;
+    }
 }

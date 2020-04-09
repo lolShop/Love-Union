@@ -13,5 +13,17 @@ public interface AdminUserListDao {
     /**
      * 删除用户
      */
-    List<User> delAdminUser();
+    void delAdminUser(int uid);
+    /**
+     * 查询单条数据
+     */
+    User getAdminUserId(User user);
+    /**
+     * 修改用户
+     */
+    void updateAdminUser(User user);
+    /**
+     * 添加用户
+     */
+    void addUserList(User user);
 }

@@ -2475,6 +2475,7 @@ dd, dt {
 	-moz-box-shadow: 0px 0px 5px rgba(0,0,0,0.08);
     box-shadow: 0px 0px 5px rgba(0,0,0,0.08);
 }
+
 .lyear-layout-sidebar-close .lyear-layout-sidebar {
     transform: translateX(-100%);
     -webkit-box-shadow: none;
