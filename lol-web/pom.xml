@@ -49,5 +49,10 @@
             <version>2.0.3</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.qcloudsms</groupId>
+            <artifactId>qcloudsms</artifactId>
+            <version>1.0.6</version>
+        </dependency>
     </dependencies>
 </project>

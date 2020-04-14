@@ -8,8 +8,9 @@
 		<link rel="stylesheet" href="css/theme.css">
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/paging.css">
 		<link rel="stylesheet" href="css/iconfont.css">
-		<link href="css/pagination.css" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" href="css/productlist.css">
 	</head>
 	
 	<body>
@@ -17,17 +18,17 @@
 		<!-- top-bar占位 -->
 	</div>
 	<script src="js/jquery-min.js"></script>
-	<script src="js/jquery.pagination.js"></script>
 	<script src="js/common.js"></script>
 	<script src="js/productlist.js"></script>
+	<script src="js/paging.js"></script>
 
 	<!-- footer E -->
 	
 	<!--毛绒玩具-->
 		<div class="mid">
 			<div class="breadcrumb" id="blk_productlist_crumbs">        <span><a href="index.shtml" target="_blank" class="ibcb-first" style="margin-right:0px;">首页&gt;</a></span>
-				<span>
-					<a href="javascript:;" style="margin-right:0px;cursor:default;text-decoration: none; color:#999">毛绒玩偶</a>
+				<span >
+					<a href="javascript:;" id="typeName" style="margin-right:0px;cursor:default;text-decoration: none; color:#999">毛绒玩偶</a>
 				</span>
 			</div>
 
@@ -37,22 +38,15 @@
 				<div class="list-filter">
 										<div id="showclass" class="fltbox clearfix">
 						<dl id="dj_class_ul">                <dt>分类：</dt>
-						<dd class="all" type="all" val="1">全部</dd>
-						 <dd class="" type="cat" val="101">雕塑手办</dd>
-						  <dd class="" type="cat" val="116">其他</dd>
-						  <dd class="" type="cat" val="117">海报艺术</dd>
-						  <dd class="cur" type="cat" val="119">毛绒玩偶</dd>
-						  <dd class="" type="cat" val="120">男女服饰</dd>
-												  <dd class="" type="cat" val="215">LPL周边</dd>
-							  <dd class="" type="cat" val="665">珠宝首饰</dd>
+						<dd class="cur" type="all" val="all">全部</dd>
 					   </dl>
 					</div>
 				
 					<div class="fltbox sort-filter clearfix">
-						<dl class="sortdl fl">
+						<dl class="sortdl fl" id="sort">
 							<dt>排序：</dt>
 							<dd class="cur" type="sort" val="iRecRank" sort="desc">默认</dd>
-							<dd class="flt-arrow" type="sort" val="iPrice">
+							<dd class="flt-arrow" type="sort" val="iPrice" id="promotionPrice">
 								<span>价格</span>
 								<i class="ico-comm i-arrgray"></i><!-- 默认全灰点击下面变黑色添加i-arrbbot在点击上面变黑色i-arrbtop-->
 							</dd>
@@ -60,41 +54,23 @@
 								<span>新品</span>
 								<i class="ico-comm i-arrgray"></i><!-- 默认全灰点击下面变黑色添加i-arrbbot在点击上面变黑色i-arrbtop-->
 							</dd>
-							<dd class="flt-arrow" type="sort" val="iFavNum">
-								<span>人气</span>
-								<i class="ico-comm i-arrgray"></i><!-- 默认全灰点击下面变黑色添加i-arrbbot在点击上面变黑色i-arrbtop-->
-							</dd>
 							<dd class="flt-arrow" type="sort" val="iSoldNum">
 								<span>销量</span>
 								<i class="ico-comm i-arrgray"></i><!-- 默认全灰点击下面变黑色添加i-arrbbot在点击上面变黑色i-arrbtop-->
 							</dd>
 						</dl>
-						<dl class="sortdl fr">
-							<dt>筛选：</dt>
-							<dd class="flt-check" type="screen" val="2">
-								<i class="ico-comm i-check"></i><!-- 点击添加i-checked-->
-								<span>有货</span>
-							</dd>
-							<dd class="flt-check" type="screen" val="1">
-								<i class="ico-comm i-check"></i><!-- 点击添加i-checked-->
-								<span>包邮</span>
-							</dd>
-							<dd class="flt-check" type="screen" val="3">
-								<i class="ico-comm i-check"></i><!-- 点击添加i-checked-->
-								<span>聚豆可抵</span>
-							</dd>
-						</dl>
+
 					</div>
 				</div>
 
-				<div class="good-list">
+				<div class="good-lists">
 				<ul class="clearfix" id="dj_goods_ul">
-
 				</ul>
-					<!-- 分页按钮  -->
-					<div class="page pagesmar pagewth" id="page"></div>
+					<div class="box" id="box"></div>
 				</div>
+
 			</div>
+
 		</div>
 		
 	<!--通用购物导航栏-->

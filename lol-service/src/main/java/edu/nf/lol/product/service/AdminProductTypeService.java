@@ -20,4 +20,6 @@ public interface AdminProductTypeService {
      * @return
      */
     List<ProductType> adminProductTypeAll(Integer parentId);
+
+    List<ProductType>   listProductTypeId(Integer parentId);
 }

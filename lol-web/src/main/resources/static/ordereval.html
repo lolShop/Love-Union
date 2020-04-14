@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -103,15 +103,18 @@
 										<div class="fl ico-center ico-upload">
 											<span>本地上传</span>
 											<form enctype="multipart/form-data" id="f1">
-												<input type="file" name="file" id="file"  class="btn-upload" accept="image/*">
+												<input type="file" name="file" id="file" multiple="multiple" class="btn-upload" accept="image/*">
 											</form>
+
 										</div>
 										<p class="fl eval-tips">图片大小不超过2M，支持jpg、png格式</p>
 									</div>
 									<div class="eval-imglist clearfix">
+										<form enctype="multipart/form-data" id="f2">
 										<ul class="eval-imgul fl">
 
 										</ul>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -200,9 +203,12 @@
 			
 			
 		}
-		$(".btn-upload").change(function () {
+		var formData = new FormData($("#f1")[0]);
+		var num =0;
+		var  index=0;
+		$(".ico-upload").on("change",".btn-upload",function () {
 			var icon = $(".upload-icon");
-			var formData = new FormData(),
+			var formData1 = new FormData(),
 				fs = $("#file")[0].files;
 			var max_size = 1024 * 1024 * 2;
 			var yz = true;
@@ -210,7 +216,7 @@
 				var d = fs[i]
 				if(d.size <= max_size){  //文件必须小于100M
 					if(/.(jpg|png)$/.test(d.name)){
-						formData.append("file", fs[i]);  //文件上传处理
+						formData1.append("file", fs[i]);  //文件上传处理
 					}else{
 						alert('上传文件必须是jpg或png！')
 						yz = false
@@ -220,69 +226,99 @@
 					yz = false
 				}
 			}
-			// var formData = new FormData(document.getElementById('f1'));
 			if(yz){
-				$(".eval-imgul").append(
-						'<li>'+
+				for(var i=0;i<$(".btn-upload")[0].files.length;i++){
+					var name = "file"+num;
+					formData.append(name,$(".btn-upload")[0].files[i]);
+					num++;
+					$(".eval-imgul").append(
+							'<li>'+
 							'<div class="eval-imgdel">'+
-								'<div class="imgdel-zzc"></div>'+
-								'<a href="javascript:;" class="btn-imgdel" title="删除">删除</a>'+
+							'<div class="imgdel-zzc"></div>'+
+							'<a href="javascript:;" class="btn-imgdel" title="删除">删除</a>'+
 							'</div>'+
-							'<img id="blogMainImg" width="64" height="64" alt="商品图">'+
-						'</li>'
-				)
-				var file = $(".btn-upload")[0].files[0];
-				var reader = new FileReader();
-				reader.readAsDataURL(file);
-				reader.onload = function (e) {
-					var img = document.getElementById("blogMainImg");
-					img.src = e.target.result;
-				};
+							'<img class="blogMainImg" width="64" height="64" alt="商品图">'+
+							'</li>'
+					)
+					var file = $(".btn-upload")[0].files[i];
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						$('.blogMainImg:eq('+index+')').attr("src",e.target.result);
+						index++;
+					};
+					reader.readAsDataURL(file);
+				}
 			}
 		})
+
+
+
+
 		//删除照片
 		$(".eval-imgul").on("click",".btn-imgdel",function () {
+			var index = $(this).parent().parent().index();
+			var key ="file"+index;
+			formData.delete(key);
 			$(this).parent().parent().remove();
+
 		})
 
 
 		//发表评论
 		$(".btn-publish").click(function () {
-			if($(".eval-area").val()==""){
-				$(".eval-area").val("默认好评")
+			var size = $(".eval-imgul li").size();
+			var file  =new Array(size);
+			for(var i=0;i<$(".eval-imgul li").size();i++){
+				var name ="file"+i;
+				file[i] = formData.get(name);
 			}
-			alert($(".eval-area").val());
-			if(!$("#blogMainImg").length>0){
-				$.ajax({
-					url:"comment/publishComment",
-					type:"post",
-					data:{"description":$("#score").val(),"content":$(".eval-area").val(),"userId":1000,"detailsId":1000},
-					success:function (result) {
-						alert(result.data)
-					}
-				})
-			}else{
-				var formData = new FormData(document.getElementById('f1'));
-				$.ajax({
-					url:"comment/ajax_upload",
-					type:"post",
-					data:formData,
-					processData : false,
-					contentType : false,
-					success:function () {
-					}
-				})
-				$.ajax({
-					url:"comment/publishComment",
-					type:"post",
-					data:{"description":$("#score").val(),"content":$(".eval-area").val(),"userId":1000,"detailsId":1000,"photo":"1"},
-					success:function (result) {
-						alert(result.data)
-					}
-				})
-
+			var data = new FormData();
+			for(var i=0;i<file.length;i++){
+				data.append("files",file[i])
 			}
-
+			console.info(data+"这是FormData数组")
+			$.ajax({
+				url:"comment/ajax_upload",
+				type:"post",
+				data:data,
+				processData : false,
+				contentType : false,
+				success:function (result) {
+					alert(result.data)
+				}
+			})
+			// if($(".eval-area").val()==""){
+			// 	$(".eval-area").val("默认好评")
+			// }
+			// if(!$(".blogMainImg").length>0){
+			// 	$.ajax({
+			// 		url:"comment/publishComment",
+			// 		type:"post",
+			// 		data:{"description":$("#score").val(),"content":$(".eval-area").val(),"userId":1000,"detailsId":1000},
+			// 		success:function (result) {
+			// 			alert(result.data)
+			// 		}
+			// 	})
+			// }else{
+			// 	$.ajax({
+			// 		url:"comment/ajax_upload",
+			// 		type:"post",
+			// 		data:formData,
+			// 		processData : false,
+			// 		contentType : false,
+			// 		success:function () {
+			// 		}
+			// 	})
+			// 	// $.ajax({
+			// 	// 	url:"comment/publishComment",
+			// 	// 	type:"post",
+			// 	// 	data:{"description":$("#score").val(),"content":$(".eval-area").val(),"userId":1000,"detailsId":1000,"photo":"1"},
+			// 	// 	success:function (result) {
+			// 	// 		alert(result.data)
+			// 	// 	}
+			// 	// })
+			//
+			// }
 
 		})
 

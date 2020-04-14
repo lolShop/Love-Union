@@ -49,15 +49,16 @@ public class CommentController extends BaseController {
         return success("发表成功！");
     }
     @PostMapping("/ajax_upload")
-    public void upload(MultipartFile file) throws IOException {
-        String Name = file.getOriginalFilename();
-        String hz = Name.substring(Name.length()-4);
-        String fileName = UUIDUtils.createUUID()+hz;
-        name =fileName;
-        Path path = FileSystems.getDefault().getPath("F:\\s3s152\\two-year-project\\Love-Union\\lol-web\\src\\main\\resources\\static\\image\\comment", fileName);
-//        String uploadPath=request.getServletContext().getRealPath(File.separator+"static"+File.separator+"image"+File.separator+"comment");
-//        Path path = FileSystems.getDefault().getPath(uploadPath, fileName);
-        file.transferTo(path);
+    public ResponseVO upload(@RequestParam("files") MultipartFile[] files) throws IOException {
+//        String Name = file.getOriginalFilename();
+//        String hz = Name.substring(Name.length()-4);
+//        String fileName = UUIDUtils.createUUID()+hz;
+//        name =fileName;
+//        Path path = FileSystems.getDefault().getPath("F:\\s3s152\\two-year-project\\Love-Union\\lol-web\\src\\main\\resources\\static\\image\\comment", fileName);
+////        String uploadPath=request.getServletContext().getRealPath(File.separator+"static"+File.separator+"image"+File.separator+"comment");
+////        Path path = FileSystems.getDefault().getPath(uploadPath, fileName);
+//        file.transferTo(path);
+        return  success(files.length);
     }
     @PostMapping("/listComment")
     public ResponseVO<PageInfo<Comment>> listComment(Integer pageNum,Integer pageSize,Integer pid){

@@ -39,7 +39,6 @@ public class AdminProductTypeServiceImpl implements AdminProductTypeService {
 
     @Override
     public List<ProductType> adminProductTypeAll(Integer parentId) {
-
         try {
             List<ProductType> list=adminProductTypeDao.adminProductTypeAll(parentId);
             list.forEach(productType -> {
@@ -51,5 +50,14 @@ public class AdminProductTypeServiceImpl implements AdminProductTypeService {
             log.error(e.getMessage());
             throw new LolException("查询失败，请稍后尝试");
         }
+    }
+
+    @Override
+    public List<ProductType> listProductTypeId(Integer parentId) {
+        List<ProductType> list=adminProductTypeDao.listProductTypeId(parentId);
+        list.forEach(productType -> {
+            productType.setProductTypeList(listProductTypeId(productType.getParentId()));
+        });
+        return list;
     }
 }

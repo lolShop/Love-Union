@@ -11,6 +11,9 @@
     <select id="listProductTypeParentId" resultMap="productTypeMap">
         SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type WHERE parent_id=#{parentId}
     </select>
+    <select id="listProductTypeId" resultMap="productTypeMap">
+        SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type WHERE product_type_id=#{Id}
+    </select>
     <select id="listProductTypeAll" resultMap="productTypeMap">
         SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type
     </select>
