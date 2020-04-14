@@ -13,10 +13,17 @@ public interface UserDao {
 
     /**
      * 用户登录
-     * @param user
+     * @param user 用户账号和密码
      * @return
      */
     User userLogin(User user);
+
+    /**
+     * 用户注册，点击获取验证码时，先判断该账号是否存在
+     * @param userPhone 用户账号
+     * @return
+     */
+    User checkUser(String userPhone);
 
     /**
      * 用户注册

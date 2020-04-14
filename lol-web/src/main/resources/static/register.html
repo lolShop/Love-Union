@@ -2,9 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>登录</title>
+		<title>用户注册</title>
 		<link rel="stylesheet" href="css/register.css" />
-		<link rel="stylesheet" href="css/login.css"/>
 		<script src="js/jquery-min.js"></script>
 	</head>
 	<body>
@@ -20,18 +19,18 @@
 						<img src="image/register/logo.png" width="140" height="105" />
 						<h4>
 							<span class="font-weight-bold">爱联盟</span>
-							用户登录
+							账号注册
 						</h4>
 						<p class="text-muted">需要完善消息才能继续。</p>
 					</div>
 					<div class="c-register-header">
 						<div class="c-register-switch-login">
-							没有账号
-							<a href="register.html" class="login-link">免费注册</a>
+							已注册可<a href="login.html" class="login-link">直接登录</a>
 						</div>
+<!--						<h3 class="c-register-title">用户注册</h3>-->
 					</div>
 					<div class="c-register-body">
-						<!-- 手机 -->
+					    <!-- <input type="hidden" name="vipc" value="" /> -->
 						<div id="reg-form-wrapper">
 							<form id="reg_mobile_form" action="/register" method="post" autocomplete="off" class="register-form">
 								<div class="control-group  has-form-item-icon  clearfix">
@@ -40,36 +39,19 @@
 											   class="ui-input ipt-phone" id="J_mobile_name"
 											   name="phone"
 											   placeholder="请输入手机号码"
-											   onfocus="phoneFocus(this)" onblur="phoneBlur(this)"
-										/>
-										<span class="c-icon  c-icon-mobile  c-icon-form"><img src="image/register/用户.png" width="20" height="20"/></span>
+											   onfocus="phoneFocus(this)" onblur="phoneBlur(this)"/>
+										<span class="c-icon  c-icon-mobile  c-icon-form"><img src="image/register/手机.png" width="20" height="20"/></span>
 									</div>
 									<div class="u-input-tip"><span class="text"></span></div>
 								</div>
-								<!-- 密码 -->
-								<div class="control-group  has-form-item-icon  clearfix" id="password">
-									<div class="ui-form-item-group">
-										<input type="password"
-											   class="ui-input" id="J_mobile_pwd"
-											   name="password"
-											   maxlength="20"
-											   placeholder="密码由6-20位字母，数字和符号组合"
-											   onfocus="passwordFocus(this)" onblur="passwordBlur(this)"
-										/>
-										<span class="c-icon  c-icon-password  c-icon-form"><img src="image/register/密码.png" width="20" height="20"/></span>
-									</div>
-									<div class="u-input-tip">
-										<span class="text password-tip"></span>
-									</div>
-								</div>
-								<!-- 验证码 -->
-								<div class="control-group  has-form-item-icon  clearfix" id="sms" style="display: none">
+						
+								<div class="control-group  has-form-item-icon  clearfix">
 									<div class="ui-form-item-group adjust-tip-icon">
 										<input type="text"
-											   id="J_mobile_code" class="ui-input ipt-verify-code"
-											   name="pvcode"
-											   placeholder="请输入验证码"
-											   onfocus="codeFocus(this)" onblur="codeBlur(this)"
+										   id="J_mobile_code" class="ui-input ipt-verify-code"
+										   name="pvcode"
+										   placeholder="请输入验证码"
+										   onfocus="codeFocus(this)" onblur="codeBlur(this)"
 										/>
 										<a href="javascript:;"
 										   role="button"
@@ -79,16 +61,40 @@
 									</div>
 									<div class="u-input-tip"><span class="text"></span></div>
 								</div>
-
-								<div class="c-form-item">
-									<div class="ui-form-item-group ui-form-item-group-with-gap">
-										<a href="javascript:;" class="c-login-switch password-sms-login">短信验证登录</a>
+						
+								<div class="control-group  has-form-item-icon  clearfix">
+									<div class="ui-form-item-group">
+										<input type="password"
+											   class="ui-input" id="J_mobile_pwd"
+											   name="password"
+											   maxlength="20"
+											   placeholder="密码由6-20位字母，数字和符号组合"
+											   onfocus="passwordFocus(this)" onblur="passwordBlur(this)"
+											   />
+										<span class="c-icon  c-icon-password  c-icon-form"><img src="image/register/密码.png" width="20" height="20"/></span>
+									</div>
+									<div class="u-input-tip">
+										<span class="text password-tip"></span>
 									</div>
 								</div>
-
+						
+								<div class="control-group  has-form-item-icon  clearfix">
+									<div class="ui-form-item-group">
+										<input type="password"
+											   class="ui-input confirm-pwd" id="J_mobile_confirm_pwd"
+											   name="confirm"
+											   maxlength="20"
+											   placeholder="请再次输入上面的密码"
+											   onfocus="confirmFocus(this)" onblur="confirmBlur(this)"
+										/>
+										<span class="c-icon  c-icon-password  c-icon-form"><img src="image/register/密码.png" width="20" height="20"/></span>
+									</div>
+									<div class="u-input-tip"><span class="text"></span></div>
+								</div>
+						
 								<div class="control-group mb30 clearfix">
 									<a href="javascript:;" role="button" id="J_mobile_reg_button" class="ui-btn-large ui-btn-primary ui-btn-loading reg-form-btn form-submit" passport_mars_sead_hover>
-										<span class="ui-btn-loading-before">立即登录</span>
+										<span class="ui-btn-loading-before">立即注册</span>
 									</a>
 								</div>
 							</form>
@@ -97,6 +103,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/login.js"></script>
+		<script src="js/register.js"></script>
 	</body>
 </html>

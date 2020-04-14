@@ -21,10 +21,15 @@
         from user_info where user_phone = #{userPhone} and user_pwd = #{password};
     </select>
 
+    <!-- 验证用户是否存在 -->
+    <select id="checkUser" resultMap="userMap" parameterType="java.lang.String">
+        select user_id, user_phone, user_pwd, user_name, user_photo, sex, birthday, phone, email
+        from user_info where user_phone = #{userPhone};
+    </select>
+
     <!-- 用户注册 -->
     <insert id="userRegister" parameterType="edu.nf.lol.user.entity.User">
-        insert into user_info(user_phone, user_pwd, user_name, user_photo, sex, birthday, phone, email)
-        values(#{userPhone}, #{password}, #{userName}, 'default.jpg', default, default, #{phone}, #{email})
+        insert into user_info(user_phone, user_pwd) values(#{userPhone}, #{password});
     </insert>
 
     <!-- 根据用户id查询用户基本信息 -->

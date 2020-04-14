@@ -10,6 +10,8 @@ public interface UserService {
 
     User userLogin(User user);
 
+    User checkUser(String userPhone);
+
     void userRegister(User user);
 
     User queryUserInfo(User user);

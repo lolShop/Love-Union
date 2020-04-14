@@ -34,6 +34,21 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 用户注册，点击获取验证码时，先判断该账号是否存在
+     * @param userPhone
+     * @return
+     */
+    @Override
+    public User checkUser(String userPhone) {
+        try {
+            return dao.checkUser(userPhone);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("验证失败");
+        }
+    }
+
+    /**
      * 用户注册
      * @param user
      */
