@@ -43,6 +43,13 @@ public class UserOrderServiceImpl implements UserOrderService {
         }
     }
 
+    /**
+     * 根据状态查询订单
+     * @param orderInfo
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @Override
     public PageInfo<OrderInfo> queryOrderByStatus(OrderInfo orderInfo, Integer pageNum, Integer pageSize) {
         try {
@@ -54,13 +61,19 @@ public class UserOrderServiceImpl implements UserOrderService {
         }
     }
 
+    /**
+     * 查询订单详情
+     * @param orderInfo
+     * @return
+     */
     @Override
     public OrderInfo queryOrderInfo(OrderInfo orderInfo) {
         try {
             OrderInfo order =  userOrderDao.queryOrderInfo(orderInfo);
             List<OrderDetails> details = userOrderDao.queryOrderItem(order.getOrderId());
-            System.out.println(details);
             order.setDetails(details);
+            System.out.println(details);
+            System.out.println(order);
             return order;
         } catch (Exception e) {
             e.printStackTrace();

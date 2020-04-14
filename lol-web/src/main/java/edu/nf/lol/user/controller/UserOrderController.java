@@ -49,9 +49,7 @@ public class UserOrderController extends BaseController {
         user.setUserId(1000);
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setUser(user);
-        OrderStatic orderStatic = new OrderStatic();
-        orderStatic.setStaticId(statusId);
-        orderInfo.setOrderStatic(orderStatic);
+        orderInfo.setOrderStatic(statusId);
         PageInfo<OrderInfo> orderInfos = service.queryOrderByStatus(orderInfo, pageNum, pageSize);
         return success(orderInfos);
     }

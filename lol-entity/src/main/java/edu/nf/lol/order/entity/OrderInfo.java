@@ -23,7 +23,7 @@ public class OrderInfo {
     private Date paymentTime;
     private Date deliveryTime;
     private Date receivingTime;
-     private  OrderStatic orderStatic;
+     private Integer orderStatic;
      private User user;
      private Address address;
      private String orderRemarks;

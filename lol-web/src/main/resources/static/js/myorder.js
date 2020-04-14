@@ -21,6 +21,7 @@ function init(){
 }
 //加载页面
 function load(pageInfo, target){
+	console.log(target);
 	$('#'+target + ' table tbody').remove();
 	//如果没有订单,则显示
 	if(pageInfo == null || pageInfo.list[0] == null){
@@ -40,7 +41,7 @@ function load(pageInfo, target){
 		$.each(orderInfo.details, function(index, detail){
 
 			//计算订单里面的所有购物项单价乘数量后的总价
-			totalPrice += (detail.productSpecs.specsPrice-detail.productSpecs.promotionPrice) * detail.goodNumber ;
+			totalPrice += detail.productSpecs.promotionPrice * detail.productCount ;
 		})
 		//遍历购物项,打印数据
 		$.each(orderInfo.details, function(index, details){
@@ -71,14 +72,14 @@ function load(pageInfo, target){
 					"<img src='image/prodcutlist/"+details.product.productMainImage+"' width='113' height='108' alt='商品图' />"+
 					"</a>"+
 					"<div class='f1 reinfo clearfix'>"+
-					"<div class='relname'>"+details.product.productName+"</div>"+
+					"<div class='relname'>"+details.productSpecs.product.productName+"</div>"+
 					"<div class='reldesc'>"+specs+"</div>"+
 					"</div>"+
 					"<div class='f1 reprice'>"+
-					"<p class='re-newpri'>"+(details.productSpecs.specsPrice-details.productSpecs.promotionPrice)+"</p>"+
+					"<p class='re-newpri'>"+details.productSpecs.promotionPrice+"</p>"+
 					"<p class='re-oldpri'>"+details.productSpecs.specsPrice+"</p>"+
 					"</div>"+
-					"<div class='f1 renum'>"+details.goodNumber+"</div>"+
+					"<div class='f1 renum'>"+details.productCount+"</div>"+
 					"</div>"+
 					"</td>"+
 					"<td rowspan='"+orderInfo.details.length+"'>"+
@@ -86,7 +87,7 @@ function load(pageInfo, target){
 					"<div class='re-freight'>（含运费：0.00）</div>"+
 					"</td>"+
 					"<td rowspan='"+orderInfo.details.length+"'>"+
-					"<div class='re-status'><font class='cff0 fb lh24'>"+orderInfo.orderStatic.staticName+"</font></div>"+
+					"<div class='re-status'><font class='cff0 fb lh24'>"+getStatusName(orderInfo.orderStatic)+"</font></div>"+
 					"</td>"+
 					"<td rowspan='"+orderInfo.details.length+"'>"+
 					"<a href='orderdetail.html' class='mt20 re-link' title='订单详情' target='_blank'>订单详情</a>"+
@@ -112,10 +113,10 @@ function load(pageInfo, target){
 							"<div class='reldesc'>"+specs+"</div>"+
 							"</div>"+
 							"<div class='f1 reprice'>"+
-							"<p class='re-newpri'>"+(details.productSpecs.specsPrice-details.productSpecs.promotionPrice)+"</p>"+
+							"<p class='re-newpri'>"+details.productSpecs.promotionPrice+"</p>"+
 							"<p class='re-oldpri'>"+details.productSpecs.specsPrice+"</p>"+
 							"</div>"+
-							"<div class='f1 renum'>"+details.goodNumber+"</div>"+
+							"<div class='f1 renum'>"+details.productCount+"</div>"+
 							"</div>"+
 							"</td>"+
 							"</tr>"
@@ -126,9 +127,28 @@ function load(pageInfo, target){
 		});
 		//通过不同状态,显示不同的标签.如待付款中添加 去支付 和 取消订单 两个标签
 		var orderIndex = $('#'+target+' table tbody').length;
-		var statusName = orderInfo.orderStatic.staticName;
+		var statusName = getStatusName(orderInfo.orderStatic);
 		statusButton(statusName, orderIndex, target);
 	})
+}
+
+//根据订单状态值返回状态名称
+function getStatusName(orderStatus){
+	if(orderStatus == 1){
+		return "待付款";
+	}else if(orderStatus == 2){
+		return "待发货";
+	}else if(orderStatus == 3){
+		return "待收货";
+	}else if(orderStatus == 4){
+		return "待评价";
+	}else if(orderStatus == 5){
+		return "已完成";
+	}else if(orderStatus == 6){
+		return "已取消";
+	}else if(orderStatus == 7){
+		return "已过期";
+	}
 }
 
 //当订单为空或者查询出现错误时
@@ -220,10 +240,10 @@ function delOrder(){
 					if(result.code == 200){
 						//$(this).parent().parent().parent().parent().parent().children()[1].remove();
 						init();
-						queryOrderByStatus(1000, 'dj2');
-						queryOrderByStatus(1001, 'dj3');
-						queryOrderByStatus(1002, 'dj4');
-						queryOrderByStatus(1003, 'dj5');
+						queryOrderByStatus(1, 'dj2');
+						queryOrderByStatus(2, 'dj3');
+						queryOrderByStatus(3, 'dj4');
+						queryOrderByStatus(4, 'dj5');
 					}
 				}
 			})
@@ -256,10 +276,10 @@ function cancelOrder(){
 				success:function(result){
 					if(result.code == 200){
 						init();
-						queryOrderByStatus(1000, 'dj2');
-						queryOrderByStatus(1001, 'dj3');
-						queryOrderByStatus(1002, 'dj4');
-						queryOrderByStatus(1003, 'dj5');
+						queryOrderByStatus(1, 'dj2');
+						queryOrderByStatus(2, 'dj3');
+						queryOrderByStatus(3, 'dj4');
+						queryOrderByStatus(4, 'dj5');
 					}
 				}
 			})
@@ -279,6 +299,7 @@ function queryOrderByStatus(statusId, target){
 		type:'get',
 		data:{'statusId': statusId, 'pageNum': 1, 'pageSize': 5},
 		success:function(result){
+			//根据订单状态查询到数据后，如果不为空，在id为数字的li标签右上角加总数
 			if(result.data != null && result.data.total != null){
 				var statusTarget = target.substring(2);
 				$('#'+statusTarget+' span[class=topay]').remove();
@@ -321,7 +342,6 @@ function clickOrderInfo(){
 	$('#con_order').on('click', '.re-link', function(){
 		var orderId = $($($($(this).parent().parent().parent().children()[0]).children()[0]).children()[1]).text();
 		orderId = orderId.substring(4);
-		console.info(orderId);
 		//判断当前浏览器是否支持
 		if (window.localStorage) {
 			//存储变量的值
@@ -338,10 +358,10 @@ function clickOrderInfo(){
 //程序入口
 $(function(){
 	init();
-	queryOrderByStatus(1000, 'dj2');
-	queryOrderByStatus(1001, 'dj3');
-	queryOrderByStatus(1002, 'dj4');
-	queryOrderByStatus(1003, 'dj5');
+	queryOrderByStatus(1, 'dj2');
+	queryOrderByStatus(2, 'dj3');
+	queryOrderByStatus(3, 'dj4');
+	queryOrderByStatus(4, 'dj5');
 	delOrder();
 	clickOrderInfo()
 	cancelOrder();

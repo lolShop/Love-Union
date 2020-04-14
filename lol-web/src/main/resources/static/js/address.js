@@ -8,10 +8,20 @@ var userId = 1000;
 //初始化页面,打印所有的收货地址信息
 function init(){
 	$.ajax({
-		url:'user/address/all/' + userId,
+		url:'user/address/all',
 		type:'get',
 		success:function(result){
 			$("#dj1 ul li:not(:first)").remove();
+			if(result.data == null){
+				$("#dj1").remove();
+				$(".conter-cont h2").after(
+					"<div class='center-none' >"+
+						"<i class='ico-none'></i>"+
+						"<p class='none-tip'>您当前暂无收货地址哦！</p>"+
+					"</div>"
+				);
+				return;
+			}
 			$.each(result.data, function(i, address){
 				//修饰手机号码
 				var phone = address.takePhone.substring(0, 3) + "****" + address.takePhone.substring(7, 11);
@@ -47,7 +57,7 @@ function setDefaultStatus(){
 		$.ajax({
 			url:'user/address/update_status',
 			type:'post',
-			data:{"addressId": addressId, "user.userId": userId},
+			data:{"addressId": addressId},
 			success:function(result){
 				if(result.code == 200){
 					init();
@@ -70,7 +80,7 @@ function delAddress(){
 		$.ajax({
 			url:'user/address/del_address',
 			type:'post',
-			data:{"addressId": addressId, "user.userId": userId},
+			data:{"addressId": addressId},
 			success:function(result){
 				if(result.code == 200){
 					init();
@@ -108,7 +118,7 @@ function clickSaveAddress(){
 		var type = $(".addr-tit").text().split("收货地址")[0];
 		var url = type == "新增" ? "user/address/add_address" : "user/address/update_info";
 		var data = type == "新增" ? 
-			{'takeName': takeName, 'takePhone':takePhone, 'takeAddress':takeAddress, 'postcode':postcode, 'user.userId':userId} : 
+			{'takeName': takeName, 'takePhone':takePhone, 'takeAddress':takeAddress, 'postcode':postcode} :
 			{'takeName': takeName, 'takePhone':takePhone, 'takeAddress':takeAddress, 'postcode':postcode, 'addressId':addressId};
 		console.info(data);
 		$.ajax({
@@ -199,4 +209,92 @@ $(function(){
 	$.get("bottom.html", function (data) {
 		$(".bottom").html(data);
 	});
+	showProv();
 })
+
+//选中一个省份
+$('.mrselect').on('click', '.prov-li', function(){
+	//将选中的省份赋值给span
+	$($(this).parents().parents().parents().children()[0]).html($(this).text());
+	//给span设置value属性
+	var value = $(this).attr('value');
+	$($(this).parents().parents().parents().children()[0]).attr('value', value);
+	//将省份value写入current字符串中
+	current.prov = value;
+	//将城市和县区刷新
+	$('#city').attr('value','');
+	$('#country').attr('value','');
+	$('#city').text('请选择');
+	$('#country').text('请选择');
+});
+//选中一个城市
+$('.mrselect').on('click', '.city-li', function(){
+	$($(this).parents().parents().parents().children()[0]).html($(this).text());
+	var value = $(this).attr('value');
+	$($(this).parents().parents().parents().children()[0]).attr('value', value);
+	current.city = value;
+	$('#country').attr('value','');
+	$('#country').text('请选择');
+});
+//选中一个地区
+$('.mrselect').on('click', '.country-li', function(){
+	$($(this).parents().parents().parents().children()[0]).html($(this).text());
+	var value = $(this).attr('value');
+	$($(this).parents().parents().parents().children()[0]).attr('value', value);
+	current.country = value;
+})
+
+//用于保存当前所选的省市区
+//点击省份li后,添加省份value,点击城市时,判断prov是否存在,
+var current = {
+	prov: '',
+	city: '',
+	country: ''
+};
+
+function showProv(){
+	//btn.disabled = true;
+	//城市数组的长度
+	var len = provice.length;
+	//遍历数组,在省份select中加入option,option中显示该省份的名称,option的value属性为省份的索引
+	$($($($('#prov').parent().children()[2]).children()[0]).children()).remove();
+	for (var i = 0; i < len; i++) {
+		var provLi = "<li value='"+i+"' class='prov-li'>"+provice[i]['name']+"</li>";
+		//在省份中append该li
+		$($($('#prov').parent().children()[2]).children()[0]).append(provLi);
+	}
+}
+
+/*根据所选的省份来显示城市列表*/
+function showCity(obj) {
+	//获取选中的省份的value
+	var prov = $('#prov').attr('value');
+	//如果省份还没有选中
+	if(prov == ""){
+		return;
+	}
+	var cityLen = provice[prov]["city"].length;
+	$($($($('#city').parent().children()[2]).children()[0]).children()).remove();
+	for (var j = 0; j < cityLen; j++) {
+		var cityLi = "<li value='"+j+"' class='city-li'>"+provice[prov]["city"][j].name+"</li>";
+		//在省份中append该li
+		$($($(obj).parent().children()[2]).children()[0]).append(cityLi);
+	}
+}
+
+/*根据所选的城市来显示县区列表*/
+function showCountry(obj) {
+	//获取选中的城市的value
+	var city = $('#city').attr('value');
+	//如果城市还没有选中
+	if(city == ""){
+		return;
+	}
+	var countryLen = provice[current.prov]["city"][city].districtAndCounty.length;
+	$($($($('#country').parent().children()[2]).children()[0]).children()).remove();
+	for (var n = 0; n < countryLen; n++) {
+		var countryLi = "<li value='"+n+"' class='country-li'>"+provice[current.prov]["city"][city].districtAndCounty[n]+"</li>";
+		//在省份中append该li
+		$($($(obj).parent().children()[2]).children()[0]).append(countryLi);
+	}
+}

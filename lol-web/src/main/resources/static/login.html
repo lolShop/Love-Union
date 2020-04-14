@@ -1,81 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>顾客 | 登陆</title>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		<link rel="stylesheet" href="css/register.css" />
+		<link rel="stylesheet" href="css/login.css"/>
+		<script src="js/jquery-min.js"></script>
+	</head>
+	<body>
+		<div class="c-all">
+			<!-- 主体 -->
+			<div class="c-centent">
+				<div class="c-title">
+					<h1>爱联盟周边商城</h1>
+					<h5>因为热爱，所以联盟</h5>
+				</div>
+				<div class="c-register f-right">
+					<div class="c-register-logo">
+						<img src="image/register/logo.png" width="140" height="105" />
+						<h4>
+							<span class="font-weight-bold">爱联盟</span>
+							用户登录
+						</h4>
+						<p class="text-muted">需要完善消息才能继续。</p>
+					</div>
+					<div class="c-register-header">
+						<div class="c-register-switch-login">
+							没有账号
+							<a href="register.html" class="login-link">免费注册</a>
+						</div>
+					</div>
+					<div class="c-register-body">
+						<!-- 手机 -->
+						<div id="reg-form-wrapper">
+							<form id="reg_mobile_form" action="/register" method="post" autocomplete="off" class="register-form">
+								<div class="control-group  has-form-item-icon  clearfix">
+									<div class="ui-form-item-group">
+										<input type="text"
+											   class="ui-input ipt-phone" id="J_mobile_name"
+											   name="phone"
+											   placeholder="请输入手机号码"
+											   onfocus="phoneFocus(this)" onblur="phoneBlur(this)"
+										/>
+										<span class="c-icon  c-icon-mobile  c-icon-form"><img src="image/register/用户.png" width="20" height="20"/></span>
+									</div>
+									<div class="u-input-tip"><span class="text"></span></div>
+								</div>
+								<!-- 密码 -->
+								<div class="control-group  has-form-item-icon  clearfix" id="password">
+									<div class="ui-form-item-group">
+										<input type="password"
+											   class="ui-input" id="J_mobile_pwd"
+											   name="password"
+											   maxlength="20"
+											   placeholder="密码由6-20位字母，数字和符号组合"
+											   onfocus="passwordFocus(this)" onblur="passwordBlur(this)"
+										/>
+										<span class="c-icon  c-icon-password  c-icon-form"><img src="image/register/密码.png" width="20" height="20"/></span>
+									</div>
+									<div class="u-input-tip">
+										<span class="text password-tip"></span>
+									</div>
+								</div>
+								<!-- 验证码 -->
+								<div class="control-group  has-form-item-icon  clearfix" id="sms" style="display: none">
+									<div class="ui-form-item-group adjust-tip-icon">
+										<input type="text"
+											   id="J_mobile_code" class="ui-input ipt-verify-code"
+											   name="pvcode"
+											   placeholder="请输入验证码"
+											   onfocus="codeFocus(this)" onblur="codeBlur(this)"
+										/>
+										<a href="javascript:;"
+										   role="button"
+										   id="J_mobile_verifycode_btn" class="ui-btn-medium ui-btn-disable btn-verify-code"
+										   tabIndex="-1">获取验证码</a>
+										<span class="c-icon  c-icon-captcha  c-icon-form"><img src="image/register/消息.png" width="20" height="20"/></span>
+									</div>
+									<div class="u-input-tip"><span class="text"></span></div>
+								</div>
 
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="css/all.css"/>
+								<div class="c-form-item">
+									<div class="ui-form-item-group ui-form-item-group-with-gap">
+										<a href="javascript:;" class="c-login-switch password-sms-login">短信验证登录</a>
+									</div>
+								</div>
 
-      <!-- Template CSS -->
-      <link rel="stylesheet" href="css/style3.css">
-      <link rel="stylesheet" href="css/components.css">
-</head>
-
-      <body>
-      <div id="app">
-        <section class="section">
-      <div class="d-flex flex-wrap align-items-stretch">
-        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 overlay-gradient-bottom" data-background="image/loginAndRegister/login-bg.jpg">
-        <div class="absolute-bottom-left index-2">
-          <div class="text-light p-5 pb-2">
-            <div class="mb-5 pb-3">
-              <h1 class="mb-2 display-4 font-weight-bold">爱联盟周边商城</h1>
-              <h5 class="font-weight-normal text-muted-transparent">因为热爱，所以联盟</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="col-lg-4 col-md-6 col-12 min-vh-100 order-2 bg-white">
-          <div class="p-4 m-3">
-            <img src="image/loginAndRegister/logo.png" alt="logo" width="140" class="rounded-circle mb-1 mt-5">
-            <h4 class="text-dark font-weight-normal">欢迎来到 <span class="font-weight-bold">爱联盟</span></h4>
-            <p class="text-muted">如果您还没有帐户，则必须先注册后方可登陆。</p>
-            <form class="needs-validation" id="f1">
-              <div class="form-group">
-                <label for="logId">账户</label>
-                <input id="logId" type="email" class="form-control" value="17688174618" name="userPhone" tabindex="1" required autofocus>
-                <div class="invalid-feedback">
-                  请填写你的账号
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="d-block">
-                  <label for="password" class="control-label">密码</label>
-                </div>
-                <input id="password" type="password" class="form-control" value="123456" name="password" tabindex="2" required>
-                <div class="invalid-feedback">
-                  请填写您的密码
-                </div>
-              </div>
-
-
-              <div class="form-group text-right">
-                <input type="button" value="登陆" id="loginBut" class="btn btn-danger btn-lg btn-block "/>
-              </div>
-
-              <div class="mt-5 text-center">
-                还没有账号？ <a href="register.html">创建一个新的账号</a>
-              </div>
-            </form>
-          </div>
-        </div>
-        </div>
-    </section>
-  </div>
-
-  <!-- General JS Scripts -->
-  <script src="js/jquery-3.3.1.min.js" ></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.nicescroll.min.js"></script>
-      <script src="js/login.js"></script>
-  <script src="js/moment.min.js"></script>
-
-  <!-- Template JS File -->
-  <script src="js/scripts.js"></script>
-</body>
+								<div class="control-group mb30 clearfix">
+									<a href="javascript:;" role="button" id="J_mobile_reg_button" class="ui-btn-large ui-btn-primary ui-btn-loading reg-form-btn form-submit" passport_mars_sead_hover>
+										<span class="ui-btn-loading-before">立即登录</span>
+									</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/login.js"></script>
+	</body>
 </html>

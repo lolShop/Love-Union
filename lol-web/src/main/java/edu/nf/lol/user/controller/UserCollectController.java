@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -28,13 +29,12 @@ public class UserCollectController extends BaseController {
 
     /**
      * 查询收藏
-     *             , @Param("pageNum")Integer pageNum, @Param("pageSize") Integer pageSize
+     * @Param("pageNum")Integer pageNum, @Param("pageSize") Integer pageSize
      * @return
      */
     @GetMapping("/query_collect")
-    public ResponseVO queryCollect(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
-        User user = new User();
-        user.setUserId(1000);
+    public ResponseVO queryCollect(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize, HttpSession session){
+        User user = (User)session.getAttribute("user");
         PageInfo<Collect> allCollect = service.queryCollect(user, pageNum, pageSize);
         return success(allCollect);
     }

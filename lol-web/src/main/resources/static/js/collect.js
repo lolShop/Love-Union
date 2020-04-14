@@ -7,6 +7,7 @@ function init(){
 		type:'get',
 		data:{'pageNum': 1, 'pageSize': 8},
 		success:function(result){
+			console.log(result.data);
 			range(result.data);
 			page(result.data);
 		}

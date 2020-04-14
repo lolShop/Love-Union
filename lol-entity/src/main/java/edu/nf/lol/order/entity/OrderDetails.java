@@ -12,8 +12,7 @@ import lombok.Data;
 @Data
 public class OrderDetails {
     private Integer detailsId;
-    private Integer goodNumber;
+    private Integer productCount;
     private  OrderInfo orderInfo;
     private ProductSpecs productSpecs;
-    private Product product;
 }
