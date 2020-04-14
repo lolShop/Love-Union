@@ -30,6 +30,7 @@
         <pagehelper.version>1.2.3</pagehelper.version>
         <druid.version>1.1.10</druid.version>
         <jacksonDatabind.version>2.10.0</jacksonDatabind.version>
+        <alipay.version>3.3.49.ALL</alipay.version>
     </properties>
     <!-- 添加一些spring-boot父模块没有的依赖 -->
     <dependencyManagement>
@@ -53,14 +54,14 @@
                 <version>${druid.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-                <version>2.2.4.RELEASE</version>
-            </dependency>
-            <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jacksonDatabind.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

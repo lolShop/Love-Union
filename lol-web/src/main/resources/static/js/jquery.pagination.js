@@ -1,4 +1,4 @@
-﻿
+
  (function($){
 	/**
 	 * @class Class for calculating pagination values

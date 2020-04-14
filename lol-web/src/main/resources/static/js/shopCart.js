@@ -102,7 +102,6 @@ $("#listShopCart").on("click",".btn_cart_list_buy_plus",function () {
     var count = $(this).parent().find(".inpt_cart_list_buy_num").val()*1+1;
     if(count<=$(this).parent().find(".stock").val()*1){
         $(this).parent().find(".inpt_cart_list_buy_num").val($(this).parent().find(".inpt_cart_list_buy_num").val()*1+1);
-        alert($(this).parent().find(".inpt_cart_list_buy_num").val())
         var text = $(this).parent().parent().parent().find(".price").text();
         var price = text.substring(0,text.length-1)*1;
         $(this).parent().parent().parent().find(".mycart-item-price").empty();
@@ -148,7 +147,7 @@ function shopCart(list) {
             '</div>' +
             '<div class="fli spi-2">' +
             '<div class="mycart-item-img">' +
-            '<img src="image/shoppingCartImage/' + obj.productSpecs.product.productMainImage + '"></img>' +
+            '<img src="image/prodcutlist/' + obj.productSpecs.product.productMainImage + '"></img>' +
             '</div>' +
             '</div>' +
             '<div class="fli spi-3">' +
@@ -253,14 +252,15 @@ $(".dj_bt_close").click(function(){
 
 //结算
 $(".mycart-tb-btn").click(function () {
-    $.ajax({
-        url:"shopCart/settlement",
-        method:"get",
-        data:{"uid":1000},
-        success:function () {
-
-        }
-    })
+    // $.ajax({
+    //     url:"shopCart/settlement",
+    //     method:"get",
+    //     data:{"uid":1000},
+    //     success:function () {
+    //
+    //     }
+    // })
+    location.href="http://localhost:8080/lol/orderplace.html";
 })
 //取消
 $("#listShopCart").on("click",".goodscheck", function () {

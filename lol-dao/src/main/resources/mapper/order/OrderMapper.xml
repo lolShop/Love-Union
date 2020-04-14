@@ -42,8 +42,24 @@
     </select>
 
     <insert id="placeOrder" parameterType="edu.nf.lol.order.entity.OrderInfo">
-        insert into order_info(order_id, order_static_id, address_id, user_id,  payment_money, order_remarks)
-        values (#{orderId},1000,1001,#{user.userId},#{paymentMoney},#{orderRemarks})
+        insert into order_info(order_id, order_static_id, address_id, user_id, preferential_amount, payment_money, order_remarks)
+        values (#{orderId},#{orderStatic.staticId},#{address.addressId},#{user.userId},0.00,#{paymentMoney},#{orderRemarks})
     </insert>
+
+    <update id="updateOrderStaticOne" parameterType="edu.nf.lol.order.entity.OrderInfo">
+        update order_info set order_static_id = #{orderStatic.staticId} where order_id = #{orderId}
+    </update>
+
+    <select id="getOrderPrice" resultType="java.math.BigDecimal" parameterType="java.lang.String">
+        select payment_money from order_info where order_id = #{orderId};
+    </select>
+    
+    <insert id="addOrderDetails" parameterType="edu.nf.lol.order.entity.OrderDetails">
+        insert into order_details(order_id, good_id, good_number, specs_id) values (#{orderInfo.orderId},#{product.productId},#{goodNumber},#{productSpecs.specsId})
+    </insert>
+
+    <delete id="emptyCart" >
+        delete from shop_cart where shop_state=1;
+    </delete>
 
 </mapper>

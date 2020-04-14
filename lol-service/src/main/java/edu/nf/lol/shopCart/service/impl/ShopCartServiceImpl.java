@@ -62,5 +62,13 @@ public class ShopCartServiceImpl implements ShopCartService {
         shopCartDao.settlement(uid);
     }
 
+    @Override
+    public ShopCart findShopCart(Integer specId) {
+        return shopCartDao.findShopCart(specId);
+    }
 
+    @Override
+    public void addShopCart(ShopCart shopCart) {
+        shopCartDao.addShopCart(shopCart);
+    }
 }
