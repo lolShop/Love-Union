@@ -32,11 +32,9 @@ body{
 /*}*/
 
 .c-centent{
-	height: 657px;
+	height: 100%;
 	width: 100%;
-	background-color: pink;
 	margin: auto;
-    background-image: url(../image/register/register-bg.jpg);
     position: relative;
 	/*padding: 50px 20px;*/
 }
@@ -45,12 +43,12 @@ body{
     width: 392px;
     height: 123px;
     position: absolute;
-    bottom: 290px;
+    bottom: 30px;
     left: 50px;
 }
 
 .c-title h1{
-    color: #e3eaef;
+    color: #fff;
     font-size: 55px;
 }
 
@@ -62,10 +60,11 @@ body{
 
 /* 注册窗体的style */
 .c-register{
-	height: 100%;
-	width: 360px;
-	margin: auto 0;
-	background-color: #fff;
+    height:100%;
+    width:360px;
+    background-color:#fff;
+    position:absolute;
+    right: 0;
 }
 
 .f-right{
@@ -73,7 +72,7 @@ body{
 }
 
 .c-register-logo{
-    width: 100%;
+    /*width: 100%;*/
     height: 182px;
     background-color: #fff;
     padding-left: 30px;
@@ -114,10 +113,15 @@ body{
 
 a{
     text-decoration: none;
+    outline: none;
 }
 
 .login-link{
-	color: #f3bf19;
+	color: #fb160a;
+}
+
+.login-link:hover{
+    color: #fc544b;
 }
 
 .c-register-title {
@@ -262,9 +266,9 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, figure, form, h1, h2,
 }
 
 .ui-btn-secondary {
-    background-color: #fcedf2;
-    border: 1px solid #ffbee0;
-	color: #ffbee0;
+    background-color: #fb160a;
+    /*border: 1px solid #ffbee0;*/
+	color: #fff;
 }
 
 .register-form .mb30 {
@@ -293,7 +297,12 @@ blockquote, body, button, code, dd, div, dl, dt, fieldset, figure, form, h1, h2,
     color: #fff;
 }
 
-.ui-btn-primary, .ui-btn1 {
-    background-color: #f3bf19;
-    border: 1px solid #f3bf19;
+.ui-btn-primary {
+    background-color: #fb160a;
+    border: 1px solid #fb160a;
+}
+
+.ui-btn-primary:hover {
+    background-color: #fc544b;
+    border: 1px solid #fc544b;
 }

@@ -64,7 +64,7 @@ public class OrderController extends BaseController {
         orderInfo.setAddress(address);
         orderInfo.setUser(user);
         orderInfo.setOrderId(orderId);
-        orderInfo.setOrderStatic(orderStatic);
+        orderInfo.setOrderStatic(1);
 
         for (ShopCart shopCart : userShopCar) {
             BigDecimal promotion = shopCart.getProductSpecs().getPromotionPrice();
@@ -90,7 +90,7 @@ public class OrderController extends BaseController {
         orderInfo.setOrderId(session.getServletContext().getAttribute("orderId").toString());
         OrderStatic orderStatic = new OrderStatic();
         orderStatic.setStaticId(1001);
-        orderInfo.setOrderStatic(orderStatic);
+        orderInfo.setOrderStatic(1);
         orderService.updateOrderStaticOne(orderInfo);
         response.sendRedirect("http://localhost:8080/lol/myorder.html");
     }

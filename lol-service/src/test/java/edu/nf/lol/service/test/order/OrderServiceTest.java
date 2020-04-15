@@ -39,14 +39,12 @@ public class OrderServiceTest {
     @Test
     public void testPlaceOrder(){
         OrderInfo orderInfo = new OrderInfo();
-        OrderStatic orderStatic = new OrderStatic();
-        orderStatic.setStaticId(1000);
         User user = new User();
         user.setUserId(1001);
         Address address = new Address();
         address.setAddressId(1000);
         orderInfo.setOrderId("555");
-        orderInfo.setOrderStatic(orderStatic);
+        orderInfo.setOrderStatic(1);
         orderInfo.setUser(user);
         orderInfo.setAddress(address);
         orderInfo.setPreferentialAmount(new BigDecimal(10));
@@ -65,13 +63,13 @@ public class OrderServiceTest {
         for (ShopCart shopCart : orderDao.getUserShopCar(orderInfo.getUser().getUserId())) {
             OrderDetails orderDetails = new OrderDetails();
             orderDetails.setOrderInfo(orderInfo);
-            orderDetails.setGoodNumber(shopCart.getShopCount());
+            orderDetails.setProductCount(shopCart.getShopCount());
             ProductSpecs productSpecs = new ProductSpecs();
             productSpecs.setSpecsId(shopCart.getProductSpecs().getSpecsId());
             orderDetails.setProductSpecs(productSpecs);
             Product product = new Product();
             product.setProductId(shopCart.getProductSpecs().getProduct().getProductId());
-            orderDetails.setProduct(product);
+//            orderDetails.setProduct(product);
             orderDao.addOrderDetails(orderDetails);
         }
     }

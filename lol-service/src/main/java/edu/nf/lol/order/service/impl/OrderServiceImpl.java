@@ -57,13 +57,13 @@ public class OrderServiceImpl implements OrderService {
         for (ShopCart shopCart : orderDao.getUserShopCar(orderInfo.getUser().getUserId())) {
             OrderDetails orderDetails = new OrderDetails();
             orderDetails.setOrderInfo(orderInfo1);
-            orderDetails.setGoodNumber(shopCart.getShopCount());
+            orderDetails.setProductCount(shopCart.getShopCount());
             ProductSpecs productSpecs = new ProductSpecs();
             productSpecs.setSpecsId(shopCart.getProductSpecs().getSpecsId());
             orderDetails.setProductSpecs(productSpecs);
             Product product = new Product();
             product.setProductId(shopCart.getProductSpecs().getProduct().getProductId());
-            orderDetails.setProduct(product);
+//            orderDetails.setProduct(product);
             orderDao.addOrderDetails(orderDetails);
         }
         orderDao.emptyCart();

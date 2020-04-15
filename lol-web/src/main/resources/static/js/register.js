@@ -4,6 +4,7 @@ $(function(){
 })
 
 //获取验证码
+var deleteCodeTimer;
 function getVcode(){
 	$("#J_mobile_verifycode_btn").on("click", function(){
 		//如果在倒计时，获取验证码按钮不能点
@@ -22,45 +23,61 @@ function getVcode(){
 			data:{'userPhone':userPhone, "register":true},
 			success:function(result){
 				if(result.code == 404){
-					$("input[name='pvcode']").parent().next().children().text(result.message);
+					$("input[name='phone']").parent().next().children().text(result.message);
+					$("input[name='phone']").css("border-color", "rgb(236, 80, 66)");
 					return;
 				}
 				//开始倒计时
-				loseCode(userPhone);
+				showTime();
+				//设定十分钟后从session删除验证码
+				deleteCodeTimer = window.setInterval("removeSessionCode("+userPhone+")",1000*60*10);
 			}
 		})
 	})
 }
 
-//60秒后验证码失效，需要重新获得验证码
+//60秒倒计时
 var i = 60;
 var timer;
-function loseCode(userPhone){
-	//每隔1秒钟执行一次down()方法
-	timer = window.setInterval("down("+userPhone+")",1000);
+function showTime(){
+	//每隔1秒钟执行一次down()方法，这个倒计时的作用只是用于显示秒数，
+	timer = window.setInterval("down()",1000);
 }
 
 function down(userPhone){
 	if(i == 0){
 		$("#J_mobile_verifycode_btn").text("获取验证码");
+		//获取验证码样式改成可以点击
+		$('#J_mobile_verifycode_btn').addClass('ui-btn-secondary');
+		$('#J_mobile_verifycode_btn').removeClass('ui-btn-disable');
 		//清除timer
 		window.clearInterval(timer);
 		i = 60;
-		//将服务器保存的验证码删除，当前验证码失效
-		$.ajax({
-			url:'user/info/remove_code',
-			type:'post',
-			data:{"userPhone":userPhone},
-			success:function(result){
-				if(result.code != 200){
-					$("input[name='pvcode']").parent().next().children().text(result.message);
-				}
-			}
-		})
 	}else{
 		$("#J_mobile_verifycode_btn").text(i--+"秒后重试");
+		//获取验证码样式改成禁止点击
+		$('#J_mobile_verifycode_btn').addClass('ui-btn-disable');
+		$('#J_mobile_verifycode_btn').removeClass('ui-btn-secondary');
 	}
 }
+
+
+//这个方法作用是删除后台session中key为userPhone的属性
+function removeSessionCode(userPhone){
+	//将服务器保存的验证码删除，当前验证码失效
+	$.ajax({
+		url:'user/info/remove_code',
+		type:'post',
+		data:{"userPhone":userPhone},
+		success:function(result){
+			if(result.code != 200){
+				$("input[name='pvcode']").parent().next().children().text(result.message);
+			}
+			window.clearInterval(deleteCodeTimer);
+		}
+	})
+}
+
 //点击注册
 function clickRegister(){
 	$('#J_mobile_reg_button').on('click', function(){
