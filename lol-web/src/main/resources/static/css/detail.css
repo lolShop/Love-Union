@@ -773,6 +773,9 @@ strong{
     border: 2px solid #fff;
     cursor: pointer;
 }
+.comment-list .cent-ul .roll-list-box li.on, .roll-list-box li.on .simgbox {
+    border-color: #ffd92c;
+}
 .comment-list .cent-ul .roll-list-box li .simgbox {
     width: 100px;
     height: 100px;
@@ -791,4 +794,83 @@ strong{
     height: auto;
     max-height: 100%;
     max-width: 100%;
+}
+.lightbox {
+    margin-top: 10px;
+    width: 420px;
+    height: 420px;
+    background: #fafafa;
+    position: relative;
+    display: none;
+}
+.lightbox .lightbox-close {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: #fafafa;
+}
+.lightbox .lightbox-close i {
+    margin: 12px auto 0;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-position: -108px -224px;
+}
+.lightbox .cent-bimgbox {
+    margin: 10px auto;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+.lightbox .cent-bimgbox ul {
+    width: auto;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.lightbox .cent-bimgbox li {
+    float: left;
+    padding: 10px 0;
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+.lightbox .cent-bimgbox li img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    max-height: 400px;
+    max-width: 400px;
+}
+.lightbox .btn-arrow {
+    position: absolute;
+    top: 198px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+.lightbox .btn-prev {
+    left: -20px;
+    background-position: -55px -219px;
+}
+.lightbox .btn-next {
+    right: -20px;
+    background-position: 0 -219px;
+}
+.open{
+    display: block;
+}
+.off{
+    display: none;
 }

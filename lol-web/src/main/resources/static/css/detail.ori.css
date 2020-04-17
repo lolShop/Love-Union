@@ -1,5 +1,5 @@
 @charset "gb2312";
-.ico-detail{background:url(../images/detail/ico-detail.png) no-repeat;}
+.ico-detail{background:url(../image/detail/ico-detail.png) no-repeat;}
 .comm-tit{margin:20px 0 40px;}
 .product-intro{padding:30px 0 35px;width:1280px;min-height:540px;height:auto;background:#fff;}
 
@@ -8,7 +8,7 @@
 .product-preview .good-imgs{position:relative;width:460px;height:440px;overflow:hidden;}
 .product-preview .good-imgs ul li{width:460px;height:440px;display:none;}
 .product-preview .good-imgs ul li.picshow{display:block;}
-.product-preview .product-image{cursor:url(../images/detail/zoomin.png),pointer;width:458px;height:438px;border:1px solid #f2f2f2;}
+.product-preview .product-image{cursor:url(../image/detail/zoomin.png),pointer;width:458px;height:438px;border:1px solid #f2f2f2;}
 .product-preview .product-image img{display:block;width:458px;height:438px;}
 .product-preview .MagicZoomBigImageCont.inner-zoom {cursor:url("../images/detail/zoomout.png"),pointer;background:#fff}
 .product-preview .MagicZoomBigImageCont.inner-zoom img {max-width:none}
@@ -222,14 +222,14 @@
 /*pord-contact*/
 .pord-contact{height:auto;padding-bottom:100px;}
 .pord-contact dl{margin: 0 0 24px 40px;line-height:1;font-size:14px;}
-.pord-contact dt{margin-bottom:12px;padding-left:25px;color: #1e1e1e;background:url(../images/detail/contact.png) no-repeat;height:16px;line-height:16px;background-position:0 0;}
+.pord-contact dt{margin-bottom:12px;padding-left:25px;color: #1e1e1e;background:url(../image/detail/contact.png) no-repeat;height:16px;line-height:16px;background-position:0 0;}
 .pord-contact .contact-company dt{background-position:0 0;}
 .pord-contact .contact-method dt{background-position:0 -16px;}
 .pord-contact .contact-time dt{background-position:0 -33px;}
 .pord-contact dd {color:#777;line-height:24px;}
 .pord-contact .contact-service {padding-top: 24px;}
 .pord-contact .contact-service a{display: block;width: 65px;height: 28px;line-height: 28px;border: 1px solid #ededed;border-radius: 2px;color: #777;padding-left: 28px;
-    background:url(../images/detail/icon-qq.png) 8px center no-repeat;}
+    background:url(../image/detail/icon-qq.png) 8px center no-repeat;}
 .pord-contact .contact-service a:hover{text-decoration:none;}
 .pord-contact .concat-notice{color: #f15757;}
 .pord-contact .contact-company .btn-licence{margin-bottom:10px;display:block;width:100px;height:28px;line-height:28px;border:1px solid #ededed;border-radius:2px;color: #777;text-align:center;}
@@ -242,7 +242,7 @@
 .pop-coupon .popup-main{padding:24px 43px;}
 .pop-coupon .popup-main h4{width:100%;text-align:center;font-size:24px;color:#333;line-height:24px;}
 .pop-coupon .coupon-list{margin-top:24px;width:100%;height:auto;}
-.pop-coupon .coupon-list li{margin-bottom:10px;width:394px;height:68px;background:url(../images/detail/ico-detail.png) no-repeat;background-position:-2px -30px;}
+.pop-coupon .coupon-list li{margin-bottom:10px;width:394px;height:68px;background:url(../image/detail/ico-detail.png) no-repeat;background-position:-2px -30px;}
 .pop-coupon .coupon-list li .coupon-num{width:100px;line-height:68px;font-size:30px;color:#fff;font-weight:bold;text-align:center;}
 .coupon-list li .coupon-detail{margin-top:16px;width:215px;text-indent:10px;}
 .coupon-list li .coupon-intro{width:100%;text-align:left;line-height:14px;font-size:14px;color:#333;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
@@ -254,7 +254,7 @@
 .page .p_prev{right:110px!important;}
 .page .p-f{padding-right:15px;padding-left:30px!important;}
 
-/*视频播放*/
+/*�?�?????*/
 .video-box{position:relative;z-index:10;width:458px;height:438px;}
 .video-box .video{position:absolute;top:0;left:0;right:0;bottom:0;z-index:10;width:100%;height:438px;}
 .shop-videobox{width:800px; height:auto; margin:20px auto 0;}
@@ -264,7 +264,7 @@
 .ct-pop{width:640px;height:auto;background:#fff;display:none;}
 .ct-pop .ct-pop-main{padding:52px 40px 60px;position:relative;}
 .ct-pop .ct-pop-tit{font-size:24px;color:#333;text-align:center;}
-.ct-pop .ct-pop-close{position:absolute;top:40px;right:40px;z-index:1;width:20px;height:20px;background: url(../images/detail/ico-detail.png) no-repeat;background-position:-175px -2px;display:block;text-indent:-9999em;}
+.ct-pop .ct-pop-close{position:absolute;top:40px;right:40px;z-index:1;width:20px;height:20px;background: url(../image/detail/ico-detail.png) no-repeat;background-position:-175px -2px;display:block;text-indent:-9999em;}
 .ct-pop .ct-pop-cont{width:100%;margin:30px auto 0;}
 .ct-pop .ctpop-ipt{margin:0 auto 15px;width:258px;height:38px;border:1px solid #eee;position:relative;overflow:hidden;}
 .ct-pop .ctpop-ipt .ctpop-input{width:254px;background:#fff;border:none;padding-left:4px;height:38px;line-height:38px;outline:none;font-size:14px;vertical-align:middle;}

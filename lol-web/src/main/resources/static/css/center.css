@@ -428,6 +428,18 @@
 .fhbtn{background:#f8f8f8;border:1px solid #eee;display:block;height:54px;line-height:54px;color:#333;text-align:center;}
 .fhbtn:hover{color:#f3bf19;}
 .notice_cont img{margin:0 auto;display:block;}
+.btn-sc {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
 
 
 

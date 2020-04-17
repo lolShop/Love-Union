@@ -39,3 +39,5 @@ spring:
       rest:
         uris: http://127.0.0.1:9200
         connection-timeout: 2s
+
+

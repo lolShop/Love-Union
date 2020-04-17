@@ -31,4 +31,5 @@ public class Comment {
     private CommentPhoto commentPhoto;
     private Product product;
     private List<CommentPhoto> commentPhotos;
+    private boolean comState;
 }

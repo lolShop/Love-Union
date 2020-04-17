@@ -10,6 +10,7 @@
         <result property="delivery" column="delivery"/>
         <result property="service" column="service"/>
         <result property="content" column="content"/>
+        <result property="comState" column="com_state"/>
         <result property="comDate" column="com_date"/>
         <result property="likeNum" column="like_num"/>
         <result property="parentId" column="parent_id"/>
@@ -46,15 +47,18 @@
     </resultMap>
 
     <insert id="publishComment" parameterType="edu.nf.lol.comment.entity.Comment" useGeneratedKeys="true" keyProperty="comId"  >
-        insert into comment_info(user_id,details_id,description,content) values (#{userId},#{detailsId},#{description},#{content})
+        insert into comment_info(user_id,details_id,description,content,com_state) values (#{userId},#{detailsId},#{description},#{content},#{comState})
     </insert>
     <select id="listComment" resultMap="commentMap">
-        select com.com_id,com.content,com.description,com.com_date,u.user_name,u.user_photo,p.product_id from
+        select com.com_id,com.content,com.description,com.com_date,com.com_state,u.user_name,u.user_photo,p.product_id from
         comment_info com,user_info u,order_details od,product_info p where com.user_id=u.user_id and
         od.details_id=com.details_id and od.good_id=p.product_id and p.product_id=#{param3} order by com.com_date desc
     </select>
     <select id="fs" resultType="java.lang.Double">
         select avg(description)  from comment_info com,user_info u,order_details od,product_info p where com.user_id=u.user_id and od.details_id=com.details_id and od.good_id=p.product_id and p.product_id=#{pid}
+    </select>
+    <select id="findComment" resultMap="commentMap" parameterType="integer">
+        select c.description,c.content,p.product_main_image,p.product_name from comment_info c,order_details od,product_info p where od.details_id=c.details_id and od.good_id=p.product_id and c.com_id=#{comId}
     </select>
 
 

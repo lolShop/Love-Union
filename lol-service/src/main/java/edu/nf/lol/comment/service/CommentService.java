@@ -15,4 +15,5 @@ public interface CommentService {
     Integer publishComment(Comment comment);
     PageInfo<Comment> listComment(Integer pageNum,Integer pageSize,Integer pid);
     Double fs(Integer pid);
+    Comment findComment(Integer comId);
 }

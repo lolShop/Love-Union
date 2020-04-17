@@ -24,5 +24,17 @@ public interface CommentDao {
      */
     List<Comment> listComment(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize,Integer pid);
 
+    /**
+     * 星级显示
+     * @param pid
+     * @return
+     */
     double fs(Integer pid);
+
+    /**
+     * 查看评论
+     * @param comId
+     * @return
+     */
+    Comment findComment(Integer comId);
 }

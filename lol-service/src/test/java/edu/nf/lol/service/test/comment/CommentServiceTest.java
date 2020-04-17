@@ -50,7 +50,9 @@ public class CommentServiceTest {
                 System.out.println(cp.getPhoto());
             }
         }
-
-
+    }
+    @Test
+    public void testFindComment(){
+        System.out.println(commentService.findComment(1020).getContent());
     }
 }

@@ -38,5 +38,10 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.fs(pid);
     }
 
+    @Override
+    public Comment findComment(Integer comId) {
+        return commentDao.findComment(comId);
+    }
+
 
 }
