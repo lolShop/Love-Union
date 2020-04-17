@@ -45,7 +45,7 @@ public class UserOrderTest {
         orderInfo.setUser(user);
         OrderStatic orderStatic = new OrderStatic();
         orderStatic.setStaticName("'待付款'");
-        orderInfo.setOrderStatic(orderStatic);
+        orderInfo.setOrderStatic(1);
         PageInfo<OrderInfo> pageInfo = userOrderService.queryOrderByStatus(orderInfo, 1, 2);
         List<OrderInfo> orders = pageInfo.getList();
         System.out.println(orders.get(0).getOrderId());
@@ -57,7 +57,7 @@ public class UserOrderTest {
         OrderInfo info = new OrderInfo();
         OrderStatic orderStatic = new OrderStatic();
         orderStatic.setStaticId(1000);
-        info.setOrderStatic(orderStatic);
+        info.setOrderStatic(1);
         info.setOrderId("LOL-20200317171025847-841");
         userOrderService.updateOrderStatus(info);
     }
@@ -67,6 +67,14 @@ public class UserOrderTest {
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setOrderId("CF-20200304224555352-801");
         userOrderService.deleteOrder(orderInfo);
+    }
+
+    @Test
+    void testQueryOrderInfo(){
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setOrderId("LOL-20200317170538889-105");
+        OrderInfo order = userOrderService.queryOrderInfo(orderInfo);
+        System.out.println(order.getDetails());
     }
 
 }

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.lol.user.dao.UserOrderDao">
+
+    <resultMap id="orderDetailsMap" type="edu.nf.lol.order.entity.OrderDetails">
+        <id property="detailsId" column="details_id"/>
+        <result property="productCount" column="product_count"/>
+<!--        <association property="orderInfo" resultMap="orderInfoMap"/>-->
+        <association property="productSpecs" resultMap="specsMap"/>
+    </resultMap>
+
+    <resultMap id="orderInfoMap" type="edu.nf.lol.order.entity.OrderInfo">
+        <id property="orderId" column="order_id"/>
+        <result property="preferentialAmount" column="preferential_amount"/>
+        <result property="paymentMoney" column="payment_money"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="paymentTime" column="payment_time"/>
+        <result property="deliveryTime" column="delivery_time"/>
+        <result property="receivingTime" column="receiving_time"/>
+        <result property="orderStatic" column="order_static"/>
+        <result property="orderRemarks" column="order_remarks"/>
+        <association property="user" resultMap="userMap"/>
+        <association property="address" resultMap="addressMap"/>
+    </resultMap>
+    
+    <resultMap id="specsMap" type="edu.nf.lol.product.entity.ProductSpecs">
+        <id property="specsId" column="specs_id"/>
+        <result property="productSpecs" column="product_specs"/>
+        <result property="specsPrice" column="specs_price"/>
+        <result property="promotionPrice" column="promotion_price"/>
+        <result property="specsStock" column="specs_stock"/>
+        <result property="specsCreateTime" column="specs_create_time"/>
+        <result property="specsUpdateTime" column="specs_update_time"/>
+        <result property="specsState" column="specs_state"/>
+        <association property="product" resultMap="productMap"/>
+    </resultMap>
+
+    <resultMap id="productMap" type="edu.nf.lol.product.entity.Product">
+        <id  property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productCreateTime" column="product_create_time"/>
+        <result property="productUpdateTime" column="product_update_time"/>
+        <result property="productMainImage" column="product_main_image"/>
+        <result property="productParticular" column="product_particular"/>
+        <result property="productWeight" column=" product_weight"/>
+        <result property="productAttribute" column="product_attribute"/>
+        <result property="productState" column="product_state"/>
+
+    </resultMap>
+    
+    <resultMap id="userMap" type="edu.nf.lol.user.entity.User">
+        <id property="userId" column="user_id"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="password" column="user_pwd"/>
+        <result property="userName" column="user_name"/>
+        <result property="photo" column="photo"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <resultMap id="addressMap" type="edu.nf.lol.user.entity.Address">
+        <id property="addressId" column="address_id"/>
+        <result property="takeName" column="take_name"/>
+        <result property="takePhone" column="take_phone"/>
+        <result property="takeAddress" column="take_address"/>
+        <result property="postcode" column="postcode"/>
+        <result property="status" column="status"/>
+        <association property="user" resultMap="userMap"/>
+    </resultMap>
+
+    <!-- 查询出订单id，下单时间，状态 -->
+    <select id="queryUsersOrder" resultMap="orderInfoMap" parameterType="edu.nf.lol.user.entity.User">
+        select info.order_id, info.order_time, info.order_static, address.take_name, address.take_phone, take_address
+        from order_info info
+        left join user_info users on info.user_id = users.user_id
+        join address_info address on info.address_id = address.address_id
+        where users.user_id = #{user.userId}
+    </select>
+
+    <!-- 根据状态查询出订单id，下单时间，状态id -->
+    <select id="queryOrderByStatus" parameterType="edu.nf.lol.order.entity.OrderInfo" resultMap="orderInfoMap">
+        select info.order_id, info.order_time, info.order_static, address.take_name, address.take_phone, take_address
+        from order_info info
+        left join user_info users on info.user_id = users.user_id
+        join address_info address on info.address_id = address.address_id
+        where info.order_static = #{orderInfo.orderStatic} and users.user_id = #{orderInfo.user.userId}
+    </select>
+
+    <!-- 根据提供的订单id查询出所有的商品项 -->
+    <select id="queryOrderItem" resultMap="orderDetailsMap" parameterType="java.lang.String">
+        select specs.specs_price, specs.promotion_price, specs.product_specs, product.product_id, product.product_main_image, product.product_name, details.product_count
+        from order_details details
+        left join product_specs specs on details.specs_id = specs.specs_id
+        left join product_info product on specs.product_id = product.product_id
+        where details.order_id = #{orderId}
+    </select>
+
+    <!-- 修改订单状态 -->
+    <update id="updateOrderStatus" parameterType="edu.nf.lol.order.entity.OrderInfo">
+        update order_info set order_static = #{orderStatic} where order_id = #{orderId}
+    </update>
+
+    <!-- 删除订单信息 -->
+    <delete id="deleteOrderInfo" parameterType="edu.nf.lol.order.entity.OrderInfo">
+        delete from order_info where order_id = #{orderId}
+    </delete>
+
+    <!-- 删除购物项信息 -->
+    <delete id="deleteOrderDetails" parameterType="edu.nf.lol.order.entity.OrderInfo">
+        delete from order_details where order_id = #{orderId}
+    </delete>
+
+    <!-- 查询订单详情 -->
+    <select id="queryOrderInfo" parameterType="edu.nf.lol.order.entity.OrderInfo" resultMap="orderInfoMap">
+        select info.order_id, info.order_time, order_static, address.take_name, address.take_phone, address.take_address, info.order_remarks
+        from order_info info
+        left join user_info users on info.user_id = users.user_id
+        join address_info address on info.address_id = address.address_id
+        where info.order_id = #{orderId}
+    </select>
+
+</mapper>

@@ -14,4 +14,7 @@
     <select id="listProductTypeAll" resultMap="productTypeMap">
         SELECT product_type_id,parent_id,product_type_name,product_state FROM  product_type
     </select>
+    <select id="adminProductTypeAll" resultMap="productTypeMap" resultType="edu.nf.lol.product.entity.ProductType">
+        select * from product_type where parent_id = #{parentId}
+    </select>
 </mapper>

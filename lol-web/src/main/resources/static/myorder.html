@@ -1,173 +1,194 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>我的订单</title>
-		<link rel="stylesheet" href="css/allcss.css" />
-		<link rel="stylesheet" href="css/myorder.css"/>
-		<link rel="stylesheet" href="css/pagination.css" />
-		<script src="js/jquery-min.js"></script>
-		<script src="js/jquery.pagination.js"></script>
-	</head>
-	<body style="margin: 0; background-color:#f5f5f5;">
-		<div style="width: 100%; height: 156px; background-color: black;"></div>
-		
-		<div class="center mid">
-		    <!-- center-none S -->
-		    <div class="center-main clearfix">
-		        <!-- 左边的菜单栏 -->
-				<div class="f1 center-leftbar">
-					<p class="cleftbar-tit"><b>个人中心</b></p>
-					<ul class="cleftbar-ul">
-						<li class="cleftbar-li myorder">
-							<a href="myorder.html" class="cleftbar-link" title="我的订单" style="color: #f3bf19;">我的订单</a>
+<head>
+	<meta charset="utf-8">
+	<title>我的订单</title>
+	<link rel="stylesheet" href="css/allcss.css" />
+	<link rel="stylesheet" href="css/myorder.css"/>
+	<link rel="stylesheet" href="css/pagination.css" />
+	<script src="js/jquery-min.js"></script>
+	<script src="js/jquery.pagination.js"></script>
+</head>
+<body style="margin: 0; background-color:#f5f5f5;">
+<div class="head_top"></div>
+
+<div class="center mid">
+	<!-- center-none S -->
+	<div class="center-main clearfix">
+		<!-- 左边的菜单栏 -->
+		<div class="f1 center-leftbar">
+			<p class="cleftbar-tit"><b>个人中心</b></p>
+			<ul class="cleftbar-ul">
+				<li class="cleftbar-li myorder">
+					<a href="myorder.html" class="cleftbar-link" title="我的订单" style="color: #f3bf19;">我的订单</a>
+				</li>
+				<li class="cleftbar-li coupon">
+					<a href="#" class="cleftbar-link" title="优惠卡券">优惠卡券</a>
+				</li>
+				<li class="cleftbar-li address">
+					<a href="address.html" class="cleftbar-link" title="收货地址">收货地址</a>
+				</li>
+				<li class="cleftbar-li collect">
+					<a href="collect.html" class="cleftbar-link" title="我的收藏">我的收藏</a>
+				</li>
+				<li class="cleftbar-li personal">
+					<a href="personal.html" class="cleftbar-link" title="个人信息">个人信息</a>
+				</li>
+				<li class="cleftbar-li receive">
+					<a href="#" class="cleftbar-link" title="领取中心">领取中心</a>
+				</li>
+				<li class="cleftbar-li sub">
+					<a href="#" class="cleftbar-link" title="订阅中心">订阅中心</a>
+				</li>
+				<li class="cleftbar-li notice">
+					<a href="#" class="cleftbar-link" title="商城公告">商城公告</a>
+				</li>
+			</ul>
+			<!-- 实现经过标签后改变颜色 -->
+			<script>
+				$(function(){
+					$(".cleftbar-ul li").on("mouseover", function(){
+						$($(this).children()[0]).css("color", "#f3bf19");
+					})
+					$(".cleftbar-ul li").on("mouseleave", function(){
+						$($(this).children()[0]).css("color", "#666");
+						if($($(this).children()[0]).attr("title") == "我的订单"){
+							$($(this).children()[0]).css("color", "#f3bf19");
+						}
+					})
+				})
+			</script>
+		</div>
+		<!-- 右边的主体 -->
+		<div class="f1 conter-cont">
+			<div class="ct-tit clearfix">
+				<h2 class="f1 mr35">我的订单</h2>
+				<!-- <div class="f1 sorting-filter">
+                    <div class="sfbox">
+                        <span>全部游戏</span>
+                        <i class="ico-center ico-sarr"></i>
+                    </div>
+                    <ul class="sortinglist" id="dj_collect_info">
+
+                    </ul>
+                </div> -->
+			</div>
+			<!-- 当前暂无订单 -->
+			<!-- <div class="center-none">
+                <i class="ico-none"></i>
+                <p class="none-tip">您当前暂无订单哦！</p>
+            </div> -->
+			<!-- 导航菜单 -->
+			<div class="ct-order">
+				<div class="ct-orderhead clearfix">
+					<ul class="f1 ct-ordertab">
+						<li id="1" class="current">
+							<span>所有订单</span>
+							<span class="ico-point allorder">0</span>
 						</li>
-						<li class="cleftbar-li coupon">
-							<a href="#" class="cleftbar-link" title="优惠卡券">优惠卡券</a>
+						<li id="2">
+							<span>待付款</span>
+							<!-- 右上角数字 -->
+<!--							<span class="ico-point topay" style="display: inline;">2</span>-->
 						</li>
-						<li class="cleftbar-li address">
-							<a href="address.html" class="cleftbar-link" title="收货地址">收货地址</a>
+						<li id="3">
+							<span>待发货</span>
+							<span class="ico-point tosend"></span>
 						</li>
-						<li class="cleftbar-li collect">
-							<a href="collect.html" class="cleftbar-link" title="我的收藏">我的收藏</a>
+						<li id="4">
+							<span>待收货</span>
+							<span class="ico-point toreceive"></span>
 						</li>
-						<li class="cleftbar-li personal">
-							<a href="personal.html" class="cleftbar-link" title="个人信息">个人信息</a>
-						</li>
-						<li class="cleftbar-li receive">
-							<a href="#" class="cleftbar-link" title="领取中心">领取中心</a>
-						</li>
-						<li class="cleftbar-li sub">
-							<a href="#" class="cleftbar-link" title="订阅中心">订阅中心</a>
-						</li>
-						<li class="cleftbar-li notice">
-							<a href="#" class="cleftbar-link" title="商城公告">商城公告</a>
+						<li id="5">
+							<span>待评价</span>
+							<span class="ico-point tocomment"></span>
 						</li>
 					</ul>
-					<!-- 实现经过标签后改变颜色 -->
-					<script>
-						$(function(){
-							$(".cleftbar-ul li").on("mouseover", function(){
-								$($(this).children()[0]).css("color", "#f3bf19");
-							})
-							$(".cleftbar-ul li").on("mouseleave", function(){
-								$($(this).children()[0]).css("color", "#666");
-								if($($(this).children()[0]).attr("title") == "我的订单"){
-									$($(this).children()[0]).css("color", "#f3bf19");
-								}
-							})
-						})
-					</script>
+					<div class="fr order-ipt">
+						<input class="order-input" type="text" value="" placeholder="输入商品名称或订单号搜索" autocomplete="off" name="name">
+						<a href="javascript:;" class="order-search" onclick="searchOrder(this)" title="搜索"><i class="ico-center ico-search"></i></a>
+					</div>
 				</div>
-				<!-- 右边的主体 -->
-				<div class="f1 conter-cont">
-					<div class="ct-tit clearfix">
-						<h2 class="f1 mr35">我的订单</h2>
-						<!-- <div class="f1 sorting-filter">
-							<div class="sfbox">
-								<span>全部游戏</span>
-								<i class="ico-center ico-sarr"></i>
-							</div>
-							<ul class="sortinglist" id="dj_collect_info">
-		
-							</ul>
-						</div> -->
+				<!-- 当没有订单的时候 -->
+				<!-- <div id="con_order" class="order-tabl">
+                    <div id="dj1">
+                        <div class="center-none">
+                            <i class="ico-none"></i>
+                            <p class="none-tip">您当前暂无 待付款 订单哦！</p>
+                        </div>
+                        <div class="center-none">
+                            <i class="ico-none"></i>
+                            <p class="none-tip">您当前暂无 待发货 订单哦！</p>
+                        </div>
+                        <div class="center-none">
+                            <i class="ico-none"></i>
+                            <p class="none-tip">您当前暂无 待收货 订单哦！</p>
+                        </div>
+                    </div>
+                </div> -->
+				<div id="con_order" class="order-tabl">
+					<div id="dj1">
+						<div id="dj1Page"></div>
 					</div>
-					<!-- 当前暂无订单 -->
-					<!-- <div class="center-none">
-						<i class="ico-none"></i>
-						<p class="none-tip">您当前暂无订单哦！</p>                  
-					</div> -->
-					<!-- 导航菜单 -->
-					<div class="ct-order">
-						<div class="ct-orderhead clearfix">
-							<ul class="f1 ct-ordertab">
-								<li id="1" class="current">
-									<span>所有订单</span>
-									<span class="ico-point allorder">0</span>
-								</li>
-								<li id="2">
-									<span>待付款</span>
-									<!-- 右上角数字 -->
-									<span class="ico-point topay" style="display: inline;">2</span>
-								</li>
-								<li id="3">
-									<span>待发货</span>
-									<span class="ico-point tosend"></span>
-								</li>
-								<li id="4">
-									<span>待收货</span>
-									<span class="ico-point toreceive"></span>
-								</li>
-								<li id="5">
-									<span>待评价</span>
-									<span class="ico-point tocomment"></span>
-								</li>
-							</ul>
-							<div class="fr order-ipt">
-								<input class="order-input" type="text" value="" placeholder="输入商品名称或订单号搜索" autocomplete="off" name="name">
-								<a href="javascript:;" class="order-search" onclick="searchOrder(this)" title="搜索"><i class="ico-center ico-search"></i></a>
-							</div>
-						</div>
-						<!-- 当没有订单的时候 -->
-						<!-- <div id="con_order" class="order-tabl">
-							<div id="dj1">
-								<div class="center-none">
-									<i class="ico-none"></i>
-									<p class="none-tip">您当前暂无 待付款 订单哦！</p>
-								</div>
-								<div class="center-none">
-									<i class="ico-none"></i>
-									<p class="none-tip">您当前暂无 待发货 订单哦！</p>
-								</div>
-								<div class="center-none">
-									<i class="ico-none"></i>
-									<p class="none-tip">您当前暂无 待收货 订单哦！</p>
-								</div>
-							</div>
-						</div> -->
-						<div id="con_order" class="order-tabl">
-							<div id="dj1">
-								<div id="dj1Page"></div>
-							</div>
-							<div id="dj2" style="display: none;">
-								<div id="dj2Page"></div>
-							</div>
-							<div id="dj3" style="display: none;">
-								<div id="dj3Page"></div>
-							</div>
-							<div id="dj4" style="display: none;">
-								<div id="dj4Page"></div>
-							</div>
-							<div id="dj5" style="display: none;">
-								<div id="dj5Page"></div>
-							</div>
-						</div>
+					<div id="dj2" style="display: none;">
+						<div id="dj2Page"></div>
 					</div>
-					<script>
-						$(function(){
-							//点击哪个菜单，就变色
-							$('.ct-ordertab li').on('click', function(){
-								$('.ct-ordertab li').removeClass('current');
-								$(this).addClass('current');
-							});
-							
-							//点击哪个菜单，就出现相应内容
-							$('.ct-ordertab li').on('click', function(){
-								//获取当前点击的li元素在ul中的索引
-								var index = $('.ct-ordertab li').index(this);
-								//点击的li对应的div的id
-								var id = 'dj'+(index+1);
-								//所有的div
-								var all = $('#con_order').children();
-								all.css('display', 'none');
-								$('#'+id).css('display', 'block');
-							});
-						})
-					</script>
+					<div id="dj3" style="display: none;">
+						<div id="dj3Page"></div>
+					</div>
+					<div id="dj4" style="display: none;">
+						<div id="dj4Page"></div>
+					</div>
+					<div id="dj5" style="display: none;">
+						<div id="dj5Page"></div>
+					</div>
 				</div>
 			</div>
+			<script>
+				$(function(){
+					//点击哪个菜单，就变色
+					$('.ct-ordertab li').on('click', function(){
+						$('.ct-ordertab li').removeClass('current');
+						$(this).addClass('current');
+					});
+
+					//点击哪个菜单，就出现相应内容
+					$('.ct-ordertab li').on('click', function(){
+						//获取当前点击的li元素在ul中的索引
+						var index = $('.ct-ordertab li').index(this);
+						//点击的li对应的div的id
+						var id = 'dj'+(index+1);
+						//所有的div
+						var all = $('#con_order').children();
+						all.css('display', 'none');
+						$('#'+id).css('display', 'block');
+					});
+				})
+			</script>
 		</div>
-		<script src="js/myorder.js"></script>
-	</body>
+	</div>
+</div>
+<div class="bottom"></div>
+<!-- 弹窗 -->
+<div id="confirm_panel" data-milodialog="1" role="dialog" tabindex="-1" style="display: none; visibility: visible; position: absolute; z-index: 9999; left: 50%; top: 251px; margin-top: 0px; margin-left: -190px;">
+	<div class="dj_pop">
+		<div class="dj_pop_alert">
+			<div class="dj_hd">
+				<h4>温馨提示</h4>
+				<a href="javascript:0;" title="关闭" class="dj_bt_close">
+					<s></s>
+				</a>
+			</div>
+			<div class="dj_bd pb20 clearfix">
+				<p id="alert_cont">你确认要删除该订单吗?</p>
+				<a href="javascript:;" title="确认" class="dj_bt_ok">确认</a>
+				<a href="javascript:;" title="取消" class="dj_bt_cancel">取消</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 弹窗弹出后周围显示的暗黑色 -->
+<div id="_overlay_" style="background-color: rgb(0, 0, 0); border-top: 1px solid rgb(0, 0, 0); position: absolute; height: 2292px; z-index: 9998; width: 100%; left: 0px; top: 0px; opacity: 0.6; display: none;"></div>
+<script src="js/myorder.js"></script>
+</body>
 </html>

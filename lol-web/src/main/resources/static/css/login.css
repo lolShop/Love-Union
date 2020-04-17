@@ -1,0 +1,17 @@
+.c-centent{
+    background-image: url("../image/register/login-bg.jpg");
+}
+
+.ui-form-item-group-with-gap{
+    padding-bottom: 22px;
+}
+
+.c-login-switch{
+    font-size: 14px;
+    color: #333;
+    line-height: 14px;
+}
+
+.c-login-switch:hover{
+    color: #fb160a;
+}

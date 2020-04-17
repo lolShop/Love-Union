@@ -3,150 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <title>订单详情</title>
+    <link rel="stylesheet" href="css/myorder.css">
     <link rel="stylesheet" href="css/orderdetail.css">
+    <link rel="stylesheet" href="css/allcss.css">
+    <script src="js/jquery-min.js"></script>
 </head>
 <body>
-<div class="fl center-cont">
-    <h2 class="ct-tit">订单详情</h2>
-    <div id="dj1">    <!-- 进度显示 -->
-        <div class="order-probox">
-            <div class="loading" style="display:none;"><span class="loadmsg">loading...</span></div>
+<div class="head_top"></div>
 
-            <div class="order-process clearfix">
-                <div class="fl pro-status pro-finish">
-                    <i class="ico-center or-submit"></i>
-                    <p class="pro-name">提交订单</p>
-                </div>
-                <div class="fl probarbox">
-                    <span class="probar" style="width:50%;"></span>
-                </div>
-                <div class="fl pro-status">
-                    <i class="ico-center or-pay"></i>
-                    <p class="pro-name">付款成功</p>
-                </div>
-                <div class="fl probarbox">
-                    <span class="probar"></span>
-                </div>
-                <div class="fl pro-status">
-                    <i class="ico-center or-delivery"></i>
-                    <p class="pro-name"> 仓库发货 </p>
-                </div>
-                <div class="fl probarbox">
-                    <span class="probar"></span>
-                </div>
-                <div class="fl pro-status mr0">
-                    <i class="ico-center or-receipt"></i>
-                    <p class="pro-name">确认收货</p>
-                </div>
-            </div>
-            <!-- 等待付款 -->
-            <div class="pro-infobox" style="padding-bottom: 70px">
-                <div class="pro-info clearfix">
-                    <i class="ico-center ico-exmark"></i>
-                    <span>当前状态：等待付款</span>
-                </div>
-                <p class="pro-tips">您还有<span class="yellow" id="leftTime">1小时20分40秒</span>进行付款，若未及时付款，订单将自动取消</p>
-                <a href="javascript:;" id="onlineService1" class="ce-btn btn-pay" target="_blank" title="联系客服">联系客服</a>
-                <a href="javascript:;" class="ce-btn btn-pay" title="立即付款">立即付款</a>
-                <a href="javascript:;" class="ce-btn btn-pay" title="取消订单">取消订单</a>
-
-            </div>
+<div class="center mid">
+    <!-- center-none S -->
+    <div class="center-main clearfix">
+        <!-- 左边的菜单栏 -->
+        <div class="f1 center-leftbar">
+            <p class="cleftbar-tit"><b>个人中心</b></p>
+            <ul class="cleftbar-ul">
+                <li class="cleftbar-li myorder">
+                    <a href="myorder.html" class="cleftbar-link" title="我的订单">我的订单</a>
+                </li>
+                <li class="cleftbar-li coupon">
+                    <a href="#" class="cleftbar-link" title="优惠卡券">优惠卡券</a>
+                </li>
+                <li class="cleftbar-li address">
+                    <a href="address.html" class="cleftbar-link" title="收货地址">收货地址</a>
+                </li>
+                <li class="cleftbar-li collect">
+                    <a href="collect.html" class="cleftbar-link" title="我的收藏">我的收藏</a>
+                </li>
+                <li class="cleftbar-li personal">
+                    <a href="personal.html" class="cleftbar-link" title="个人信息">个人信息</a>
+                </li>
+                <li class="cleftbar-li receive">
+                    <a href="#" class="cleftbar-link" title="领取中心">领取中心</a>
+                </li>
+                <li class="cleftbar-li sub">
+                    <a href="#" class="cleftbar-link" title="订阅中心">订阅中心</a>
+                </li>
+                <li class="cleftbar-li notice">
+                    <a href="#" class="cleftbar-link" title="商城公告">商城公告</a>
+                </li>
+            </ul>
+            <!-- 实现经过标签后改变颜色 -->
+            <script>
+                $(function(){
+                    $(".cleftbar-ul li").on("mouseover", function(){
+                        $($(this).children()[0]).css("color", "#f3bf19");
+                    })
+                    $(".cleftbar-ul li").on("mouseleave", function(){
+                        $($(this).children()[0]).css("color", "#666");
+                        if($($(this).children()[0]).attr("title") == "我的订单"){
+                            $($(this).children()[0]).css("color", "#f3bf19");
+                        }
+                    })
+                })
+            </script>
         </div>
-        <!-- 订单信息 -->
-        <div class="order-debox clearfix">
-            <div class="debox-tit">订单信息</div>
-<!--            <div class="loading" style="display:none;"><span class="loadmsg">loading...</span></div>-->
-            <div class="order-infobox">
-                <div class="orinfo-item">
-                    <span class="info-label">收货人：</span>
-                    <span class="cr333">杨涛</span>
-                </div>
-                <div class="orinfo-item">
-                    <span class="info-label">地址：</span>
-                    <span class="cr333">江西|赣州|宁都县 梅江镇文坊村</span>
-                </div>
-                <div class="orinfo-item">
-                    <span class="info-label">手机号码：</span>
-                    <span class="cr333">18296793262</span>
-                </div>
-                <div class="orinfo-item">
-                    <span class="info-label">支付方式：</span>
-                    <span class="cr333"></span>
-                </div>
-            </div>
-        </div>
-        <!-- 商品信息 -->
-        <div class="order-debox clearfix">
-            <div class="debox-tit">
-                <span class="wth600">商品信息</span>
-                <span>价格</span>
-                <span>数量</span>
-            </div>
-            <div class="order-goodlist">
-                <ul style="padding-left: 20px;">
-
-
-                    <li>
-                        <div class="fl or-goodinfo">
-
-                            <a href="javascript:;"   style="display: block;" class="fl or-goodimg" target="_blank">
-                                <img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/202001/20200102110657_67912.jpg" width="113" height="108" alt="商品图">
-                            </a>
-                            <div class="fl or-gooddet">
-                                <p class="or-goodname">
-                                    新春系列 提伯斯毛绒挂件盲盒
-                                </p>
-                                <p class="or-goodcolor">
-                                    颜色：彩色，                                 尺码：均码                             </p>
-                            </div>
-
+        <!-- 右边的主体 -->
+        <div class="fl center-cont">
+            <h2 class="ct-tit">订单详情</h2>
+            <div id="dj1">    <!-- 进度显示 -->
+                <div class="order-probox">
+                    <div class="loading" style="display:none;"><span class="loadmsg">loading...</span></div>
+                    <div class="order-process clearfix">
+                        <div class="fl pro-status pro-finish">
+                            <i class="ico-center or-submit"></i>
+                            <p class="pro-name">提交订单</p>
                         </div>
-                        <div class="fl or-goodpri">59.00</div>
-                        <div class="fl or-goodnum">1</div>
-                    </li>
-
-
-
-                    <li>
-                        <div class="fl or-goodinfo">
-
-                            <a href="javascript:;"   style="display: block;" class="fl or-goodimg" target="_blank">
-                                <img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/202001/20200102110657_67912.jpg" width="113" height="108" alt="商品图">
-                            </a>
-                            <div class="fl or-gooddet">
-                                <p class="or-goodname">
-                                    新春系列 提伯斯毛绒挂件盲盒
-                                </p>
-                                <p class="or-goodcolor">
-                                    颜色：彩色，                                 尺码：均码                             </p>
-                            </div>
-
+                        <div class="fl probarbox">
+                            <span class="probar" style="width:50%;"></span>
                         </div>
-                        <div class="fl or-goodpri">59.00</div>
-                        <div class="fl or-goodnum">1</div>
-                    </li>
-
-
-
-                </ul>
+                        <div class="fl pro-status">
+                            <i class="ico-center or-pay"></i>
+                            <p class="pro-name">付款成功</p>
+                        </div>
+                        <div class="fl probarbox">
+                            <span class="probar"></span>
+                        </div>
+                        <div class="fl pro-status">
+                            <i class="ico-center or-delivery"></i>
+                            <p class="pro-name"> 仓库发货 </p>
+                        </div>
+                        <div class="fl probarbox">
+                            <span class="probar"></span>
+                        </div>
+                        <div class="fl pro-status mr0">
+                            <i class="ico-center or-receipt"></i>
+                            <p class="pro-name">确认收货</p>
+                        </div>
+                    </div>
+                    <!-- 等待付款 -->
+                    <div class="pro-infobox" style="padding-bottom: 70px">
+                        <div class="pro-info clearfix">
+                            <i class="ico-center ico-exmark"></i>
+                            <span>当前状态：等待付款</span>
+                        </div>
+                        <p class="pro-tips">您还有<span class="yellow" id="leftTime">1小时20分40秒</span>进行付款，若未及时付款，订单将自动取消</p>
+                        <a href="javascript:;" id="onlineService1" class="ce-btn btn-pay" target="_blank" title="联系客服">联系客服</a>
+                        <a href="javascript:;" class="ce-btn btn-pay" title="立即付款">立即付款</a>
+                        <a href="javascript:;" class="ce-btn btn-pay" title="取消订单">取消订单</a>
+                    </div>
+                </div>
+                <!-- 订单信息 -->
+                <div class="order-debox clearfix">
+                    <div class="debox-tit">订单信息</div>
+                    <!--            <div class="loading" style="display:none;"><span class="loadmsg">loading...</span></div>-->
+                    <div class="order-infobox">
+                        <div class="orinfo-item">
+                            <span class="info-label">收货人：</span>
+                            <span class="cr333">杨涛</span>
+                        </div>
+                        <div class="orinfo-item">
+                            <span class="info-label">地址：</span>
+                            <span class="cr333">江西|赣州|宁都县 梅江镇文坊村</span>
+                        </div>
+                        <div class="orinfo-item">
+                            <span class="info-label">手机号码：</span>
+                            <span class="cr333">18296793262</span>
+                        </div>
+                        <div class="orinfo-item">
+                            <span class="info-label">支付方式：</span>
+                            <span class="cr333"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 商品信息 -->
+                <div class="order-debox clearfix">
+                    <div class="debox-tit">
+                        <span class="wth600">商品信息</span>
+                        <span>价格</span>
+                        <span>数量</span>
+                    </div>
+                    <div class="order-goodlist">
+                        <ul style="padding-left: 20px;">
+                            <li>
+                                <div class="fl or-goodinfo">
+                                    <a href="javascript:;"   style="display: block;" class="fl or-goodimg" target="_blank">
+                                        <img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/202001/20200102110657_67912.jpg" width="113" height="108" alt="商品图">
+                                    </a>
+                                    <div class="fl or-gooddet">
+                                        <p class="or-goodname">新春系列 提伯斯毛绒挂件盲盒</p>
+                                        <p class="or-goodcolor">颜色：彩色， 尺码：均码</p>
+                                    </div>
+                                </div>
+                                <div class="fl or-goodpri">59.00</div>
+                                <div class="fl or-goodnum">1</div>
+                            </li>
+                            <li>
+                                <div class="fl or-goodinfo">
+                                    <a href="javascript:;"   style="display: block;" class="fl or-goodimg" target="_blank">
+                                        <img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/202001/20200102110657_67912.jpg" width="113" height="108" alt="商品图">
+                                    </a>
+                                    <div class="fl or-gooddet">
+                                        <p class="or-goodname">新春系列 提伯斯毛绒挂件盲盒</p>
+                                        <p class="or-goodcolor">颜色：彩色， 尺码：均码</p>
+                                    </div>
+                                </div>
+                                <div class="fl or-goodpri">59.00</div>
+                                <div class="fl or-goodnum">1</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 总价 -->
+                <div class="order-sum" id="total-price" style="height: 151px;">
+                    <div class="order-sumitem">
+                        <span>商品总价：</span>
+                        <span class="cr33">￥59</span>
+                    </div>
+                    <div class="order-sumitem">
+                        <span>活动优惠：</span>
+                        <span class="cr33">-￥0</span>
+                    </div>
+                    <div class="order-sumitem">
+                        <span>运费：</span>
+                        <span class="cr33">￥15</span>
+                    </div>
+                </div>
             </div>
         </div>
-            <!-- 总价 -->
-            <div class="order-sum" style="height: 151px;">
-                <div class="order-sumitem">
-                    <span>商品总价：</span>
-                    <span class="cr33">￥59</span>
-                </div>
-                <div class="order-sumitem">
-                    <span>活动优惠：</span>
-                    <span class="cr33">-￥0</span>
-                </div>
-                <div class="order-sumitem">
-                    <span>运费：</span>
-                    <span class="cr33">￥15</span>
-                </div>
-
-        </div></div>
+    </div>
 </div>
+<div class="bottom"></div>
+<!-- 弹窗 -->
+<div id="confirm_panel" data-milodialog="1" role="dialog" tabindex="-1" style="display: none; visibility: visible; position: absolute; z-index: 9999; left: 50%; top: 251px; margin-top: 0px; margin-left: -190px;">
+    <div class="dj_pop">
+        <div class="dj_pop_alert">
+            <div class="dj_hd">
+                <h4>温馨提示</h4>
+                <a href="javascript:0;" title="关闭" class="dj_bt_close">
+                    <s></s>
+                </a>
+            </div>
+            <div class="dj_bd pb20 clearfix">
+                <p id="alert_cont">你确认要删除该订单吗?</p>
+                <a href="javascript:;" title="确认" class="dj_bt_ok">确认</a>
+                <a href="javascript:;" title="取消" class="dj_bt_cancel">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 弹窗弹出后周围显示的暗黑色 -->
+<div id="_overlay_" style="background-color: rgb(0, 0, 0); border-top: 1px solid rgb(0, 0, 0); position: absolute; height: 2292px; z-index: 9998; width: 100%; left: 0px; top: 0px; opacity: 0.6; display: none;"></div>
+<script src="js/orderdetail.js"></script>
 </body>
 </html>

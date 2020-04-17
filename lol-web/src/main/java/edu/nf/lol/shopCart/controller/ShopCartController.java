@@ -1,15 +1,17 @@
 package edu.nf.lol.shopCart.controller;
 
 import edu.nf.lol.BaseController;
+import edu.nf.lol.product.entity.Product;
+import edu.nf.lol.product.entity.ProductSpecs;
+import edu.nf.lol.product.service.ProductSpecsService;
 import edu.nf.lol.shopCart.entity.ShopCart;
 import edu.nf.lol.shopCart.service.ShopCartService;
+import edu.nf.lol.user.entity.User;
 import edu.nf.lol.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -22,7 +24,8 @@ import java.util.List;
 public class ShopCartController extends BaseController {
     @Autowired
     private ShopCartService shopCartService;
-
+    @Autowired
+    private ProductSpecsService productSpecsService;
     @GetMapping("/listShopCart")
     public ResponseVO listShopCart(Integer uid){
         List<ShopCart> list = shopCartService.listShopCart(uid);
@@ -61,5 +64,17 @@ public class ShopCartController extends BaseController {
         shopCartService.settlement(uid);
     }
 
-
+    @RequestMapping("/addShopCart")
+    public ResponseVO addShopCart(Integer productId, Integer count, String specs,HttpSession session){
+        Product product= new Product();
+        product.setProductId(productId);
+        User user = (User)session.getAttribute("user");
+        ProductSpecs productSpecs=productSpecsService.productSpecsProductId(product,specs);
+        ShopCart shopCart=new ShopCart();
+        shopCart.setShopCount(count);
+        shopCart.setShopUid(user.getUserId());
+        shopCart.setSpecsProductId(productSpecs.getSpecsId());
+        shopCartService.addShopCart(shopCart);
+        return success("添加成功！");
+    }
 }

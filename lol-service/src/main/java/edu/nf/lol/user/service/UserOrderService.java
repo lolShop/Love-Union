@@ -22,4 +22,6 @@ public interface UserOrderService {
     void updateOrderStatus(OrderInfo orderInfo);
 
     void deleteOrder(OrderInfo orderInfo);
+
+    OrderInfo queryOrderInfo(OrderInfo orderInfo);
 }

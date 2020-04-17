@@ -8,7 +8,7 @@
 		<script src="js/jquery-min.js"></script>
 	</head>
 	<body style="margin: 0; background-color:#f5f5f5;">
-		<div style="width: 100%; height: 156px; background-color: black;"></div>
+		<div class="head_top"></div>
 		<div class="center mid">
 		    <!-- center-none S -->
 		    <div class="center-main clearfix">
@@ -69,7 +69,7 @@
 					<!-- 如果设置了收货地址 -->
 					<div id="dj1">
 						<div class="addr-head clearfix">
-							<p class="fl">已保存收货地址<span class="gray">（共2条，最多保存5条）</span></p>
+							<p class="fl">已保存收货地址<span class="gray">（最多保存5条）</span></p>
 							<a href="javascript:;" class="fr btn-addaddr" title="新增收货地址">+新增收货地址</a>
 						</div>
 						<div class="addr-list">
@@ -102,42 +102,38 @@
 								<label class="f1 uitem-label"><span class="red">*</span>所在地区</label>
 								<div id="blk_popup_pay_address_region">
 									<div class="f1 mrselect uitem-sel zd3" id="blk_popup_pay_address_region_1">
-										<span class="uitem-seled selected" title="省" regionid>请选择</span>
+										<span class="uitem-seled selected" id="prov" title="省" value>请选择</span>
 										<!-- uitem-botarr 这个class是向上标志 -->
 										<i class="ico-center uitem-botarr"></i>
-										<div class="uitem-downlist" style="height: 200px;overflow: hidden; display: none;">
+										<div class="uitem-downlist" style="height: 200px;overflow: scroll; display: none;">
 											<ul>
-												<li regionid="110000">北京</li>
-												<li regionid="120000" class="active">天津</li>
-												<li regionid="130000">河北</li>
-												<li regionid="140000">山西</li>
+												<li value="110000">北京</li>
+												<li value="120000" class="active">天津</li>
+												<li value="130000">河北</li>
+												<li value="140000">山西</li>
 											</ul>
 										</div>
 									</div>
 									<div class="f1 mrselect uitem-sel zd3" id="blk_popup_pay_address_region_2">
-										<span class="uitem-seled selected" title="市" regionid>请选择</span>
+										<span class="uitem-seled selected" id="city" title="市" value onclick="showCity(this)">请选择</span>
 										<i class="ico-center uitem-botarr"></i>
-										<div class="uitem-downlist" style="height: 200px;overflow: hidden; display: none;">
+										<div class="uitem-downlist" style="height: 200px;overflow: scroll; display: none;">
 											<ul>
-												<li regionid="110000">北京</li>
-												<li regionid="120000" class="active">天津</li>
-												<li regionid="130000">河北</li>
-												<li regionid="140000">山西</li>
+												<li value="110000">请选择</li>
 											</ul>
 										</div>
 									</div>
 									<div class="f1 mrselect uitem-sel zd3" id="blk_popup_pay_address_region_3">
-										<span class="uitem-seled selected" title="区" regionid>请选择</span>
+										<span class="uitem-seled selected" id="country" title="区" value onclick="showCountry(this)">请选择</span>
 										<i class="ico-center uitem-botarr"></i>
-										<div class="uitem-downlist" style="height: 200px;overflow: hidden; display: none;">
+										<div class="uitem-downlist" style="height: 200px;overflow: scroll; display: none;">
 											<ul>
-												<li regionid="110000">北京</li>
-												<li regionid="120000" class="active">天津</li>
-												<li regionid="130000">河北</li>
-												<li regionid="140000">山西</li>
+												<li value="110000">请选择</li>
 											</ul>
 										</div>
 									</div>
+									<script src="js/city.js"></script>
+									<!-- <script src="js/method.js"></script> -->
 								</div>
 								<script>
 									$('.mrselect').on('click', function(){
@@ -157,10 +153,6 @@
 											$($(this).children()[1]).removeClass('uitem-toparr');
 										}
 									})
-									//选中一个地名
-									$('.mrselect ul li').on('click', function(){
-										$($(this).parents().parents().parents().children()[0]).html($(this).text());
-									});
 								</script>
 							</div>
 							<div class="ct-useritem ct-areaitem">
@@ -177,13 +169,14 @@
 							</div>
 							<div class="uitem-actbox">
 								<a href="javascript:0;" class="btn-uitem-save" title="保存">保存</a><!-- 按钮不可用时添加btn-gray -->
-							</div> 
+							</div>
 						</form>
 					</div>
-					
+
 				</div>
 			</div>
-		</div>	
+		</div>
+		<div class="bottom"></div>
 		<script src="js/address.js"></script>
 	</body>
 </html>

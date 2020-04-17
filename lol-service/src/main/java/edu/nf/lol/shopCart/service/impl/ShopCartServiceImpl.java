@@ -67,5 +67,8 @@ public class ShopCartServiceImpl implements ShopCartService {
         return shopCartDao.findShopCart(specId);
     }
 
-
+    @Override
+    public void addShopCart(ShopCart shopCart) {
+        shopCartDao.addShopCart(shopCart);
+    }
 }

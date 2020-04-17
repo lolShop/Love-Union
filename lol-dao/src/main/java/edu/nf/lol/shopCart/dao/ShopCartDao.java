@@ -64,4 +64,9 @@ public interface ShopCartDao {
      * @param uid
      */
     void settlement(Integer uid);
+    /**
+     * 加入购物车
+     * @param shopCart
+     */
+    void addShopCart(ShopCart shopCart);
 }
