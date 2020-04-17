@@ -1,4 +1,10 @@
 $(function () {
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r != null) return decodeURI(r[2]);
+        return null;
+    }
     $.ajax({
         url:"comment/listComment",
         type:"post",
@@ -11,7 +17,7 @@ $(function () {
     $.ajax({
         url:"comment/fs",
         type:"post",
-        data:{"pid":1000},
+        data:{"pid":GetQueryString("productId")},
         success:function (result) {
             var xj=0;
             if(result.data.toFixed(1)*1==result.data.toFixed(0)*1){
