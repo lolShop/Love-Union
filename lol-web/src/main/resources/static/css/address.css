@@ -14,7 +14,7 @@ input, textarea, select {
     margin: 50px auto 0;
     width: 171px;
     height: 163px;
-    background: url(../image/order-none.png) no-repeat;
+    background: url(../image/address/order-none.png) no-repeat;
 }
 .center-none .none-tip {
     margin-top: 20px;

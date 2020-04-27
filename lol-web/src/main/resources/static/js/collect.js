@@ -7,7 +7,6 @@ function init(){
 		type:'get',
 		data:{'pageNum': 1, 'pageSize': 8},
 		success:function(result){
-			console.log(result.data);
 			range(result.data);
 			page(result.data);
 		}
@@ -17,7 +16,7 @@ function init(){
 function range(pageInfo){
 	$('#dj1 ul li').remove();
 	//如果没有收藏
-	if(pageInfo.list[0] == null){
+	if(pageInfo == null ||pageInfo.list[0] == null){
 		$('#dj1 ul').append(
 			"<div class='collect-none' >"+
 				"您还没有收藏任何周边呢，<a href='#' class='yellow'>快去逛逛吧></a>"+
@@ -49,6 +48,9 @@ function range(pageInfo){
 
 //分页
 function page(pageInfo){
+	if(pageInfo == null || pageInfo.list[0] == null){
+		return;
+	}
 	$("#page").pagination(pageInfo.total, { //第一个参数指定共多少条记录
 		items_per_page:pageInfo.pageSize, // 每页显示多少条记录
 		next_text:">", //下一页按钮图标

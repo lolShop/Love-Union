@@ -12,8 +12,10 @@ function init(){
 		type:'get',
 		success:function(result){
 			$("#dj1 ul li:not(:first)").remove();
-			if(result.data == null){
-				$("#dj1").remove();
+			$(".center-none").hide();
+			if(result.data == null || result.data.length == 0){
+				$("#dj1").hide();
+				$(".center-none").show();
 				$(".conter-cont h2").after(
 					"<div class='center-none' >"+
 						"<i class='ico-none'></i>"+
@@ -22,6 +24,7 @@ function init(){
 				);
 				return;
 			}
+			$("#dj1").show();
 			$.each(result.data, function(i, address){
 				//修饰手机号码
 				var phone = address.takePhone.substring(0, 3) + "****" + address.takePhone.substring(7, 11);

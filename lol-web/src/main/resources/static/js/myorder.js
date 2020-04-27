@@ -21,7 +21,6 @@ function init(){
 }
 //加载页面
 function load(pageInfo, target){
-	console.log(target);
 	$('#'+target + ' table tbody').remove();
 	//如果没有订单,则显示
 	if(pageInfo == null || pageInfo.list[0] == null){
@@ -45,7 +44,7 @@ function load(pageInfo, target){
 		})
 		//遍历购物项,打印数据
 		$.each(orderInfo.details, function(index, details){
-
+			console.log(details);
 			var jsonObj = JSON.parse(details.productSpecs.productSpecs);
 			var specs = "";
 			for (var name in jsonObj) {
@@ -69,7 +68,7 @@ function load(pageInfo, target){
 					"<td colspan='3' class='brl'>"+
 					"<div>"+
 					"<a href='#' style='display: block;' class='f1 relpic' target='_blank'>"+
-					"<img src='image/prodcutlist/"+details.product.productMainImage+"' width='113' height='108' alt='商品图' />"+
+					"<img src='image/prodcutlist/"+details.productSpecs.product.productMainImage+"' width='113' height='108' alt='商品图' />"+
 					"</a>"+
 					"<div class='f1 reinfo clearfix'>"+
 					"<div class='relname'>"+details.productSpecs.product.productName+"</div>"+
