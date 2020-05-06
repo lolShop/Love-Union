@@ -4,11 +4,16 @@ import com.github.pagehelper.PageInfo;
 import edu.nf.lol.BaseController;
 
 import edu.nf.lol.product.entity.Product;
+import edu.nf.lol.product.entity.ProductDto;
+import edu.nf.lol.product.entity.PageBean;
+import edu.nf.lol.product.entity.ProductType;
 import edu.nf.lol.product.service.ProductIndexService;
 import edu.nf.lol.vo.ResponseVO;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -21,14 +26,23 @@ import java.util.List;
 public class ProductIndexController extends BaseController {
     @Autowired
     private   ProductIndexService productIndexService;
-    @GetMapping("/recommend")
-    public  ResponseVO<PageInfo<Product>>productRecommend(Integer pageNum, Integer pageSize,Integer state){
-        PageInfo<Product> pageInfo=productIndexService.productRecommend(pageNum,pageSize,state);
-        return  success(pageInfo);
+    @GetMapping("/search")
+    public  ResponseVO productSearch(Integer pageNum,Integer pageSize,String productName){
+        PageBean<ProductDto> pageBean=productIndexService.productSearch(pageNum,pageSize,productName);
+        return  success(pageBean);
     }
-    @GetMapping("/esAll")
-    public  ResponseVO productEsAll(){
-        List<Product> list=productIndexService.productAll();
+    @GetMapping("/parentId")
+    public ResponseVO listProductTypeParent(Integer parentId){
+        List<ProductType> list=productIndexService.listProductType(parentId);
         return  success(list);
+    }
+    @GetMapping("/sort")
+    public  ResponseVO listProductPrice(Integer pageNum,Integer pageSize,String descName,String sort,String productName){
+        SortOrder sortOrder=SortOrder.ASC;
+        if (sort.equals("desc")){
+            sortOrder=SortOrder.DESC;
+        }
+        PageBean<ProductDto> pageBean=productIndexService.listProductPrice(pageNum, pageSize,descName,sortOrder,productName);
+        return  success(pageBean);
     }
 }

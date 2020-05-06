@@ -747,6 +747,9 @@ strong{
     -o-transition: 1s ease-in-out 0s;
     -webkit-backface-visibility: hidden;
 }
+.index-link:hover{
+    text-decoration: underline ;
+}
 .i-close:hover{
     transform:rotate(720deg);
 

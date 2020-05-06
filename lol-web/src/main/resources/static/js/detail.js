@@ -80,6 +80,11 @@ $(function(){
 		method:"get",
 		data:{"productId":GetQueryString("productId")},
 		success:function (result) {
+			var typeArr=result.data.productType.productTypeName.split("\\");
+			$.each(typeArr,function (i,type) {
+					$("#blk_detail_crumbs").append("<a href='http://localhost:8080/lol/productlist.html?productName="+type+"' target=\"_blank\" class=\"index-link ml5\">"+type+"&gt;</a>")
+			})
+			$("#blk_detail_crumbs").append("<em>"+result.data.productName+"</em>");
 			//动态显示商品信息
 			$("#product").append("<span class='pord-name'>"+result.data.productName+"</span>" +
 			"<div class='pord-price clearfix'>" +
@@ -118,11 +123,13 @@ $(function(){
 				}
 				$("#js-more-views img").eq(i).prop("src","image/detail/"+img.imageName);
 			})
+
 			//商品详细显示
 			$("#blk_detail_tab_desc #par-name").text(result.data.productName);
 			$("#blk_detail_tab_desc #time").text(result.data.productCreateTime);
 			$("#blk_detail_tab_desc #weight").text(result.data.productWeight+"g");
 			 $("#stock").text(result.data.productSpecsList[0].specsStock);
+			 $("#productTypeName").text(result.data.productType.productTypeName)
 		}
 	})
 	//收藏

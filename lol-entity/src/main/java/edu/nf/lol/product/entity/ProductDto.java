@@ -8,6 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 /**
@@ -22,7 +23,10 @@ public class ProductDto {
     private  Integer   productId;
     @Field(type = FieldType.Text,analyzer = "ik_max_word")
     private String    productName;
+    @Field(type = FieldType.Text,analyzer = "ik_max_word")
+    private String    productTypeName;
     private String  productMainImage;
     private BigDecimal specsPrice;
     private BigDecimal promotionPrice;
+    private  Date productCreateTime;
 }

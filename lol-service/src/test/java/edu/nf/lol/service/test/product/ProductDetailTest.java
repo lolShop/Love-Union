@@ -3,6 +3,7 @@ package edu.nf.lol.service.test.product;
 
 
 import edu.nf.lol.product.entity.*;
+import edu.nf.lol.product.entity.PageBean;
 import edu.nf.lol.product.service.ProductDetailService;
 
 
@@ -46,32 +47,14 @@ public class ProductDetailTest {
     }
     @Test
     public void testListProduct(){
-        ProductType productType= new ProductType();
-        Product product= new Product();
-        product.setProductId(1);
-        List<ProductSpecs> list=productSpecsService.listProductSpecs(product.getProductId());
+       productIndexService.productAll();
     }
     @Test
     public  void  testProductSpecsProductId(){
-//        ProductSpecs specs= new ProductSpecs();
-////        specs.setProductSpecs("{'颜色':'彩色','尺码':'XXL'}");
-////        System.out.println(specs.getProductSpecs());
-//////        ProductSpecs specs1=productSpecsService.productSpecsProductId();
-//////        System.out.println(specs1);
-//        List<Product> products=productIndexService.productAll();
-//        products.forEach(product -> {
-//            ProductDto productDto= new ProductDto();
-//            productDto.setProductId(product.getProductId());
-//            productDto.setProductName(product.getProductName());
-//            productDto.setProductMainImage(product.getProductMainImage());
-////            productDto.setSpecsPrice(product.getProductSpecsList().get(0).getSpecsPrice());
-////            productDto.setPromotionPrice(product.getProductSpecsList().get(0).getPromotionPrice());
-//            productRepository.index(productDto);
-//        });
-        ProductDto product=new ProductDto();
-        product.setProductId(1);
-        product.setProductName("悠米卫衣");
-        product.setProductMainImage("20200102113518_85881.jpg");
-
+        PageBean<ProductDto> pageBean =productIndexService.productSearch(1,3,"服饰");
+        pageBean.getList().forEach(productDto -> {
+                System.out.println(productDto.getProductName());
+                System.out.println(productDto.getProductTypeName());
+            });
     }
 }

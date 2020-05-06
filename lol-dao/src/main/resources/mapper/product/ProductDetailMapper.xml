@@ -4,6 +4,7 @@
 <mapper namespace="edu.nf.lol.product.dao.ProductDetailDao">
     <resultMap id="productMap" type="edu.nf.lol.product.entity.Product">
         <id  property="productId" column="product_id"/>
+        <result property="productTypeId" column="product_type_id"/>
         <result property="productName" column="product_name"/>
         <result property="productCreateTime" column="product_create_time"/>
         <result property="productUpdateTime" column="product_update_time"/>

@@ -21,5 +21,8 @@ public interface AdminProductTypeDao {
      * @return
      */
     List<ProductType> adminProductTypeAll(Integer parentId);
-
+    /**
+     * 根据根据商品类型查父类类型id也是 递归方法实现
+     */
+    List<ProductType>   listProductTypeId(Integer Id );
 }

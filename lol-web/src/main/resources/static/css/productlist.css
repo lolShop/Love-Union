@@ -1,0 +1,22 @@
+.good-lists {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    background: #fff;
+}
+#dj_goods_ul {
+    margin-left: 40px;
+    width: 1208px;
+    height: auto;
+}
+#dj_goods_ul li {
+    margin: 0 10px 20px;
+    float: left;
+    width: 280px;
+    height: 356px;
+    border: 1px solid #eee;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+    overflow: hidden;
+}

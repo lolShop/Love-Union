@@ -25,7 +25,9 @@ public class Product {
     private  Integer   productWeight;
     private String productAttribute;
     private  Integer  productState;
+    private  Integer productTypeId;
     private  ProductType productType;
     private List<ProductSpecs> productSpecsList;
     private  List<ProductImage> productImageList;
+
 }
